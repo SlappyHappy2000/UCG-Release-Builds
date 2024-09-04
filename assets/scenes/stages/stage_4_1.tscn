@@ -1,0 +1,543 @@
+[gd_scene load_steps=13 format=3 uid="uid://ba6upaidk6417"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_l75q3"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_7eivi"]
+[ext_resource type="Texture2D" uid="uid://c1mfyqd0cfj43" path="res://assets/graphics/blacksquare.png" id="3_0o5ga"]
+[ext_resource type="Shader" path="res://assets/scenes/stages/level_template.gdshader" id="3_c2dne"]
+[ext_resource type="PackedScene" uid="uid://bqr4agg5g2ver" path="res://assets/scenes/objects/sand_pit.tscn" id="5_wfowu"]
+[ext_resource type="PackedScene" uid="uid://l8ecukyy2ntu" path="res://assets/scenes/objects/destructible_block.tscn" id="6_4vfwn"]
+[ext_resource type="PackedScene" uid="uid://cqrmu70pd1jaa" path="res://assets/scenes/objects/baddie_orb.tscn" id="7_3phg6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a5mto"]
+resource_local_to_scene = true
+shader = ExtResource("3_c2dne")
+shader_parameter/C1 = Color(0.721569, 0.768627, 0.831373, 1)
+shader_parameter/C2 = Color(0.522, 0.5558, 0.6, 1)
+shader_parameter/C3 = Color(0.348, 0.370533, 0.4, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7d3is"]
+resource_local_to_scene = true
+shader = ExtResource("3_c2dne")
+shader_parameter/C1 = Color(0.0666667, 1, 0, 1)
+shader_parameter/C2 = Color(0, 0.278431, 0, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_15440"]
+resource_local_to_scene = true
+shader = ExtResource("3_c2dne")
+shader_parameter/C1 = Color(1, 0.501961, 0.67451, 1)
+shader_parameter/C2 = Color(0.4, 0, 0.12549, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_ucpps"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform vec4 C4 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+	} else if (color == vec4(0, 0, 255, 255)) {
+        COLOR = C4;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbh8n"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ucpps")
+shader_parameter/C1 = Color(0.721569, 0.768627, 0.831373, 1)
+shader_parameter/C2 = Color(0.522, 0.5558, 0.6, 1)
+shader_parameter/C3 = Color(0.348, 0.370533, 0.4, 1)
+shader_parameter/C4 = Color(0.348, 0.370533, 0.4, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage4-1" instance=ExtResource("1_l75q3")]
+script = ExtResource("2_7eivi")
+level_name = "4-1: Welcome to THE FINAL FRONTIER."
+scene_ID = "stage4-1"
+music_choice = "bgmLvl4"
+stage_color = Color(0.286275, 0.568627, 0.443137, 1)
+progress_destination = "stage4-2"
+peak_value = 4000
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.301961)
+z_index = 2
+position = Vector2(511.75, 255.75)
+scale = Vector2(256.25, 256.25)
+texture = ExtResource("3_0o5ga")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="1"]
+z_index = 2
+position = Vector2(576, -32)
+amount = 500
+lifetime = 1.5
+emission_shape = 3
+emission_rect_extents = Vector2(384, 1)
+gravity = Vector2(-200, 980)
+linear_accel_max = 100.0
+scale_amount_max = 2.0
+color = Color(0.556863, 0.615686, 0.901961, 1)
+
+[node name="Tiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_a5mto")
+scale = Vector2(0.5, 0.5)
+layer_0/tile_data = PackedInt32Array(2097183, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, 458800, 0, 0, 524336, 0, 0, 589872, 0, 0, 655408, 0, 0, 720944, 0, 0, 786480, 0, 0, 852016, 0, 0, 917552, 0, 0, 983088, 0, 0, 1048624, 0, 0, 1114160, 0, 0, 1179696, 0, 0, 1638448, 0, 0, 1703984, 0, 0, 1769520, 0, 0, 1835056, 0, 0, 1900592, 0, 0, 1966128, 0, 0, 2031664, 0, 0, 2097200, 0, 0, -65488, 0, 0, 4194335, 0, 0, 4194336, 0, 0, 4194337, 0, 0, 4194338, 0, 0, 4194339, 0, 0, 4194340, 0, 0, 4194341, 0, 0, 4194342, 0, 0, 4194343, 0, 0, 4194344, 0, 0, 4194345, 0, 0, 4194346, 0, 0, 4194347, 0, 0, 4194348, 0, 0, 4194349, 0, 0, 4194350, 0, 0, 4194351, 0, 0, 4194352, 0, 0, -65487, 0, 0, 4194353, 0, 0, -65486, 0, 0, 4194354, 0, 0, -65485, 0, 0, 4194355, 0, 0, -65484, 0, 0, 4194356, 0, 0, -65483, 0, 0, 4194357, 0, 0, -65482, 0, 0, 4194358, 0, 0, -65481, 0, 0, 4194359, 0, 0, -65480, 0, 0, 4194360, 0, 0, -65479, 0, 0, 4194361, 0, 0, -65478, 0, 0, 4194362, 0, 0, -65477, 0, 0, 4194363, 0, 0, -65476, 0, 0, 4194364, 0, 0, -65475, 0, 0, 4194365, 0, 0, -65474, 0, 0, 4194366, 0, 0, -65473, 0, 0, 4194367, 0, 0, -65472, 0, 0, 4194368, 0, 0, -65471, 0, 0, 4194369, 0, 0, -65470, 0, 0, 4194370, 0, 0, -65469, 0, 0, 4194371, 0, 0, -65468, 0, 0, 4194372, 0, 0, -65467, 0, 0, 4194373, 0, 0, -65466, 0, 0, 4194374, 0, 0, -65465, 0, 0, 4194375, 0, 0, -65464, 0, 0, 4194376, 0, 0, -65463, 0, 0, 4194377, 0, 0, -65462, 0, 0, 4194378, 0, 0, -65461, 0, 0, 4194379, 0, 0, -65460, 0, 0, 4194380, 0, 0, -65459, 0, 0, 4194381, 0, 0, -65458, 0, 0, 4194382, 0, 0, -65457, 0, 0, 4194383, 0, 0, 31, 0, 0, 65567, 0, 0, 131103, 0, 0, 196639, 0, 0, 262175, 0, 0, 327711, 0, 0, 393247, 0, 0, 458783, 0, 0, 524319, 0, 0, 589855, 0, 0, 655391, 0, 0, 720927, 0, 0, 786463, 0, 0, 851999, 0, 0, 917535, 0, 0, 983071, 0, 0, 1048607, 0, 0, 1114143, 0, 0, 1179679, 0, 0, 1245215, 0, 0, 1310751, 0, 0, 1376287, 0, 0, 1441823, 0, 0, 1507359, 0, 0, 1572895, 0, 0, 1638431, 0, 0, 1703967, 0, 0, 1769503, 0, 0, 1835039, 0, 0, 1900575, 0, 0, 1966111, 0, 0, 2031647, 0, 0, 2162719, 0, 0, 2228255, 0, 0, 2293791, 0, 0, 2359327, 0, 0, 2424863, 0, 0, 2490399, 0, 0, 2555935, 0, 0, 2621471, 0, 0, 2687007, 0, 0, 2752543, 0, 0, 2818079, 0, 0, 2883615, 0, 0, 2949151, 0, 0, 3014687, 0, 0, 3080223, 0, 0, 3145759, 0, 0, 3211295, 0, 0, 3276831, 0, 0, 3342367, 0, 0, 3407903, 0, 0, 3473439, 0, 0, 3538975, 0, 0, 3604511, 0, 0, 3670047, 0, 0, 3735583, 0, 0, 3801119, 0, 0, 3866655, 0, 0, 3932191, 0, 0, 3997727, 0, 0, 4063263, 0, 0, 4128799, 0, 0, -65456, 0, 0, 4194384, 0, 0, -65455, 0, 0, 4194385, 0, 0, -65454, 0, 0, 4194386, 0, 0, -65453, 0, 0, 4194387, 0, 0, -65452, 0, 0, 4194388, 0, 0, -65451, 0, 0, 4194389, 0, 0, -65450, 0, 0, 4194390, 0, 0, -65449, 0, 0, 4194391, 0, 0, -65448, 0, 0, 4194392, 0, 0, -65447, 0, 0, 4194393, 0, 0, 4194394, 0, 0, 4194395, 0, 0, 4194396, 0, 0, 4194397, 0, 0, 4194398, 0, 0, -65440, 0, 0, 96, 0, 0, 65632, 0, 0, 131168, 0, 0, 196704, 0, 0, 262240, 0, 0, 327776, 0, 0, 393312, 0, 0, 458848, 0, 0, 524384, 0, 0, 589920, 0, 0, 655456, 0, 0, 720992, 0, 0, 786528, 0, 0, 852064, 0, 0, 917600, 0, 0, 983136, 0, 0, 1048672, 0, 0, 1114208, 0, 0, 1179744, 0, 0, 1245280, 0, 0, 1310816, 0, 0, 1376352, 0, 0, 1441888, 0, 0, 1507424, 0, 0, 1572960, 0, 0, 1638496, 0, 0, 1704032, 0, 0, 1769568, 0, 0, 1835104, 0, 0, 1900640, 0, 0, 1966176, 0, 0, 2031712, 0, 0, 2097248, 0, 0, 2162784, 0, 0, 2228320, 0, 0, 2293856, 0, 0, 2359392, 0, 0, 2424928, 0, 0, 2490464, 0, 0, 2556000, 0, 0, 2621536, 0, 0, 2687072, 0, 0, 2752608, 0, 0, 2818144, 0, 0, 2883680, 0, 0, 2949216, 0, 0, 3014752, 0, 0, 3080288, 0, 0, 3145824, 0, 0, 3211360, 0, 0, 3276896, 0, 0, 3342432, 0, 0, 3407968, 0, 0, 3473504, 0, 0, 3539040, 0, 0, 3604576, 0, 0, 3670112, 0, 0, 3735648, 0, 0, 3801184, 0, 0, 3866720, 0, 0, 3932256, 0, 0, 3997792, 0, 0, 4063328, 0, 0, 4128864, 0, 0, 4194400, 0, 0, -65445, 0, 0, -65444, 0, 0, -65443, 0, 0, -65442, 0, 0, -65441, 0, 0, -65446, 0, 0, 4194399, 0, 0, 55, 0, 0, 65591, 0, 0, 65592, 0, 0, 56, 0, 0, 71, 0, 0, 65607, 0, 0, 131143, 0, 0, 131144, 0, 0, 65608, 0, 0, 72, 0, 0, 70, 0, 0, 65606, 0, 0, 131142, 0, 0, 131128, 0, 0, 131127, 0, 0, 57, 0, 0, 65593, 0, 0, 131129, 0, 0, 196679, 0, 0, 196680, 0, 0, 196678, 0, 0, 196663, 0, 0, 196664, 0, 0, 196665, 0, 0, 262201, 0, 0, 262200, 0, 0, 262199, 0, 0, 65594, 65536, 0, 59, 65536, 0, 68, 131072, 0, 65605, 131072, 0, 69, 0, 0, 58, 0, 0, 327735, 0, 0, 327736, 0, 0, 327737, 0, 0, 327751, 0, 0, 262215, 0, 0, 262214, 0, 0, 327750, 0, 0, 327752, 0, 0, 262216, 0, 0, 327753, 0, 0, 262217, 0, 0, 196681, 0, 0, 131145, 0, 0, 65609, 0, 0, 73, 0, 0, 54, 0, 0, 65590, 0, 0, 131126, 0, 0, 196662, 0, 0, 262198, 0, 0, 327734, 0, 0, 393271, 0, 0, 393272, 0, 0, 393273, 0, 0, 458809, 0, 0, 524345, 0, 0, 524344, 0, 0, 458808, 0, 0, 458807, 0, 0, 524343, 0, 0, 589880, 0, 0, 589881, 0, 0, 589879, 0, 0, 655416, 0, 0, 720953, 0, 0, 655417, 0, 0, 655418, 0, 0, 720954, 0, 0, 720955, 0, 0, 720956, 0, 0, 655419, 0, 0, 655420, 0, 0, 393286, 0, 0, 458822, 0, 0, 524358, 0, 0, 589894, 0, 0, 655430, 0, 0, 720966, 0, 0, 655431, 0, 0, 589895, 0, 0, 524359, 0, 0, 458823, 0, 0, 393287, 0, 0, 393288, 0, 0, 458824, 0, 0, 524360, 0, 0, 589896, 0, 0, 524361, 0, 0, 458825, 0, 0, 393289, 0, 0, 655428, 0, 0, 720964, 0, 0, 720963, 0, 0, 655427, 0, 0, 655429, 0, 0, 720965, 0, 0, 524346, 262144, 0, 589883, 262144, 0, 589882, 0, 0, 589892, 196608, 0, 524357, 196608, 0, 589893, 0, 0, 393270, 0, 0, 458806, 0, 0, 524342, 0, 0, 720967, 65536, 0, 655432, 65536, 0, 589897, 65536, 0, 589878, 131072, 0, 655415, 131072, 0, 720952, 131072, 0, 524341, 0, 0, 524340, 0, 0, 524339, 0, 0, 524338, 0, 0, 524337, 0, 0, 458801, 0, 0, 458802, 0, 0, 458803, 0, 0, 458804, 0, 0, 458805, 0, 0, 917553, 0, 0, 852017, 0, 0, 786481, 0, 0, 720945, 0, 0, 655409, 0, 0, 589873, 0, 0, 983089, 0, 0, 1048625, 0, 0, 1114161, 0, 0, 1179697, 0, 0, 1179695, 0, 0, 1114159, 0, 0, 1114158, 0, 0, 1114157, 0, 0, 1179693, 0, 0, 1179694, 0, 0, 1114156, 0, 0, 1179692, 0, 0, 1114155, 0, 0, 1179691, 0, 0, 1179690, 0, 0, 1114154, 0, 0, 1245226, 0, 0, 1310762, 0, 0, 1310763, 0, 0, 1245227, 0, 0, 1376298, 0, 0, 1441834, 0, 0, 1441835, 0, 0, 1376299, 0, 0, 1507370, 0, 0, 1572906, 0, 0, 1572907, 0, 0, 1507371, 0, 0, 1048620, 196608, 0, 983085, 196608, 0, 917550, 196608, 0, 852015, 196608, 0, 1048621, 0, 0, 1048622, 0, 0, 983086, 0, 0, 1048623, 0, 0, 983087, 0, 0, 917551, 0, 0, 1638442, 0, 0, 1703978, 0, 0, 1703979, 0, 0, 1638443, 0, 0, 2293797, 0, 0, 2359333, 0, 0, 2359334, 0, 0, 2293798, 0, 0, 2293799, 0, 0, 2359335, 0, 0, 2293800, 0, 0, 2359336, 0, 0, 1703980, 0, 0, 1703981, 0, 0, 1638445, 0, 0, 1638444, 0, 0, 1638446, 0, 0, 1638447, 0, 0, 1703983, 0, 0, 1703982, 0, 0, 1638449, 0, 0, 1703985, 0, 0, 1769521, 0, 0, 1835057, 0, 0, 1900593, 0, 0, 1966129, 0, 0, 2031665, 0, 0, 2097201, 0, 0, 2162737, 0, 0, 2228273, 0, 0, 2293809, 0, 0, 2359345, 0, 0, 2359344, 0, 0, 2424880, 0, 0, 2293808, 0, 0, 2228272, 0, 0, 2162736, 0, 0, 2424881, 0, 0, 2424869, 0, 0, 2424870, 0, 0, 2424871, 0, 0, 2424872, 0, 0, 2490408, 0, 0, 2490407, 0, 0, 2490406, 0, 0, 2490405, 0, 0, 2555941, 0, 0, 2555942, 0, 0, 2555943, 0, 0, 2555944, 0, 0, 2621480, 0, 0, 2621479, 0, 0, 2621478, 0, 0, 2621477, 0, 0, 2490416, 0, 0, 2555952, 0, 0, 2621488, 0, 0, 2687024, 0, 0, 2752560, 0, 0, 2818096, 0, 0, 2818097, 0, 0, 2752561, 0, 0, 2687025, 0, 0, 2621489, 0, 0, 2555953, 0, 0, 2490417, 0, 0, 2883632, 0, 0, 2949168, 0, 0, 2949169, 0, 0, 2883633, 0, 0, 3014704, 0, 0, 3080240, 0, 0, 3080241, 0, 0, 3014705, 0, 0, 3145776, 0, 0, 3145777, 0, 0, 3145778, 0, 0, 3145779, 0, 0, 3145780, 0, 0, 3145781, 0, 0, 3211315, 0, 0, 3211314, 0, 0, 3211313, 0, 0, 3211312, 0, 0, 3211316, 0, 0, 3211317, 0, 0, 3211318, 0, 0, 3211319, 0, 0, 3211320, 0, 0, 3145784, 0, 0, 3145783, 0, 0, 3145782, 0, 0, 3801134, 0, 0, 3866670, 0, 0, 3932206, 0, 0, 3932207, 0, 0, 3932208, 0, 0, 3932209, 0, 0, 3932210, 0, 0, 3932211, 0, 0, 3866675, 0, 0, 3866674, 0, 0, 3801138, 0, 0, 3801137, 0, 0, 3801136, 0, 0, 3801135, 0, 0, 3866671, 0, 0, 3866672, 0, 0, 3866673, 0, 0, 3801139, 0, 0, 3866659, 0, 0, 3932195, 0, 0, 3932194, 0, 0, 3866658, 0, 0, 1114145, 0, 0, 1114146, 0, 0, 1179681, 0, 0, 1179682, 0, 0, 3145785, 0, 0, 3211321, 0, 0, 3276857, 0, 0, 3342393, 0, 0, 3407929, 0, 0, 3473465, 0, 0, 3473466, 0, 0, 3407930, 0, 0, 3342394, 0, 0, 3276858, 0, 0, 3211322, 0, 0, 3145786, 0, 0, 3473473, 0, 0, 3473472, 0, 0, 3473471, 0, 0, 3473470, 0, 0, 3473469, 0, 0, 3473468, 0, 0, 3473467, 0, 0, 3473474, 0, 0, 3473475, 0, 0, 3407931, 0, 0, 3407932, 0, 0, 3407933, 0, 0, 3407934, 0, 0, 3407935, 0, 0, 3407936, 0, 0, 3407937, 0, 0, 3407938, 0, 0, 3407939, 0, 0, 3801156, 0, 0, 3801155, 0, 0, 3801154, 0, 0, 3801153, 0, 0, 3801152, 0, 0, 3801151, 0, 0, 3801150, 0, 0, 3866686, 0, 0, 3932222, 0, 0, 3997758, 0, 0, 4063294, 0, 0, 4128830, 0, 0, 4128831, 0, 0, 4063295, 0, 0, 3997759, 0, 0, 3932223, 0, 0, 3866687, 0, 0, 3866688, 0, 0, 3932224, 0, 0, 3997760, 0, 0, 4063296, 0, 0, 4128832, 0, 0, 4128833, 0, 0, 4063297, 0, 0, 3997761, 0, 0, 3932225, 0, 0, 3866689, 0, 0, 4128834, 0, 0, 4063298, 0, 0, 3997762, 0, 0, 3932226, 0, 0, 3866690, 0, 0, 3997763, 0, 0, 4063299, 0, 0, 4128835, 0, 0, 3932227, 0, 0, 3866691, 0, 0, 3866692, 0, 0, 3932228, 0, 0, 3997764, 0, 0, 4063300, 0, 0, 4128836, 0, 0, 4128837, 0, 0, 4063301, 0, 0, 3997765, 0, 0, 3932229, 0, 0, 3866693, 0, 0, 3801157, 0, 0, 3801158, 0, 0, 3866694, 0, 0, 3932230, 0, 0, 3997766, 0, 0, 4063302, 0, 0, 4128838, 0, 0, 262218, 0, 0, 262219, 0, 0, 262220, 0, 0, 262221, 0, 0, 262222, 0, 0, 262223, 0, 0, 327759, 0, 0, 327758, 0, 0, 327757, 0, 0, 327756, 0, 0, 327755, 0, 0, 327754, 0, 0, 327760, 0, 0, 262224, 0, 0, 262225, 0, 0, 327761, 0, 0, 196685, 0, 0, 131149, 0, 0, 65613, 0, 0, 77, 0, 0, 78, 0, 0, 65614, 0, 0, 131150, 0, 0, 196686, 0, 0, 393296, 0, 0, 458832, 0, 0, 524368, 0, 0, 589904, 0, 0, 655440, 0, 0, 655441, 0, 0, 589905, 0, 0, 524369, 0, 0, 458833, 0, 0, 393297, 0, 0, 1179683, 0, 0, 1114147, 0, 0, 1114148, 0, 0, 1179684, 0, 0, 1769509, 0, 0, 1835045, 0, 0, 1835044, 0, 0, 1769508, 0, 0, 1703972, 0, 0, 1703973, 0, 0, 3014698, 0, 0, 3080234, 0, 0, 3014697, 0, 0, 3080233, 0, 0, 3473476, 0, 0, 3473477, 0, 0, 3473478, 0, 0, 3473479, 0, 0, 3473480, 0, 0, 3407944, 0, 0, 3407943, 0, 0, 3407942, 0, 0, 3407941, 0, 0, 3407940, 0, 0, 3407945, 0, 0, 3473481, 0, 0, 3997786, 0, 0, 4063322, 0, 0, 4063323, 0, 0, 3997787, 0, 0, 3866700, 0, 0, 3932236, 0, 0, 3932237, 0, 0, 3866701, 0, 0, 3473482, 0, 0, 3473483, 0, 0, 3473484, 0, 0, 3407948, 0, 0, 3407947, 0, 0, 3407946, 0, 0, 3473485, 0, 0, 3407949, 0, 0, 3342413, 0, 0, 3276877, 0, 0, 3211341, 0, 0, 3145805, 0, 0, 3080269, 0, 0, 3014733, 0, 0, 2949197, 0, 0, 2883661, 0, 0, 2883662, 0, 0, 2949198, 0, 0, 3014734, 0, 0, 3080270, 0, 0, 3145806, 0, 0, 3276878, 0, 0, 3342414, 0, 0, 3407950, 0, 0, 3473486, 0, 0, 3211342, 0, 0, 3080281, 0, 0, 3080282, 0, 0, 3014746, 0, 0, 3014745, 0, 0, 2818125, 0, 0, 2818126, 0, 0, 2752590, 0, 0, 2687054, 0, 0, 2687053, 0, 0, 2752589, 0, 0, 2621517, 0, 0, 2621518, 0, 0, 2555982, 0, 0, 2555981, 0, 0, 2490446, 0, 0, 2490445, 0, 0, 2490447, 0, 0, 2555983, 0, 0, 2490448, 0, 0, 2490449, 0, 0, 2555985, 0, 0, 2555984, 0, 0, 2555986, 0, 0, 2555987, 0, 0, 2490452, 0, 0, 2490451, 0, 0, 2490450, 0, 0, 2424916, 0, 0, 2359380, 0, 0, 2293844, 0, 0, 2228308, 0, 0, 2162772, 0, 0, 2097236, 0, 0, 2031700, 0, 0, 1966164, 0, 0, 1900628, 0, 0, 1835092, 0, 0, 1769556, 0, 0, 1769555, 0, 0, 1769554, 0, 0, 1769553, 0, 0, 1704017, 0, 0, 1704016, 0, 0, 1704018, 0, 0, 1704019, 0, 0, 1769552, 0, 0, 1769551, 0, 0, 1769550, 0, 0, 1769549, 0, 0, 1704013, 0, 0, 1704014, 0, 0, 1704015, 0, 0, 1638477, 0, 0, 1572941, 0, 0, 1572942, 0, 0, 1638478, 0, 0, 1507405, 0, 0, 1507406, 0, 0, 720978, 0, 0, 786514, 0, 0, 786515, 0, 0, 720979, 0, 0, 720977, 0, 0, 720980, 0, 0, 786516, 0, 0, 852052, 0, 0, 917588, 0, 0, 983124, 0, 0, 1048660, 0, 0, 917587, 0, 0, 983123, 0, 0, 852051, 0, 0, 720976, 131072, 0, 786513, 131072, 0, 852050, 131072, 0, 524370, 262144, 0, 589907, 262144, 0, 655444, 262144, 0, 655442, 0, 0, 589906, 0, 0, 655443, 0, 0, 1507407, 262144, 0, 1572944, 262144, 0, 1638481, 262144, 0, 1572943, 0, 0, 1638479, 0, 0, 1638480, 0, 0, 786499, 0, 0, 852035, 0, 0, 917571, 0, 0, 983107, 0, 0, 1048643, 0, 0, 1114179, 0, 0, 1179715, 0, 0, 1245251, 0, 0, 1310787, 0, 0, 1376323, 0, 0, 1441859, 0, 0, 1507395, 0, 0, 1572931, 0, 0, 1638467, 0, 0, 1638468, 0, 0, 1704004, 0, 0, 1704003, 0, 0, 1769539, 0, 0, 1769540, 0, 0, 1572932, 0, 0, 1507396, 0, 0, 1441860, 0, 0, 1376324, 0, 0, 1310788, 0, 0, 1245252, 0, 0, 1179716, 0, 0, 1114180, 0, 0, 1048644, 0, 0, 983108, 0, 0, 917572, 0, 0, 852036, 0, 0, 786500, 0, 0, 786491, 0, 0, 852027, 0, 0, 917563, 0, 0, 983099, 0, 0, 1048635, 0, 0, 1114171, 0, 0, 1572923, 0, 0, 1638459, 0, 0, 1703995, 0, 0, 1769531, 0, 0, 1769532, 0, 0, 1703996, 0, 0, 1638460, 0, 0, 1572924, 0, 0, 1114172, 0, 0, 1048636, 0, 0, 983100, 0, 0, 917564, 0, 0, 852028, 0, 0, 786492, 0, 0, 1835067, 0, 0, 1900603, 0, 0, 1966139, 0, 0, 2031676, 0, 0, 1966140, 0, 0, 1900604, 0, 0, 1835068, 0, 0, 2031675, 0, 0, 2031683, 0, 0, 2031684, 0, 0, 1966148, 0, 0, 1900612, 0, 0, 1835076, 0, 0, 1835075, 0, 0, 1900611, 0, 0, 1966147, 0, 0, 2097211, 0, 0, 2162747, 0, 0, 2162748, 0, 0, 2097212, 0, 0, 2228283, 0, 0, 2228284, 0, 0, 2293820, 0, 0, 2293819, 0, 0, 2293821, 0, 0, 2293822, 0, 0, 2293823, 0, 0, 2293824, 0, 0, 2293825, 0, 0, 2293826, 0, 0, 2293827, 0, 0, 2293828, 0, 0, 2228292, 0, 0, 2162756, 0, 0, 2097220, 0, 0, 2097219, 0, 0, 2162755, 0, 0, 2228291, 0, 0, 2228290, 0, 0, 2228289, 0, 0, 2228288, 0, 0, 2228287, 0, 0, 2228286, 0, 0, 2228285, 0, 0, 1245271, 0, 0, 1245272, 0, 0, 1245273, 0, 0, 1245274, 0, 0, 1245275, 0, 0, 1245276, 0, 0, 1245277, 0, 0, 1245278, 0, 0, 1245279, 0, 0, 1179743, 0, 0, 1179742, 0, 0, 1179741, 0, 0, 1179736, 0, 0, 1179735, 0, 0, 1179734, 0, 0, 1179739, 0, 0, 1179740, 0, 0, 1179738, 0, 0, 1179737, 0, 0, 917589, 262144, 0, 983126, 262144, 0, 1048663, 262144, 0, 1114200, 262144, 0, 983125, 0, 0, 1048661, 0, 0, 1114197, 0, 0, 1114198, 0, 0, 1048662, 0, 0, 1114199, 0, 0, 1310812, 131072, 0, 1376349, 131072, 0, 1441886, 131072, 0, 1507423, 131072, 0, 1310813, 0, 0, 1310814, 0, 0, 1310815, 0, 0, 1376350, 0, 0, 1376351, 0, 0, 1441887, 0, 0, 1114204, 196608, 0, 1048669, 196608, 0, 983134, 196608, 0, 917599, 196608, 0, 1114205, 0, 0, 1114206, 0, 0, 1048670, 0, 0, 1114207, 0, 0, 1048671, 0, 0, 983135, 0, 0, 262226, 0, 0, 327762, 0, 0, 327763, 0, 0, 262227, 0, 0, 262228, 0, 0, 327764, 0, 0, 327765, 0, 0, 262229, 0, 0, 327766, 0, 0, 262230, 0, 0, 327767, 0, 0, 262231, 0, 0, 196695, 0, 0, 131159, 0, 0, 65623, 0, 0, 87, 0, 0, 65622, 0, 0, 131158, 0, 0, 196694, 0, 0, 86, 0, 0, 3342404, 0, 0, 3276868, 0, 0, 3211332, 0, 0, 3145796, 0, 0, 3080260, 0, 0, 3014724, 0, 0, 2949188, 0, 0, 2883652, 0, 0, 2883651, 0, 0, 2949187, 0, 0, 3014723, 0, 0, 3080259, 0, 0, 3145795, 0, 0, 3211331, 0, 0, 3276867, 0, 0, 3342403, 0, 0, 2818098, 262144, 0, 2883635, 262144, 0, 2949172, 262144, 0, 3014709, 262144, 0, 3080246, 262144, 0, 2883634, 0, 0, 2949170, 0, 0, 3014706, 0, 0, 3080242, 0, 0, 3080243, 0, 0, 3014707, 0, 0, 2949171, 0, 0, 3080244, 0, 0, 3014708, 0, 0, 3080245, 0, 0, 3276848, 0, 0, 3342384, 0, 0, 3342385, 0, 0, 3276849, 0, 0, 1835091, 0, 0, 1900627, 0, 0, 1966163, 0, 0, 2031699, 0, 0, 2097235, 0, 0, 2162771, 0, 0, 2228307, 0, 0, 2293843, 0, 0, 2359379, 0, 0, 2424915, 0, 0, 2555988, 0, 0, 1704020, 0, 0, 3735638, 196608, 0, 3801174, 0, 0, 3866710, 0, 0, 3932246, 0, 0, 3670103, 196608, 0, 3735639, 0, 0, 3801175, 0, 0, 3866711, 0, 0, 3932247, 0, 0, 3604568, 196608, 0, 3670104, 0, 0, 3735640, 0, 0, 3473497, 0, 0, 3539033, 0, 0, 3604569, 0, 0, 3670105, 0, 0, 3735641, 0, 0, 3473498, 0, 0, 3539034, 0, 0, 3604570, 0, 0, 3670106, 0, 0, 3735642, 0, 0, 3801176, 0, 0, 3866712, 0, 0, 3932248, 0, 0, 3473499, 0, 0, 3539035, 0, 0, 3604571, 0, 0, 3670107, 0, 0, 3735643, 0, 0, 1310807, 131072, 0, 1376344, 131072, 0, 1441881, 131072, 0, 1310809, 0, 0, 1376345, 0, 0, 1310808, 0, 0, 1441882, 0, 0, 1376346, 0, 0, 1310810, 0, 0, 1245270, 131072, 0, 1179733, 131072, 0, 1114196, 131072, 0, 1048659, 131072, 0)
+
+[node name="SwitchTiles1" parent="." index="4"]
+material = SubResource("ShaderMaterial_7d3is")
+
+[node name="SwitchTiles2" parent="." index="5"]
+material = SubResource("ShaderMaterial_15440")
+
+[node name="SandPit" parent="TerrainObjects" index="0" instance=ExtResource("5_wfowu")]
+
+[node name="Polygon2D" parent="TerrainObjects/SandPit" index="0"]
+polygon = PackedVector2Array(256, 512, 256, 0, 464, 0, 384, 32, 312, 24, 272, 96, 288, 152, 296, 216, 280, 288, 288, 352, 272, 432, 320, 464, 384, 480, 456, 488, 544, 472, 632, 480, 696, 488, 728, 448, 712, 392, 736, 312, 728, 232, 752, 152, 744, 96, 688, 40, 632, 8, 560, 16, 560, 0, 768, 0, 768, 512)
+
+[node name="DestructibleBlock4" parent="CollectibleObjects" index="0" instance=ExtResource("6_4vfwn")]
+position = Vector2(496, 88)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock4" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock5" parent="CollectibleObjects" index="1" instance=ExtResource("6_4vfwn")]
+position = Vector2(512, 88)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock5" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock6" parent="CollectibleObjects" index="2" instance=ExtResource("6_4vfwn")]
+position = Vector2(528, 88)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock6" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock7" parent="CollectibleObjects" index="3" instance=ExtResource("6_4vfwn")]
+position = Vector2(480, 152)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock7" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock8" parent="CollectibleObjects" index="4" instance=ExtResource("6_4vfwn")]
+position = Vector2(480, 168)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock8" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock9" parent="CollectibleObjects" index="5" instance=ExtResource("6_4vfwn")]
+position = Vector2(480, 184)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock9" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock10" parent="CollectibleObjects" index="6" instance=ExtResource("6_4vfwn")]
+position = Vector2(392, 160)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock10" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock11" parent="CollectibleObjects" index="7" instance=ExtResource("6_4vfwn")]
+position = Vector2(392, 176)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock11" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock12" parent="CollectibleObjects" index="8" instance=ExtResource("6_4vfwn")]
+position = Vector2(392, 192)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock12" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock13" parent="CollectibleObjects" index="9" instance=ExtResource("6_4vfwn")]
+position = Vector2(560, 360)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock13" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock14" parent="CollectibleObjects" index="10" instance=ExtResource("6_4vfwn")]
+position = Vector2(576, 360)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock14" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock15" parent="CollectibleObjects" index="11" instance=ExtResource("6_4vfwn")]
+position = Vector2(592, 360)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock15" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock16" parent="CollectibleObjects" index="12" instance=ExtResource("6_4vfwn")]
+position = Vector2(608, 360)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock16" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock17" parent="CollectibleObjects" index="13" instance=ExtResource("6_4vfwn")]
+position = Vector2(624, 232)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock17" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock18" parent="CollectibleObjects" index="14" instance=ExtResource("6_4vfwn")]
+position = Vector2(624, 248)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock18" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock19" parent="CollectibleObjects" index="15" instance=ExtResource("6_4vfwn")]
+position = Vector2(624, 264)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock19" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock20" parent="CollectibleObjects" index="16" instance=ExtResource("6_4vfwn")]
+position = Vector2(624, 280)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock20" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock21" parent="CollectibleObjects" index="17" instance=ExtResource("6_4vfwn")]
+position = Vector2(624, 296)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock21" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock24" parent="CollectibleObjects" index="18" instance=ExtResource("6_4vfwn")]
+position = Vector2(328, 464)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock24" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock25" parent="CollectibleObjects" index="19" instance=ExtResource("6_4vfwn")]
+position = Vector2(344, 464)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock25" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock26" parent="CollectibleObjects" index="20" instance=ExtResource("6_4vfwn")]
+position = Vector2(320, 336)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock26" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock27" parent="CollectibleObjects" index="21" instance=ExtResource("6_4vfwn")]
+position = Vector2(480, 392)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock27" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock28" parent="CollectibleObjects" index="22" instance=ExtResource("6_4vfwn")]
+position = Vector2(488, 480)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock28" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock29" parent="CollectibleObjects" index="23" instance=ExtResource("6_4vfwn")]
+position = Vector2(472, 480)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock29" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock30" parent="CollectibleObjects" index="24" instance=ExtResource("6_4vfwn")]
+position = Vector2(456, 480)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock30" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock31" parent="CollectibleObjects" index="25" instance=ExtResource("6_4vfwn")]
+position = Vector2(440, 480)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock31" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="DestructibleBlock32" parent="CollectibleObjects" index="26" instance=ExtResource("6_4vfwn")]
+position = Vector2(424, 480)
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock32" index="0"]
+material = SubResource("ShaderMaterial_xbh8n")
+
+[node name="BaddieOrb" parent="CollectibleObjects" index="27" instance=ExtResource("7_3phg6")]
+position = Vector2(560, 376)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb2" parent="CollectibleObjects" index="28" instance=ExtResource("7_3phg6")]
+position = Vector2(576, 376)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb3" parent="CollectibleObjects" index="29" instance=ExtResource("7_3phg6")]
+position = Vector2(592, 376)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb4" parent="CollectibleObjects" index="30" instance=ExtResource("7_3phg6")]
+position = Vector2(560, 392)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb5" parent="CollectibleObjects" index="31" instance=ExtResource("7_3phg6")]
+position = Vector2(576, 392)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb6" parent="CollectibleObjects" index="32" instance=ExtResource("7_3phg6")]
+position = Vector2(592, 392)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb7" parent="CollectibleObjects" index="33" instance=ExtResource("7_3phg6")]
+position = Vector2(560, 408)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb8" parent="CollectibleObjects" index="34" instance=ExtResource("7_3phg6")]
+position = Vector2(576, 408)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb9" parent="CollectibleObjects" index="35" instance=ExtResource("7_3phg6")]
+position = Vector2(592, 408)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb10" parent="CollectibleObjects" index="36" instance=ExtResource("7_3phg6")]
+position = Vector2(608, 408)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb11" parent="CollectibleObjects" index="37" instance=ExtResource("7_3phg6")]
+position = Vector2(608, 392)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb12" parent="CollectibleObjects" index="38" instance=ExtResource("7_3phg6")]
+position = Vector2(608, 376)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb13" parent="CollectibleObjects" index="39" instance=ExtResource("7_3phg6")]
+position = Vector2(640, 232)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb14" parent="CollectibleObjects" index="40" instance=ExtResource("7_3phg6")]
+position = Vector2(656, 232)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb15" parent="CollectibleObjects" index="41" instance=ExtResource("7_3phg6")]
+position = Vector2(640, 248)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb16" parent="CollectibleObjects" index="42" instance=ExtResource("7_3phg6")]
+position = Vector2(656, 248)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb17" parent="CollectibleObjects" index="43" instance=ExtResource("7_3phg6")]
+position = Vector2(640, 264)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb18" parent="CollectibleObjects" index="44" instance=ExtResource("7_3phg6")]
+position = Vector2(656, 264)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb19" parent="CollectibleObjects" index="45" instance=ExtResource("7_3phg6")]
+position = Vector2(640, 280)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb20" parent="CollectibleObjects" index="46" instance=ExtResource("7_3phg6")]
+position = Vector2(656, 280)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb21" parent="CollectibleObjects" index="47" instance=ExtResource("7_3phg6")]
+position = Vector2(640, 296)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb22" parent="CollectibleObjects" index="48" instance=ExtResource("7_3phg6")]
+position = Vector2(656, 296)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb24" parent="CollectibleObjects" index="49" instance=ExtResource("7_3phg6")]
+position = Vector2(360, 160)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb25" parent="CollectibleObjects" index="50" instance=ExtResource("7_3phg6")]
+position = Vector2(376, 160)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb26" parent="CollectibleObjects" index="51" instance=ExtResource("7_3phg6")]
+position = Vector2(360, 176)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb27" parent="CollectibleObjects" index="52" instance=ExtResource("7_3phg6")]
+position = Vector2(376, 176)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb28" parent="CollectibleObjects" index="53" instance=ExtResource("7_3phg6")]
+position = Vector2(360, 192)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb29" parent="CollectibleObjects" index="54" instance=ExtResource("7_3phg6")]
+position = Vector2(376, 192)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb30" parent="CollectibleObjects" index="55" instance=ExtResource("7_3phg6")]
+position = Vector2(424, 104)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, 0.851)
+
+[node name="BaddieOrb31" parent="CollectibleObjects" index="56" instance=ExtResource("7_3phg6")]
+position = Vector2(424, 136)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, 0.851)
+
+[node name="BaddieOrb32" parent="CollectibleObjects" index="57" instance=ExtResource("7_3phg6")]
+position = Vector2(424, 168)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, 0.851)
+
+[node name="BaddieOrb33" parent="CollectibleObjects" index="58" instance=ExtResource("7_3phg6")]
+position = Vector2(424, 200)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, 0.851)
+
+[node name="BaddieOrb34" parent="CollectibleObjects" index="59" instance=ExtResource("7_3phg6")]
+position = Vector2(424, 232)
+scale = Vector2(0.5, 0.5)
+speed = 75
+direction = Vector2(0.851, 0.851)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+position = Vector2(512, 56)
+scale = Vector2(0.5, 0.5)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+position = Vector2(352, 48)
+scale = Vector2(0.5, 0.5)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+position = Vector2(728, 88)
+scale = Vector2(0.5, 0.5)
+
+[editable path="TerrainObjects/SandPit"]
+[editable path="CollectibleObjects/DestructibleBlock4"]
+[editable path="CollectibleObjects/DestructibleBlock5"]
+[editable path="CollectibleObjects/DestructibleBlock6"]
+[editable path="CollectibleObjects/DestructibleBlock7"]
+[editable path="CollectibleObjects/DestructibleBlock8"]
+[editable path="CollectibleObjects/DestructibleBlock9"]
+[editable path="CollectibleObjects/DestructibleBlock10"]
+[editable path="CollectibleObjects/DestructibleBlock11"]
+[editable path="CollectibleObjects/DestructibleBlock12"]
+[editable path="CollectibleObjects/DestructibleBlock13"]
+[editable path="CollectibleObjects/DestructibleBlock14"]
+[editable path="CollectibleObjects/DestructibleBlock15"]
+[editable path="CollectibleObjects/DestructibleBlock16"]
+[editable path="CollectibleObjects/DestructibleBlock17"]
+[editable path="CollectibleObjects/DestructibleBlock18"]
+[editable path="CollectibleObjects/DestructibleBlock19"]
+[editable path="CollectibleObjects/DestructibleBlock20"]
+[editable path="CollectibleObjects/DestructibleBlock21"]
+[editable path="CollectibleObjects/DestructibleBlock24"]
+[editable path="CollectibleObjects/DestructibleBlock25"]
+[editable path="CollectibleObjects/DestructibleBlock26"]
+[editable path="CollectibleObjects/DestructibleBlock27"]
+[editable path="CollectibleObjects/DestructibleBlock28"]
+[editable path="CollectibleObjects/DestructibleBlock29"]
+[editable path="CollectibleObjects/DestructibleBlock30"]
+[editable path="CollectibleObjects/DestructibleBlock31"]
+[editable path="CollectibleObjects/DestructibleBlock32"]

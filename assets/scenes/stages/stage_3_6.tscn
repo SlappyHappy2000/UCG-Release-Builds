@@ -1,0 +1,261 @@
+[gd_scene load_steps=13 format=3 uid="uid://dj0mcnsin3vu2"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_r2c3s"]
+[ext_resource type="Shader" path="res://assets/scenes/stages/level_template.gdshader" id="2_77cyi"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_noici"]
+[ext_resource type="PackedScene" uid="uid://l8ecukyy2ntu" path="res://assets/scenes/objects/destructible_block.tscn" id="4_0be3q"]
+[ext_resource type="PackedScene" uid="uid://qckwg7nkimuu" path="res://assets/scenes/objects/baddie_chuckle.tscn" id="4_lyg2i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvb80"]
+resource_local_to_scene = true
+shader = ExtResource("2_77cyi")
+shader_parameter/C1 = Color(0.79, 0.9475, 1, 1)
+shader_parameter/C2 = Color(0.6004, 0.7201, 0.76, 1)
+shader_parameter/C3 = Color(0.3922, 0.49555, 0.53, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_vk0lt"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4iqc"]
+resource_local_to_scene = true
+shader = SubResource("Shader_vk0lt")
+shader_parameter/C1 = Color(0, 0.678431, 0.945098, 1)
+shader_parameter/C2 = Color(0.0509804, 0, 0.356863, 1)
+shader_parameter/C3 = Color(0.156863, 0.0627451, 1, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76dhp"]
+resource_local_to_scene = true
+shader = ExtResource("2_77cyi")
+shader_parameter/C1 = Color(0.0666667, 1, 0, 1)
+shader_parameter/C2 = Color(0, 0.278431, 0, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kysmk"]
+resource_local_to_scene = true
+shader = ExtResource("2_77cyi")
+shader_parameter/C1 = Color(1, 0.501961, 0.67451, 1)
+shader_parameter/C2 = Color(0.4, 0, 0.12549, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_fux2o"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform vec4 C4 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+	} else if (color == vec4(0, 0, 255, 255)) {
+        COLOR = C4;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_087xm"]
+resource_local_to_scene = true
+shader = SubResource("Shader_fux2o")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(0.701961, 0.701961, 0.701961, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/C4 = Color(0.701961, 0.701961, 0.701961, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage3-6" instance=ExtResource("1_r2c3s")]
+script = ExtResource("2_noici")
+level_name = "3-6: Cleanup On Aisle 9!"
+scene_ID = "stage3-6"
+music_choice = "bgmLvl3"
+stage_color = Color(0.909804, 0.898039, 0.729412, 1)
+progress_destination = "stage3-7"
+peak_value = 10000
+
+[node name="Tiles1" parent="." index="0"]
+material = SubResource("ShaderMaterial_xvb80")
+layer_0/tile_data = PackedInt32Array(2097168, 0, 0, 2097169, 0, 0, 2097170, 0, 0, 2097171, 0, 0, 2097172, 0, 0, 2097173, 0, 0, 2097174, 0, 0, 2097175, 0, 0, 2097176, 0, 0, 2097177, 0, 0, 2097178, 0, 0, 2097179, 0, 0, 2097180, 0, 0, 2097181, 0, 0, 2097182, 0, 0, 2097183, 0, 0, 2097184, 0, 0, 2097185, 0, 0, 2097186, 0, 0, 2097187, 0, 0, 2097188, 0, 0, 2097189, 0, 0, 2097190, 0, 0, 2097191, 0, 0, 2097192, 0, 0, 2097193, 0, 0, 2097194, 0, 0, 2097195, 0, 0, 2097196, 0, 0, 2097197, 0, 0, 2097198, 0, 0, 2097199, 0, 0, 2031631, 0, 0, 1966095, 0, 0, 1900559, 0, 0, 1835023, 0, 0, 1769487, 0, 0, 1703951, 0, 0, 1638415, 0, 0, 1572879, 0, 0, 1507343, 0, 0, 1441807, 0, 0, 1376271, 0, 0, 1310735, 0, 0, 15, 0, 0, 65551, 0, 0, 131087, 0, 0, 196623, 0, 0, 262159, 0, 0, 327695, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 589839, 0, 0, 655375, 0, 0, 720911, 0, 0, 786447, 0, 0, 851983, 0, 0, 917519, 0, 0, 983055, 0, 0, 1048591, 0, 0, 1114127, 0, 0, 1179663, 0, 0, 1245199, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65507, 0, 0, -65506, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, 48, 0, 0, 65584, 0, 0, 131120, 0, 0, 196656, 0, 0, 262192, 0, 0, 327728, 0, 0, 393264, 0, 0, 458800, 0, 0, 524336, 0, 0, 589872, 0, 0, 655408, 0, 0, 720944, 0, 0, 786480, 0, 0, 852016, 0, 0, 917552, 0, 0, 983088, 0, 0, 1048624, 0, 0, 1114160, 0, 0, 1179696, 0, 0, 1245232, 0, 0, 1310768, 0, 0, 1376304, 0, 0, 1441840, 0, 0, 1507376, 0, 0, 1572912, 0, 0, 1638448, 0, 0, 1703984, 0, 0, 1769520, 0, 0, 1835056, 0, 0, 1900592, 0, 0, 1966128, 0, 0, 2031664, 0, 0, -65521, 0, 0, 2097167, 0, 0, 2097200, 0, 0, -65488, 0, 0, 1769488, 0, 0, 1769489, 0, 0, 1769490, 0, 0, 1769491, 0, 0, 1769492, 0, 0, 1769493, 0, 0, 1769494, 0, 0, 1769495, 0, 0, 1703958, 0, 0, 1703957, 0, 0, 1703956, 0, 0, 1703955, 0, 0, 1703954, 0, 0, 1703953, 0, 0, 1703952, 0, 0, 1703959, 0, 0, 1703960, 0, 0, 1703961, 0, 0, 1703962, 0, 0, 1703963, 0, 0, 1703964, 0, 0, 1703965, 0, 0, 1703966, 0, 0, 1703967, 0, 0, 1703968, 0, 0, 1703969, 0, 0, 1769504, 0, 0, 1769503, 0, 0, 1769502, 0, 0, 1769501, 0, 0, 1769500, 0, 0, 1769499, 0, 0, 1769498, 0, 0, 1769497, 0, 0, 1769496, 0, 0, 1769505, 0, 0, 1769506, 0, 0, 1769507, 0, 0, 1769508, 0, 0, 1769509, 0, 0, 1769510, 0, 0, 1769511, 0, 0, 1769512, 0, 0, 1703976, 0, 0, 1703975, 0, 0, 1703974, 0, 0, 1703973, 0, 0, 1703972, 0, 0, 1703971, 0, 0, 1703970, 0, 0, 1310736, 0, 0, 1310737, 0, 0, 1310738, 0, 0, 1310739, 0, 0, 1310740, 0, 0, 1310741, 0, 0, 1310742, 0, 0, 1310743, 0, 0, 1310744, 0, 0, 1310745, 0, 0, 1376277, 0, 0, 1376276, 0, 0, 1376275, 0, 0, 1376274, 0, 0, 1376273, 0, 0, 1376272, 0, 0, 1376278, 0, 0, 1376279, 0, 0, 1376280, 0, 0, 1376281, 0, 0, 1376282, 0, 0, 1376283, 0, 0, 1376284, 0, 0, 1376285, 0, 0, 1376286, 0, 0, 1376287, 0, 0, 1376288, 0, 0, 1376289, 0, 0, 1376290, 0, 0, 1376291, 0, 0, 1376292, 0, 0, 1376293, 0, 0, 1376294, 0, 0, 1376295, 0, 0, 1376296, 0, 0, 1310760, 0, 0, 1310759, 0, 0, 1310758, 0, 0, 1310757, 0, 0, 1310756, 0, 0, 1310755, 0, 0, 1310754, 0, 0, 1310753, 0, 0, 1310752, 0, 0, 1310751, 0, 0, 1310750, 0, 0, 1310749, 0, 0, 1310748, 0, 0, 1310747, 0, 0, 1310746, 0, 0, 983056, 0, 0, 983057, 0, 0, 983058, 0, 0, 983059, 0, 0, 983060, 0, 0, 983061, 0, 0, 983062, 0, 0, 983063, 0, 0, 983064, 0, 0, 983065, 0, 0, 983066, 0, 0, 983067, 0, 0, 983068, 0, 0, 983069, 0, 0, 983070, 0, 0, 917534, 0, 0, 917535, 0, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 0, 0, 917536, 0, 0, 917537, 0, 0, 983071, 0, 0, 983072, 0, 0, 983073, 0, 0, 983074, 0, 0, 983075, 0, 0, 983076, 0, 0, 983077, 0, 0, 983078, 0, 0, 983079, 0, 0, 917543, 0, 0, 917542, 0, 0, 917541, 0, 0, 917540, 0, 0, 917539, 0, 0, 917538, 0, 0, 983080, 0, 0, 917544, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589845, 0, 0, 589846, 0, 0, 589847, 0, 0, 589848, 0, 0, 524304, 0, 0, 524305, 0, 0, 524306, 0, 0, 524307, 0, 0, 524308, 0, 0, 524309, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 524315, 0, 0, 524316, 0, 0, 524317, 0, 0, 524318, 0, 0, 524319, 0, 0, 524320, 0, 0, 524321, 0, 0, 524322, 0, 0, 524323, 0, 0, 524324, 0, 0, 524325, 0, 0, 524326, 0, 0, 524327, 0, 0, 524328, 0, 0, 589864, 0, 0, 589863, 0, 0, 589862, 0, 0, 589861, 0, 0, 589860, 0, 0, 589859, 0, 0, 589858, 0, 0, 589857, 0, 0, 589856, 0, 0, 589855, 0, 0, 589854, 0, 0, 589853, 0, 0, 589852, 0, 0, 589851, 0, 0, 589850, 0, 0, 589849, 0, 0, 2031660, 196608, 0, 1966125, 196608, 0, 1900590, 196608, 0, 1835055, 196608, 0, 2031661, 0, 0, 2031662, 0, 0, 1966126, 0, 0, 1966127, 0, 0, 2031663, 0, 0, 1900591, 0, 0, 44, 131072, 0, 65581, 131072, 0, 131118, 131072, 0, 196655, 131072, 0, 45, 0, 0, 46, 0, 0, 47, 0, 0, 65583, 0, 0, 131119, 0, 0, 65582, 0, 0)
+
+[node name="DogTiles" parent="." index="1"]
+material = SubResource("ShaderMaterial_t4iqc")
+
+[node name="SwitchTiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_76dhp")
+
+[node name="SwitchTiles2" parent="." index="3"]
+material = SubResource("ShaderMaterial_kysmk")
+
+[node name="DestructibleBlock19" parent="CollectibleObjects" index="0" instance=ExtResource("4_0be3q")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(336, 16)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock19" index="0"]
+material = SubResource("ShaderMaterial_087xm")
+
+[node name="DestructibleBlock20" parent="CollectibleObjects" index="1" instance=ExtResource("4_0be3q")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(336, 48)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock20" index="0"]
+material = SubResource("ShaderMaterial_087xm")
+
+[node name="DestructibleBlock21" parent="CollectibleObjects" index="2" instance=ExtResource("4_0be3q")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(336, 80)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock21" index="0"]
+material = SubResource("ShaderMaterial_087xm")
+
+[node name="DestructibleBlock22" parent="CollectibleObjects" index="3" instance=ExtResource("4_0be3q")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(336, 112)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock22" index="0"]
+material = SubResource("ShaderMaterial_087xm")
+
+[node name="BaddieChuckle3" parent="CollectibleObjects" index="4" instance=ExtResource("4_lyg2i")]
+position = Vector2(288, 384)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle4" parent="CollectibleObjects" index="5" instance=ExtResource("4_lyg2i")]
+position = Vector2(288, 288)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle5" parent="CollectibleObjects" index="6" instance=ExtResource("4_lyg2i")]
+position = Vector2(288, 192)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle6" parent="CollectibleObjects" index="7" instance=ExtResource("4_lyg2i")]
+position = Vector2(272, 96)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle17" parent="CollectibleObjects" index="8" instance=ExtResource("4_lyg2i")]
+position = Vector2(272, 56)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle18" parent="CollectibleObjects" index="9" instance=ExtResource("4_lyg2i")]
+position = Vector2(272, 16)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle7" parent="CollectibleObjects" index="10" instance=ExtResource("4_lyg2i")]
+position = Vector2(336, 384)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle8" parent="CollectibleObjects" index="11" instance=ExtResource("4_lyg2i")]
+position = Vector2(384, 384)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle9" parent="CollectibleObjects" index="12" instance=ExtResource("4_lyg2i")]
+position = Vector2(352, 288)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle10" parent="CollectibleObjects" index="13" instance=ExtResource("4_lyg2i")]
+position = Vector2(416, 288)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle11" parent="CollectibleObjects" index="14" instance=ExtResource("4_lyg2i")]
+position = Vector2(368, 192)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle12" parent="CollectibleObjects" index="15" instance=ExtResource("4_lyg2i")]
+position = Vector2(448, 192)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle13" parent="CollectibleObjects" index="16" instance=ExtResource("4_lyg2i")]
+position = Vector2(528, 192)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle14" parent="CollectibleObjects" index="17" instance=ExtResource("4_lyg2i")]
+position = Vector2(480, 288)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle15" parent="CollectibleObjects" index="18" instance=ExtResource("4_lyg2i")]
+position = Vector2(432, 384)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle16" parent="CollectibleObjects" index="19" instance=ExtResource("4_lyg2i")]
+position = Vector2(288, 480)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle19" parent="CollectibleObjects" index="20" instance=ExtResource("4_lyg2i")]
+position = Vector2(304, 32)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle20" parent="CollectibleObjects" index="21" instance=ExtResource("4_lyg2i")]
+position = Vector2(304, 72)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="BaddieChuckle21" parent="CollectibleObjects" index="22" instance=ExtResource("4_lyg2i")]
+position = Vector2(304, 112)
+speed_multiplier = 4.0
+speed_limit = 200.0
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+position = Vector2(288, 32)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+position = Vector2(352, 480)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+position = Vector2(416, 240)
+
+[editable path="CollectibleObjects/DestructibleBlock19"]
+[editable path="CollectibleObjects/DestructibleBlock20"]
+[editable path="CollectibleObjects/DestructibleBlock21"]
+[editable path="CollectibleObjects/DestructibleBlock22"]

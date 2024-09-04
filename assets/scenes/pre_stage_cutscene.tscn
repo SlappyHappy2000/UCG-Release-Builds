@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbl8lqikdjcd6"]
+
+[ext_resource type="Script" path="res://assets/scenes/pre_stage_cutscene.gd" id="1_w8c23"]
+[ext_resource type="FontFile" uid="uid://c363d8efh4ofg" path="res://assets/fonts/novem___.ttf" id="2_iaopo"]
+[ext_resource type="AudioStream" uid="uid://5f6u7r4b2f22" path="res://assets/music/StartJingle.ogg" id="3_q3xbw"]
+
+[node name="PreStageCutscene" type="Node2D"]
+script = ExtResource("1_w8c23")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 280.0
+offset_top = 24.0
+offset_right = 744.0
+offset_bottom = 488.0
+theme_override_fonts/font = ExtResource("2_iaopo")
+theme_override_font_sizes/font_size = 20
+text = "PLAYTESTER'S NOTICE!
+
+This build of the game contains a fully completed World 0, World 1, World 2, and World 3, as well as all modifiers fully functional (available in the options menu).
+
+World 4 is INCOMPLETE! Only 4-1, 4-2, and 4-5 are completed (4-10's gimmick has begun coding but is nowhere near complete at this time.) Do NOT try to select anything past 4-5 on the level select or the game will crash!
+
+A secret minigame can be accessed by pressing \"Tab\" on the titlescreen. You can exit this minigame by pressing \"Escape\" to return to the titlescreen.
+
+Have fun and let me know what you think!"
+autowrap_mode = 3
+
+[node name="sfxJingle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q3xbw")

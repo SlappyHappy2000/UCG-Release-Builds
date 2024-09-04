@@ -1,0 +1,325 @@
+[gd_scene load_steps=23 format=3 uid="uid://bpqrihdysqgex"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_s1jmr"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_2_12.gd" id="2_7q6ax"]
+[ext_resource type="Shader" path="res://assets/scenes/stages/level_template.gdshader" id="2_a0xmt"]
+[ext_resource type="Texture2D" uid="uid://nwfw6eid1toc" path="res://assets/graphics/mirrorhouse.png" id="3_dngoi"]
+[ext_resource type="Texture2D" uid="uid://c07u65wuxpcen" path="res://assets/graphics/world2bg.png" id="3_op8x8"]
+[ext_resource type="Texture2D" uid="uid://48c44jkqt75w" path="res://assets/graphics/UCN.png" id="4_8mfde"]
+[ext_resource type="Texture2D" uid="uid://c8cakm7o8kl7h" path="res://assets/graphics/newsicon1.png" id="5_gcthj"]
+[ext_resource type="Texture2D" uid="uid://ca2utwr3151lj" path="res://assets/graphics/newsgradient.png" id="6_uvgyg"]
+[ext_resource type="FontFile" uid="uid://ko0mpo6barvq" path="res://assets/fonts/times new roman.ttf" id="7_7tydx"]
+[ext_resource type="FontFile" uid="uid://b4m41kepb4uy0" path="res://assets/fonts/COMIC.TTF" id="8_g2fgv"]
+[ext_resource type="Texture2D" uid="uid://p25m8fx2s30j" path="res://assets/graphics/whitesquare.png" id="9_3nns2"]
+[ext_resource type="Texture2D" uid="uid://cmg5b6yw2xxpb" path="res://assets/graphics/uncanny.png" id="10_gamd7"]
+[ext_resource type="PackedScene" uid="uid://dtlk6fu3tq7pm" path="res://assets/scenes/objects/hard_mode_ghost.tscn" id="14_aofus"]
+[ext_resource type="PackedScene" uid="uid://l8ecukyy2ntu" path="res://assets/scenes/objects/destructible_block.tscn" id="14_yyan0"]
+[ext_resource type="PackedScene" uid="uid://bucp45bqrt3gx" path="res://assets/scenes/objects/stop_token.tscn" id="15_sdjjk"]
+[ext_resource type="PackedScene" uid="uid://ddwuwfghk7gey" path="res://assets/scenes/objects/coin.tscn" id="16_5s2uq"]
+
+[sub_resource type="Shader" id="Shader_eb2yg"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0yvn7"]
+resource_local_to_scene = true
+shader = SubResource("Shader_eb2yg")
+shader_parameter/C1 = Color(1, 0, 0.0156863, 1)
+shader_parameter/C2 = Color(0.109804, 0, 0, 1)
+shader_parameter/C3 = Color(0.588235, 0, 0.0117647, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y0e2b"]
+resource_local_to_scene = true
+shader = ExtResource("2_a0xmt")
+shader_parameter/C1 = Color(0.0666667, 1, 0, 1)
+shader_parameter/C2 = Color(0, 0.278431, 0, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6g7g"]
+resource_local_to_scene = true
+shader = ExtResource("2_a0xmt")
+shader_parameter/C1 = Color(1, 0.501961, 0.67451, 1)
+shader_parameter/C2 = Color(0.4, 0, 0.12549, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_8dly8"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform vec4 C4 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+	} else if (color == vec4(0, 0, 255, 255)) {
+        COLOR = C4;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r6qd"]
+resource_local_to_scene = true
+shader = SubResource("Shader_8dly8")
+shader_parameter/C1 = Color(1, 0.803922, 1, 1)
+shader_parameter/C2 = Color(1, 0.411765, 0.490196, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/C4 = Color(0.470588, 0.0470588, 0.145098, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage2-13" instance=ExtResource("1_s1jmr")]
+script = ExtResource("2_7q6ax")
+level_name = "2-13: Waiter! There's Uncanny In My Soup"
+scene_ID = "stage2-13"
+music_choice = "bgmLvl2"
+progress_destination = "stage2-14"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+z_index = -1
+position = Vector2(512, 256)
+texture = ExtResource("3_op8x8")
+
+[node name="News" type="Node2D" parent="." index="1"]
+
+[node name="Sprite2D" type="Sprite2D" parent="News" index="0"]
+z_index = 2
+position = Vector2(512, 464)
+scale = Vector2(0.64, 0.16)
+texture = ExtResource("3_dngoi")
+
+[node name="Sprite2D4" type="Sprite2D" parent="News" index="1"]
+modulate = Color(1, 0.109804, 1, 1)
+z_index = 2
+position = Vector2(636, 438)
+scale = Vector2(0.634921, 0.60274)
+texture = ExtResource("4_8mfde")
+
+[node name="Sprite2D6" type="Sprite2D" parent="News" index="2"]
+modulate = Color(1, 0.109804, 1, 1)
+z_index = 2
+position = Vector2(320.698, 452)
+scale = Vector2(0.736065, 0.72)
+texture = ExtResource("5_gcthj")
+
+[node name="Sprite2D5" type="Sprite2D" parent="News" index="3"]
+z_index = 2
+position = Vector2(512, 496)
+scale = Vector2(16, 1)
+texture = ExtResource("6_uvgyg")
+
+[node name="Label" type="Label" parent="News" index="4"]
+z_index = 2
+offset_left = 576.0
+offset_top = 448.0
+offset_right = 696.0
+offset_bottom = 480.0
+theme_override_fonts/font = ExtResource("7_7tydx")
+theme_override_font_sizes/font_size = 12
+text = "Uncanny Cat News"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NewsText" type="Label" parent="News" index="5"]
+z_index = 2
+offset_left = 800.0
+offset_top = 480.0
+offset_right = 896.0
+offset_bottom = 512.0
+theme_override_fonts/font = ExtResource("8_g2fgv")
+theme_override_font_sizes/font_size = 12
+text = "Placeholder"
+vertical_alignment = 1
+
+[node name="Sprite2D3" type="Sprite2D" parent="News" index="6"]
+modulate = Color(0, 0, 1, 1)
+z_index = 2
+position = Vector2(724, 452)
+scale = Vector2(30, 30)
+texture = ExtResource("9_3nns2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="News" index="7"]
+z_index = 2
+position = Vector2(724, 452)
+scale = Vector2(0.109375, 0.109375)
+texture = ExtResource("10_gamd7")
+
+[node name="Tiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_0yvn7")
+layer_0/tile_data = PackedInt32Array(2097168, 0, 0, 2097169, 0, 0, 2097170, 0, 0, 2097171, 0, 0, 2097172, 0, 0, 2097173, 0, 0, 2097174, 0, 0, 2097175, 0, 0, 2097176, 0, 0, 2097177, 0, 0, 2097178, 0, 0, 2097179, 0, 0, 2097180, 0, 0, 2097181, 0, 0, 2097182, 0, 0, 2097183, 0, 0, 2097184, 0, 0, 2097185, 0, 0, 2097186, 0, 0, 2097187, 0, 0, 2097188, 0, 0, 2097189, 0, 0, 2097190, 0, 0, 2097191, 0, 0, 2097192, 0, 0, 2097193, 0, 0, 2097194, 0, 0, 2097195, 0, 0, 2097196, 0, 0, 2097197, 0, 0, 2097198, 0, 0, 2097199, 0, 0, 2031631, 0, 0, 1966095, 0, 0, 1900559, 0, 0, 1835023, 0, 0, 1769487, 0, 0, 1703951, 0, 0, 1638415, 0, 0, 1572879, 0, 0, 1507343, 0, 0, 1441807, 0, 0, 1376271, 0, 0, 1310735, 0, 0, 15, 0, 0, 65551, 0, 0, 131087, 0, 0, 196623, 0, 0, 262159, 0, 0, 327695, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 589839, 0, 0, 655375, 0, 0, 720911, 0, 0, 786447, 0, 0, 851983, 0, 0, 917519, 0, 0, 983055, 0, 0, 1048591, 0, 0, 1114127, 0, 0, 1179663, 0, 0, 1245199, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65507, 0, 0, -65506, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, 48, 0, 0, 65584, 0, 0, 131120, 0, 0, 196656, 0, 0, 262192, 0, 0, 327728, 0, 0, 393264, 0, 0, 458800, 0, 0, 524336, 0, 0, 589872, 0, 0, 655408, 0, 0, 720944, 0, 0, 786480, 0, 0, 852016, 0, 0, 917552, 0, 0, 983088, 0, 0, 1048624, 0, 0, 1114160, 0, 0, 1179696, 0, 0, 1245232, 0, 0, 1310768, 0, 0, 1376304, 0, 0, 1441840, 0, 0, 1507376, 0, 0, 1572912, 0, 0, 1638448, 0, 0, 1703984, 0, 0, 1769520, 0, 0, 1835056, 0, 0, 1900592, 0, 0, 1966128, 0, 0, 2031664, 0, 0, -65521, 0, 0, 2097167, 0, 0, 2097200, 0, 0, -65488, 0, 0, 1703983, 0, 0, 1703952, 0, 0, 1703953, 0, 0, 1703954, 0, 0, 1703955, 0, 0, 1703956, 0, 0, 1703957, 0, 0, 1703958, 0, 0, 1703959, 0, 0, 1703960, 0, 0, 1703961, 0, 0, 1703962, 0, 0, 1703963, 0, 0, 1703964, 0, 0, 1703965, 0, 0, 1703966, 0, 0, 1703967, 0, 0, 1703968, 0, 0, 1703969, 0, 0, 1703970, 0, 0, 1703971, 0, 0, 1703972, 0, 0, 1703973, 0, 0, 1703974, 0, 0, 1703975, 0, 0, 1703976, 0, 0, 1703977, 0, 0, 1703978, 0, 0, 1703979, 0, 0, 1703980, 0, 0, 1703981, 0, 0, 1703982, 0, 0, 2031639, 0, 0, 1966103, 0, 0, 1900567, 0, 0, 1835031, 0, 0, 1769495, 0, 0, 1769494, 0, 0, 1769493, 0, 0, 1769492, 0, 0, 1769491, 0, 0, 1769490, 0, 0, 1769489, 0, 0, 1769488, 0, 0, 1835024, 0, 0, 1900560, 0, 0, 1966096, 0, 0, 2031632, 0, 0, 2031633, 0, 0, 1966097, 0, 0, 1900561, 0, 0, 1835025, 0, 0, 1835026, 0, 0, 1900562, 0, 0, 1966098, 0, 0, 2031634, 0, 0, 2031635, 0, 0, 1966099, 0, 0, 1900563, 0, 0, 1835027, 0, 0, 1835028, 0, 0, 1900564, 0, 0, 1966100, 0, 0, 2031636, 0, 0, 2031637, 0, 0, 1966101, 0, 0, 1900565, 0, 0, 1835029, 0, 0, 1835030, 0, 0, 1900566, 0, 0, 1966102, 0, 0, 2031638, 0, 0, 1769496, 0, 0, 1835032, 0, 0, 1900568, 0, 0, 1966104, 0, 0, 2031640, 0, 0, 2031641, 0, 0, 1966105, 0, 0, 1900569, 0, 0, 1835033, 0, 0, 1769497, 0, 0, 1769498, 0, 0, 1835034, 0, 0, 1900570, 0, 0, 1966106, 0, 0, 2031642, 0, 0, 2031643, 0, 0, 1966107, 0, 0, 1900571, 0, 0, 1835035, 0, 0, 1769499, 0, 0, 1769500, 0, 0, 1835036, 0, 0, 1900572, 0, 0, 1966108, 0, 0, 2031644, 0, 0, 2031645, 0, 0, 1966109, 0, 0, 1900573, 0, 0, 1835037, 0, 0, 1769501, 0, 0, 1769502, 0, 0, 1835038, 0, 0, 1900574, 0, 0, 1966110, 0, 0, 2031646, 0, 0, 2031647, 0, 0, 1966111, 0, 0, 1900575, 0, 0, 1835039, 0, 0, 1769503, 0, 0, 1769504, 0, 0, 1835040, 0, 0, 1900576, 0, 0, 1966112, 0, 0, 2031648, 0, 0, 2031649, 0, 0, 1966113, 0, 0, 1900577, 0, 0, 1835041, 0, 0, 1769505, 0, 0, 1769506, 0, 0, 1835042, 0, 0, 1900578, 0, 0, 1966114, 0, 0, 2031650, 0, 0, 2031651, 0, 0, 1966115, 0, 0, 1900579, 0, 0, 1835043, 0, 0, 1769507, 0, 0, 1769508, 0, 0, 1835044, 0, 0, 1900580, 0, 0, 1966116, 0, 0, 2031652, 0, 0, 2031653, 0, 0, 1966117, 0, 0, 1900581, 0, 0, 1835045, 0, 0, 1769509, 0, 0, 1769510, 0, 0, 1835046, 0, 0, 1900582, 0, 0, 1966118, 0, 0, 2031654, 0, 0, 2031655, 0, 0, 1966119, 0, 0, 1900583, 0, 0, 1835047, 0, 0, 1769511, 0, 0, 1769512, 0, 0, 1835048, 0, 0, 1900584, 0, 0, 1966120, 0, 0, 2031656, 0, 0, 2031657, 0, 0, 1966121, 0, 0, 1900585, 0, 0, 1835049, 0, 0, 1769513, 0, 0, 1769514, 0, 0, 1835050, 0, 0, 1900586, 0, 0, 1966122, 0, 0, 2031658, 0, 0, 2031659, 0, 0, 1966123, 0, 0, 1900587, 0, 0, 1835051, 0, 0, 1769515, 0, 0, 1769516, 0, 0, 1835052, 0, 0, 1900588, 0, 0, 1966124, 0, 0, 2031660, 0, 0, 2031661, 0, 0, 1966125, 0, 0, 1900589, 0, 0, 1835053, 0, 0, 1769517, 0, 0, 1769518, 0, 0, 1835054, 0, 0, 1900590, 0, 0, 1966126, 0, 0, 2031662, 0, 0, 2031663, 0, 0, 1966127, 0, 0, 1900591, 0, 0, 1835055, 0, 0, 1769519, 0, 0, 1638416, 0, 0, 1638417, 0, 0, 1638418, 0, 0, 1638419, 0, 0, 1638420, 0, 0, 1638421, 0, 0, 1638422, 0, 0, 1638423, 0, 0, 1638424, 0, 0, 1638425, 0, 0, 1638426, 0, 0, 1638427, 0, 0, 1638428, 0, 0, 1638429, 0, 0, 1638430, 0, 0, 1638431, 0, 0, 1638432, 0, 0, 1638433, 0, 0, 1638434, 0, 0, 1638435, 0, 0, 1638436, 0, 0, 1638437, 0, 0, 1638438, 0, 0, 1638439, 0, 0, 1638440, 0, 0, 1638441, 0, 0, 1638442, 0, 0, 1638443, 0, 0, 1638444, 0, 0, 1638445, 0, 0, 1638446, 0, 0, 1638447, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 0, 0, 44, 0, 0, 45, 0, 0, 46, 0, 0, 47, 0, 0, 65552, 0, 0, 131088, 0, 0, 196624, 0, 0, 262160, 0, 0, 327696, 0, 0, 393232, 0, 0, 458768, 0, 0, 524304, 0, 0, 589840, 0, 0, 655376, 0, 0, 720912, 0, 0, 786448, 0, 0, 851984, 0, 0, 917520, 0, 0, 983056, 0, 0, 1048592, 0, 0, 1114128, 0, 0, 1179664, 0, 0, 1245200, 0, 0, 1310736, 0, 0, 1376272, 0, 0, 1441808, 0, 0, 1507344, 0, 0, 1572880, 0, 0, 1572881, 0, 0, 1507345, 0, 0, 1441809, 0, 0, 1376273, 0, 0, 1310737, 0, 0, 1245201, 0, 0, 1179665, 0, 0, 1114129, 0, 0, 1048593, 0, 0, 983057, 0, 0, 917521, 0, 0, 851985, 0, 0, 786449, 0, 0, 720913, 0, 0, 655377, 0, 0, 589841, 0, 0, 524305, 0, 0, 458769, 0, 0, 393233, 0, 0, 327697, 0, 0, 262161, 0, 0, 196625, 0, 0, 131089, 0, 0, 65553, 0, 0, 65554, 0, 0, 131090, 0, 0, 196626, 0, 0, 262162, 0, 0, 327698, 0, 0, 393234, 0, 0, 458770, 0, 0, 524306, 0, 0, 589842, 0, 0, 655378, 0, 0, 720914, 0, 0, 786450, 0, 0, 851986, 0, 0, 917522, 0, 0, 983058, 0, 0, 1048594, 0, 0, 1114130, 0, 0, 1179666, 0, 0, 1245202, 0, 0, 1310738, 0, 0, 1376274, 0, 0, 1441810, 0, 0, 1507346, 0, 0, 1572882, 0, 0, 1572883, 0, 0, 1572884, 0, 0, 1572885, 0, 0, 1572886, 0, 0, 1572887, 0, 0, 1572888, 0, 0, 1572889, 0, 0, 1572890, 0, 0, 1572891, 0, 0, 1572892, 0, 0, 1572893, 0, 0, 1572894, 0, 0, 1572895, 0, 0, 1572896, 0, 0, 1572897, 0, 0, 1572898, 0, 0, 1572899, 0, 0, 1572900, 0, 0, 1572901, 0, 0, 1572902, 0, 0, 1572903, 0, 0, 1572904, 0, 0, 1572905, 0, 0, 1572906, 0, 0, 1572907, 0, 0, 1572908, 0, 0, 1572909, 0, 0, 1572910, 0, 0, 1572911, 0, 0, 65555, 0, 0, 65556, 0, 0, 65557, 0, 0, 65558, 0, 0, 65559, 0, 0, 65560, 0, 0, 65561, 0, 0, 65562, 0, 0, 65563, 0, 0, 65564, 0, 0, 65565, 0, 0, 65566, 0, 0, 65567, 0, 0, 65568, 0, 0, 65569, 0, 0, 65570, 0, 0, 65571, 0, 0, 65572, 0, 0, 65573, 0, 0, 65574, 0, 0, 65575, 0, 0, 65576, 0, 0, 65577, 0, 0, 65578, 0, 0, 65579, 0, 0, 65580, 0, 0, 65581, 0, 0, 65582, 0, 0, 65583, 0, 0, 1507375, 0, 0, 1441839, 0, 0, 1376303, 0, 0, 1310767, 0, 0, 1245231, 0, 0, 1179695, 0, 0, 1114159, 0, 0, 1048623, 0, 0, 983087, 0, 0, 917551, 0, 0, 852015, 0, 0, 786479, 0, 0, 720943, 0, 0, 655407, 0, 0, 589871, 0, 0, 524335, 0, 0, 458799, 0, 0, 393263, 0, 0, 327727, 0, 0, 262191, 0, 0, 196655, 0, 0, 131119, 0, 0, 131118, 0, 0, 196654, 0, 0, 262190, 0, 0, 327726, 0, 0, 393262, 0, 0, 458798, 0, 0, 524334, 0, 0, 589870, 0, 0, 655406, 0, 0, 720942, 0, 0, 786478, 0, 0, 852014, 0, 0, 917550, 0, 0, 983086, 0, 0, 1048622, 0, 0, 1114158, 0, 0, 1179694, 0, 0, 1245230, 0, 0, 1310766, 0, 0, 1376302, 0, 0, 1441838, 0, 0, 1507374, 0, 0, 131091, 0, 0, 196627, 0, 0, 262163, 0, 0, 327699, 0, 0, 393235, 0, 0, 458771, 0, 0, 524307, 0, 0, 589843, 0, 0, 655379, 0, 0, 720915, 0, 0, 786451, 0, 0, 851987, 0, 0, 917523, 0, 0, 983059, 0, 0, 1048595, 0, 0, 1114131, 0, 0, 1179667, 0, 0, 1245203, 0, 0, 1310739, 0, 0, 1376275, 0, 0, 1441811, 0, 0, 1507347, 0, 0, 131096, 0, 0, 196632, 0, 0, 262168, 0, 0, 327704, 0, 0, 393240, 0, 0, 393241, 0, 0, 327705, 0, 0, 262169, 0, 0, 196633, 0, 0, 131097, 0, 0, 458776, 0, 0, 524312, 0, 0, 524313, 0, 0, 458777, 0, 0, 589848, 0, 0, 589849, 0, 0, 655384, 0, 0, 655385, 0, 0, 720920, 0, 0, 720921, 0, 0)
+
+[node name="SwitchTiles1" parent="." index="4"]
+material = SubResource("ShaderMaterial_y0e2b")
+
+[node name="SwitchTiles2" parent="." index="5"]
+material = SubResource("ShaderMaterial_o6g7g")
+
+[node name="DestructibleBlock19" parent="CollectibleObjects" index="0" instance=ExtResource("14_yyan0")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(336, 112)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock19" index="0"]
+material = SubResource("ShaderMaterial_3r6qd")
+
+[node name="DestructibleBlock20" parent="CollectibleObjects" index="1" instance=ExtResource("14_yyan0")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(368, 112)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock20" index="0"]
+material = SubResource("ShaderMaterial_3r6qd")
+
+[node name="DestructibleBlock21" parent="CollectibleObjects" index="2" instance=ExtResource("14_yyan0")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(336, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock21" index="0"]
+material = SubResource("ShaderMaterial_3r6qd")
+
+[node name="DestructibleBlock22" parent="CollectibleObjects" index="3" instance=ExtResource("14_yyan0")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(368, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock22" index="0"]
+material = SubResource("ShaderMaterial_3r6qd")
+
+[node name="StopToken2" parent="CollectibleObjects" index="4" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(352, 224)
+
+[node name="StopToken3" parent="CollectibleObjects" index="5" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(352, 288)
+
+[node name="StopToken4" parent="CollectibleObjects" index="6" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(480, 112)
+
+[node name="StopToken5" parent="CollectibleObjects" index="7" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(608, 112)
+
+[node name="StopToken6" parent="CollectibleObjects" index="8" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(544, 176)
+
+[node name="StopToken7" parent="CollectibleObjects" index="9" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(672, 176)
+
+[node name="StopToken8" parent="CollectibleObjects" index="10" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(480, 240)
+
+[node name="StopToken9" parent="CollectibleObjects" index="11" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(608, 240)
+
+[node name="StopToken10" parent="CollectibleObjects" index="12" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(544, 304)
+
+[node name="StopToken11" parent="CollectibleObjects" index="13" instance=ExtResource("15_sdjjk")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(672, 304)
+
+[node name="Coin" parent="CollectibleObjects" index="14" instance=ExtResource("16_5s2uq")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(544, 112)
+
+[node name="Coin2" parent="CollectibleObjects" index="15" instance=ExtResource("16_5s2uq")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(672, 112)
+
+[node name="Coin3" parent="CollectibleObjects" index="16" instance=ExtResource("16_5s2uq")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(608, 176)
+
+[node name="Coin4" parent="CollectibleObjects" index="17" instance=ExtResource("16_5s2uq")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(480, 176)
+
+[node name="Coin5" parent="CollectibleObjects" index="18" instance=ExtResource("16_5s2uq")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(544, 240)
+
+[node name="Coin6" parent="CollectibleObjects" index="19" instance=ExtResource("16_5s2uq")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(672, 240)
+
+[node name="Coin7" parent="CollectibleObjects" index="20" instance=ExtResource("16_5s2uq")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(480, 304)
+
+[node name="Coin8" parent="CollectibleObjects" index="21" instance=ExtResource("16_5s2uq")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(608, 304)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(352, 64)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(352, 352)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(184, 208)
+
+[node name="HardModeGhost5" parent="MainObjects/UncannyCats" index="1" instance=ExtResource("14_aofus")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(184, 128)
+
+[node name="HardModeGhost6" parent="MainObjects/UncannyCats" index="2" instance=ExtResource("14_aofus")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(184, 48)
+
+[node name="HardModeGhost8" parent="MainObjects/UncannyCats" index="3" instance=ExtResource("14_aofus")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(184, 368)
+
+[node name="HardModeGhost9" parent="MainObjects/UncannyCats" index="4" instance=ExtResource("14_aofus")]
+modulate = Color(1, 0.54902, 0.54902, 1)
+position = Vector2(184, 288)
+
+[editable path="CollectibleObjects/DestructibleBlock19"]
+[editable path="CollectibleObjects/DestructibleBlock20"]
+[editable path="CollectibleObjects/DestructibleBlock21"]
+[editable path="CollectibleObjects/DestructibleBlock22"]

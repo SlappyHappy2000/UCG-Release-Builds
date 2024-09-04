@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtlk6fu3tq7pm"]
+
+[ext_resource type="Texture2D" uid="uid://cmg5b6yw2xxpb" path="res://assets/graphics/uncanny.png" id="1_7hbqc"]
+[ext_resource type="Script" path="res://assets/scenes/objects/hard_mode_ghost.gd" id="1_plihi"]
+[ext_resource type="Resource" uid="uid://dymg0d8brpak1" path="res://assets/default_options.tres" id="2_u2k5o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g7e48"]
+radius = 16.2788
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iwr4t"]
+radius = 12.1655
+
+[node name="HardModeGhost" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_plihi")
+options = ExtResource("2_u2k5o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.064, 0.064)
+texture = ExtResource("1_7hbqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g7e48")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_iwr4t")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

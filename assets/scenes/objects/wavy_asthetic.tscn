@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://f7glgwjf6uj1"]
+
+[ext_resource type="Shader" path="res://assets/scenes/objects/wavy_asthetic.gdshader" id="1_dfjck"]
+[ext_resource type="Texture2D" uid="uid://c1mfyqd0cfj43" path="res://assets/graphics/blacksquare.png" id="1_jmdix"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_faymu"]
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1n8ub"]
+seamless = true
+noise = SubResource("FastNoiseLite_faymu")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4dooj"]
+shader = ExtResource("1_dfjck")
+shader_parameter/blue_tint = Color(0.431373, 0, 0.431373, 0)
+shader_parameter/movement_constants = Vector4(0.15, -0.05, 0.05, 0.1)
+shader_parameter/distortion_strength = 10.0
+shader_parameter/noise_pattern = SubResource("NoiseTexture2D_1n8ub")
+
+[node name="WavyAsthetic" type="Sprite2D"]
+z_index = 2
+material = SubResource("ShaderMaterial_4dooj")
+position = Vector2(0, -7.62939e-06)
+scale = Vector2(256, 256)
+texture = ExtResource("1_jmdix")

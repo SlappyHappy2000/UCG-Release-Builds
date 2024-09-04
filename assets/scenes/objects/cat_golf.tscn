@@ -1,0 +1,106 @@
+[gd_scene load_steps=20 format=3 uid="uid://s14d0afbdvfv"]
+
+[ext_resource type="Script" path="res://assets/scenes/objects/cat_golf.gd" id="1_fbg02"]
+[ext_resource type="Texture2D" uid="uid://bruv3gauwcjhc" path="res://assets/graphics/canny.png" id="1_tq54j"]
+[ext_resource type="Resource" uid="uid://dymg0d8brpak1" path="res://assets/default_options.tres" id="2_c51jv"]
+[ext_resource type="Script" path="res://assets/scenes/objects/CGSpawnIn.gd" id="3_54udn"]
+[ext_resource type="Script" path="res://assets/scenes/objects/CGIdle.gd" id="3_ywjcx"]
+[ext_resource type="Texture2D" uid="uid://bcwwgoum7c26h" path="res://assets/graphics/p_cursor.png" id="4_igjsr"]
+[ext_resource type="Script" path="res://assets/scenes/objects/CGMoving.gd" id="4_mmx7h"]
+[ext_resource type="Script" path="res://assets/scenes/objects/CGWin.gd" id="6_og4ul"]
+[ext_resource type="AudioStream" uid="uid://be1nqquj0gm7j" path="res://assets/sounds/sfxDeepBoing.ogg" id="7_0fpvh"]
+[ext_resource type="Script" path="res://assets/scenes/objects/CGMouseModifier.gd" id="7_oq3rd"]
+[ext_resource type="AudioStream" uid="uid://8pv1av03arev" path="res://assets/sounds/sfxLevelStart.ogg" id="7_qbxra"]
+[ext_resource type="AudioStream" uid="uid://b5gyns5ehktir" path="res://assets/sounds/sfxWallBump.ogg" id="8_0imlq"]
+[ext_resource type="AudioStream" uid="uid://8h0d2icbh3lo" path="res://assets/sounds/sfxWhistleGrab.ogg" id="9_elwar"]
+[ext_resource type="AudioStream" uid="uid://dp1sjd8y1fqnf" path="res://assets/sounds/sfxXylophoneCancel.ogg" id="10_264rx"]
+[ext_resource type="AudioStream" uid="uid://b5vsu0t1de6hl" path="res://assets/sounds/sfxPush.ogg" id="10_datpg"]
+[ext_resource type="AudioStream" uid="uid://hybh7w2lkcpp" path="res://assets/sounds/sfxBoost.ogg" id="11_7ggph"]
+[ext_resource type="AudioStream" uid="uid://cid6qdqh18w11" path="res://assets/sounds/sfxPickUpNotif.ogg" id="12_176hx"]
+[ext_resource type="AudioStream" uid="uid://ddodb6k8mggfg" path="res://assets/sounds/sfxGoal.ogg" id="13_si7rh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ohptp"]
+radius = 15.8
+
+[node name="CatGolf" type="CharacterBody2D" node_paths=PackedStringArray("state")]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_fbg02")
+options = ExtResource("2_c51jv")
+state = NodePath("States/CGSpawnIn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.064, 0.064)
+texture = ExtResource("1_tq54j")
+
+[node name="playermarker" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -28)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("4_igjsr")
+hframes = 4
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ohptp")
+
+[node name="HitDirection" type="Line2D" parent="."]
+z_index = 1
+points = PackedVector2Array(0, 0, 0, 0)
+width = 4.0
+default_color = Color(0.501961, 0, 0, 1)
+
+[node name="statedebug" type="Label" parent="."]
+visible = false
+offset_left = -32.0
+offset_top = -40.0
+offset_right = 32.0
+offset_bottom = -16.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="States" type="Node" parent="."]
+
+[node name="CGSpawnIn" type="Node" parent="States"]
+script = ExtResource("3_54udn")
+
+[node name="CGIdle" type="Node" parent="States"]
+script = ExtResource("3_ywjcx")
+
+[node name="CGMoving" type="Node" parent="States"]
+script = ExtResource("4_mmx7h")
+
+[node name="CGWin" type="Node" parent="States"]
+script = ExtResource("6_og4ul")
+
+[node name="CGMouseModifier" type="Node" parent="States"]
+script = ExtResource("7_oq3rd")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="sfxJoin" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("7_qbxra")
+
+[node name="sfxLaunched" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("7_0fpvh")
+
+[node name="sfxBurstLaunched" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("11_7ggph")
+
+[node name="sfxWallBump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_0imlq")
+
+[node name="sfxPush" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("10_datpg")
+
+[node name="sfxGrab" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("9_elwar")
+
+[node name="sfxGrabCancel" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("10_264rx")
+
+[node name="sfxPickUpNotif" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("12_176hx")
+
+[node name="sfxGoal" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_si7rh")

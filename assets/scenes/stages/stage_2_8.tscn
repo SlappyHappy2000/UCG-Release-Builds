@@ -1,0 +1,192 @@
+[gd_scene load_steps=13 format=3 uid="uid://dm1f0aje4elbi"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_rgck7"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_otpi3"]
+[ext_resource type="Texture2D" uid="uid://c07u65wuxpcen" path="res://assets/graphics/world2bg.png" id="3_u3gmv"]
+[ext_resource type="PackedScene" uid="uid://b1sxpag8rn06n" path="res://assets/scenes/objects/glowstick_light_rotater.tscn" id="4_dt0y0"]
+[ext_resource type="PackedScene" uid="uid://bveffte47800q" path="res://assets/scenes/objects/baddie_car_spawner.tscn" id="4_gnhc0"]
+
+[sub_resource type="Shader" id="Shader_eb2yg"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2x0xk"]
+resource_local_to_scene = true
+shader = SubResource("Shader_eb2yg")
+shader_parameter/C1 = Color(0.5, 0, 1, 1)
+shader_parameter/C2 = Color(0.055, 0, 0.11, 1)
+shader_parameter/C3 = Color(0.295, 0, 0.59, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_vk0lt"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pasp4"]
+resource_local_to_scene = true
+shader = SubResource("Shader_vk0lt")
+shader_parameter/C1 = Color(0, 0.678431, 0.945098, 1)
+shader_parameter/C2 = Color(0.0509804, 0, 0.356863, 1)
+shader_parameter/C3 = Color(0.156863, 0.0627451, 1, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_3oshw"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j7bpm"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0, 0.729412, 0.65098, 1)
+shader_parameter/C2 = Color(0, 0.129412, 0.0901961, 1)
+shader_parameter/C3 = Color(0, 0.407843, 0.392157, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72glh"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0.572549, 0.729412, 0, 1)
+shader_parameter/C2 = Color(0.0666667, 0.129412, 0, 1)
+shader_parameter/C3 = Color(0.27451, 0.411765, 0, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage2-8" instance=ExtResource("1_rgck7")]
+script = ExtResource("2_otpi3")
+level_name = "2-8: Look Both Ways"
+scene_ID = "stage2-8"
+music_choice = "bgmLvl2"
+progress_destination = "stage2-9"
+peak_value = 15500
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+z_index = -1
+position = Vector2(512, 256)
+texture = ExtResource("3_u3gmv")
+
+[node name="GlowstickLightRotater" parent="." index="1" instance=ExtResource("4_dt0y0")]
+position = Vector2(512, 256)
+LightType = 3
+
+[node name="Tiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_2x0xk")
+
+[node name="Tiles2" parent="." index="3"]
+material = SubResource("ShaderMaterial_pasp4")
+
+[node name="SwitchTiles1" parent="." index="4"]
+material = SubResource("ShaderMaterial_j7bpm")
+
+[node name="SwitchTiles2" parent="." index="5"]
+material = SubResource("ShaderMaterial_72glh")
+
+[node name="BaddieCarSpawner" parent="CollectibleObjects" index="0" instance=ExtResource("4_gnhc0")]
+position = Vector2(192, 416)
+spawn_rate = 35
+car_speed = 130
+car_direction = Vector2(1, 0)
+car_color = Color(0.690196, 0.619608, 1, 1)
+
+[node name="BaddieCarSpawner2" parent="CollectibleObjects" index="1" instance=ExtResource("4_gnhc0")]
+position = Vector2(832, 336)
+spawn_rate = 35
+car_speed = 130
+car_direction = Vector2(-1, 0)
+car_rotate = 180.0
+car_color = Color(0.690196, 0.619608, 1, 1)
+
+[node name="BaddieCarSpawner3" parent="CollectibleObjects" index="2" instance=ExtResource("4_gnhc0")]
+position = Vector2(192, 256)
+spawn_rate = 35
+car_speed = 130
+car_direction = Vector2(1, 0)
+car_color = Color(0.690196, 0.619608, 1, 1)
+
+[node name="BaddieCarSpawner4" parent="CollectibleObjects" index="3" instance=ExtResource("4_gnhc0")]
+position = Vector2(832, 176)
+spawn_rate = 35
+car_speed = 130
+car_direction = Vector2(-1, 0)
+car_rotate = 180.0
+car_color = Color(0.690196, 0.619608, 1, 1)
+
+[node name="BaddieCarSpawner5" parent="CollectibleObjects" index="4" instance=ExtResource("4_gnhc0")]
+position = Vector2(192, 96)
+spawn_rate = 35
+car_speed = 130
+car_direction = Vector2(1, 0)
+car_color = Color(0.690196, 0.619608, 1, 1)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(736, 32)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(736, 480)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(288, 480)

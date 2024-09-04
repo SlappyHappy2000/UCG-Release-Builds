@@ -1,0 +1,353 @@
+[gd_scene load_steps=14 format=3 uid="uid://b0qugd0julvc5"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_7apu0"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_jwbri"]
+[ext_resource type="Texture2D" uid="uid://c07u65wuxpcen" path="res://assets/graphics/world2bg.png" id="3_7lttv"]
+[ext_resource type="PackedScene" uid="uid://1vtwbmse6mu6" path="res://assets/scenes/objects/speed_token.tscn" id="4_2bxq1"]
+[ext_resource type="PackedScene" uid="uid://b1sxpag8rn06n" path="res://assets/scenes/objects/glowstick_light_rotater.tscn" id="4_566ka"]
+[ext_resource type="PackedScene" uid="uid://dtlk6fu3tq7pm" path="res://assets/scenes/objects/hard_mode_ghost.tscn" id="4_efrbe"]
+
+[sub_resource type="Shader" id="Shader_eb2yg"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3ipc"]
+resource_local_to_scene = true
+shader = SubResource("Shader_eb2yg")
+shader_parameter/C1 = Color(0, 0.266667, 1, 1)
+shader_parameter/C2 = Color(0, 0.0293333, 0.11, 1)
+shader_parameter/C3 = Color(0, 0.157333, 0.59, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_vk0lt"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_87278"]
+resource_local_to_scene = true
+shader = SubResource("Shader_vk0lt")
+shader_parameter/C1 = Color(0, 0.678431, 0.945098, 1)
+shader_parameter/C2 = Color(0.0509804, 0, 0.356863, 1)
+shader_parameter/C3 = Color(0.156863, 0.0627451, 1, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_3oshw"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgfh3"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0, 0.729412, 0.65098, 1)
+shader_parameter/C2 = Color(0, 0.129412, 0.0901961, 1)
+shader_parameter/C3 = Color(0, 0.407843, 0.392157, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r043v"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0.572549, 0.729412, 0, 1)
+shader_parameter/C2 = Color(0.0666667, 0.129412, 0, 1)
+shader_parameter/C3 = Color(0.27451, 0.411765, 0, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage2-6" instance=ExtResource("1_7apu0")]
+script = ExtResource("2_jwbri")
+level_name = "2-6: Rush Hour"
+scene_ID = "stage2-6"
+music_choice = "bgmLvl2"
+progress_destination = "stage2-7"
+peak_value = 15500
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+z_index = -1
+position = Vector2(512, 256)
+texture = ExtResource("3_7lttv")
+
+[node name="GlowstickLightRotater" parent="." index="1" instance=ExtResource("4_566ka")]
+position = Vector2(512, 256)
+LightType = 2
+
+[node name="Tiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_d3ipc")
+layer_0/tile_data = PackedInt32Array(2097168, 0, 0, 2097169, 0, 0, 2097170, 0, 0, 2097171, 0, 0, 2097172, 0, 0, 2097173, 0, 0, 2097174, 0, 0, 2097175, 0, 0, 2097176, 0, 0, 2097177, 0, 0, 2097178, 0, 0, 2097179, 0, 0, 2097180, 0, 0, 2097181, 0, 0, 2097182, 0, 0, 2097183, 0, 0, 2097184, 0, 0, 2097185, 0, 0, 2097186, 0, 0, 2097187, 0, 0, 2097188, 0, 0, 2097189, 0, 0, 2097190, 0, 0, 2097191, 0, 0, 2097192, 0, 0, 2097193, 0, 0, 2097194, 0, 0, 2097195, 0, 0, 2097196, 0, 0, 2097197, 0, 0, 2097198, 0, 0, 2097199, 0, 0, 2031631, 0, 0, 1966095, 0, 0, 1900559, 0, 0, 1835023, 0, 0, 1769487, 0, 0, 1703951, 0, 0, 1638415, 0, 0, 1572879, 0, 0, 1507343, 0, 0, 1441807, 0, 0, 1376271, 0, 0, 1310735, 0, 0, 15, 0, 0, 65551, 0, 0, 131087, 0, 0, 196623, 0, 0, 262159, 0, 0, 327695, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 589839, 0, 0, 655375, 0, 0, 720911, 0, 0, 786447, 0, 0, 851983, 0, 0, 917519, 0, 0, 983055, 0, 0, 1048591, 0, 0, 1114127, 0, 0, 1179663, 0, 0, 1245199, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65507, 0, 0, -65506, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, 48, 0, 0, 65584, 0, 0, 131120, 0, 0, 196656, 0, 0, 262192, 0, 0, 327728, 0, 0, 393264, 0, 0, 458800, 0, 0, 524336, 0, 0, 589872, 0, 0, 655408, 0, 0, 720944, 0, 0, 786480, 0, 0, 852016, 0, 0, 917552, 0, 0, 983088, 0, 0, 1048624, 0, 0, 1114160, 0, 0, 1179696, 0, 0, 1245232, 0, 0, 1310768, 0, 0, 1376304, 0, 0, 1441840, 0, 0, 1507376, 0, 0, 1572912, 0, 0, 1638448, 0, 0, 1703984, 0, 0, 1769520, 0, 0, 1835056, 0, 0, 1900592, 0, 0, 1966128, 0, 0, 2031664, 0, 0, -65521, 0, 0, 2097167, 0, 0, 2097200, 0, 0, -65488, 0, 0, 1114136, 0, 0, 1114137, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1114138, 0, 0, 1114139, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1114140, 0, 0, 1179677, 0, 0, 1245213, 0, 0, 1310749, 0, 0, 1376285, 0, 0, 1441821, 0, 0, 1507357, 0, 0, 1572893, 0, 0, 1572894, 0, 0, 1638430, 0, 0, 1703966, 0, 0, 1769502, 0, 0, 1835038, 0, 0, 1900574, 0, 0, 1966110, 0, 0, 2031646, 0, 0, 2031645, 0, 0, 1966109, 0, 0, 1900573, 0, 0, 1835037, 0, 0, 1769501, 0, 0, 1703965, 0, 0, 1638429, 0, 0, 1507358, 0, 0, 1441822, 0, 0, 1376286, 0, 0, 1310750, 0, 0, 1245214, 0, 0, 327701, 0, 0, 393237, 0, 0, 458773, 0, 0, 524309, 0, 0, 655383, 0, 0, 655384, 0, 0, 655385, 0, 0, 655386, 0, 0, 589850, 0, 0, 589849, 0, 0, 589848, 0, 0, 589847, 0, 0, 524310, 0, 0, 458774, 0, 0, 393238, 0, 0, 327702, 0, 0, 33, 0, 0, 65569, 0, 0, 131105, 0, 0, 196641, 0, 0, 262177, 0, 0, 327713, 0, 0, 393249, 0, 0, 458785, 0, 0, 524321, 0, 0, 589858, 0, 0, 524322, 0, 0, 458786, 0, 0, 393250, 0, 0, 327714, 0, 0, 262178, 0, 0, 196642, 0, 0, 131106, 0, 0, 65570, 0, 0, 34, 0, 0, 655395, 0, 0, 655396, 0, 0, 655397, 0, 0, 655398, 0, 0, 589862, 0, 0, 589861, 0, 0, 589860, 0, 0, 589859, 0, 0, 1114149, 0, 0, 1179685, 0, 0, 1179686, 0, 0, 1179687, 0, 0, 1114151, 0, 0, 1114152, 0, 0, 1114153, 0, 0, 1114154, 0, 0, 1179690, 0, 0, 1179689, 0, 0, 1179688, 0, 0, 1114150, 0, 0, 1703967, 0, 0, 1703968, 0, 0, 1703969, 0, 0, 1703970, 0, 0, 1638434, 0, 0, 1638433, 0, 0, 1638432, 0, 0, 1638431, 0, 0, 589846, 0, 0, 589857, 131072, 0, 655394, 131072, 0, 1114141, 262144, 0, 1179678, 262144, 0, 589845, 131072, 0, 655382, 131072, 0)
+
+[node name="Tiles2" parent="." index="3"]
+material = SubResource("ShaderMaterial_87278")
+
+[node name="SwitchTiles1" parent="." index="4"]
+material = SubResource("ShaderMaterial_hgfh3")
+
+[node name="SwitchTiles2" parent="." index="5"]
+material = SubResource("ShaderMaterial_r043v")
+
+[node name="SpeedToken" parent="CollectibleObjects" index="0" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(288, 160)
+
+[node name="SpeedToken2" parent="CollectibleObjects" index="1" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(288, 224)
+
+[node name="SpeedToken11" parent="CollectibleObjects" index="2" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(352, 288)
+
+[node name="SpeedToken3" parent="CollectibleObjects" index="3" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(288, 288)
+
+[node name="SpeedToken4" parent="CollectibleObjects" index="4" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(288, 352)
+
+[node name="SpeedToken5" parent="CollectibleObjects" index="5" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(288, 416)
+
+[node name="SpeedToken6" parent="CollectibleObjects" index="6" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(288, 480)
+
+[node name="SpeedToken7" parent="CollectibleObjects" index="7" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(288, 32)
+
+[node name="SpeedToken8" parent="CollectibleObjects" index="8" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(288, 96)
+
+[node name="SpeedToken9" parent="CollectibleObjects" index="9" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(352, 480)
+
+[node name="SpeedToken10" parent="CollectibleObjects" index="10" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(352, 352)
+
+[node name="SpeedToken12" parent="CollectibleObjects" index="11" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(352, 224)
+
+[node name="SpeedToken15" parent="CollectibleObjects" index="12" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(352, 32)
+
+[node name="SpeedToken16" parent="CollectibleObjects" index="13" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(416, 32)
+
+[node name="SpeedToken17" parent="CollectibleObjects" index="14" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(416, 96)
+
+[node name="SpeedToken19" parent="CollectibleObjects" index="15" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(416, 224)
+
+[node name="SpeedToken21" parent="CollectibleObjects" index="16" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(416, 352)
+
+[node name="SpeedToken22" parent="CollectibleObjects" index="17" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(416, 416)
+
+[node name="SpeedToken23" parent="CollectibleObjects" index="18" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(416, 480)
+
+[node name="SpeedToken28" parent="CollectibleObjects" index="19" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(480, 224)
+
+[node name="SpeedToken29" parent="CollectibleObjects" index="20" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(480, 160)
+
+[node name="SpeedToken30" parent="CollectibleObjects" index="21" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(480, 96)
+
+[node name="SpeedToken31" parent="CollectibleObjects" index="22" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(480, 32)
+
+[node name="SpeedToken32" parent="CollectibleObjects" index="23" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(544, 480)
+
+[node name="SpeedToken34" parent="CollectibleObjects" index="24" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(544, 352)
+
+[node name="SpeedToken35" parent="CollectibleObjects" index="25" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(544, 288)
+
+[node name="SpeedToken36" parent="CollectibleObjects" index="26" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(544, 224)
+
+[node name="SpeedToken40" parent="CollectibleObjects" index="27" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(608, 480)
+
+[node name="SpeedToken41" parent="CollectibleObjects" index="28" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(608, 416)
+
+[node name="SpeedToken42" parent="CollectibleObjects" index="29" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(608, 352)
+
+[node name="SpeedToken44" parent="CollectibleObjects" index="30" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(608, 224)
+
+[node name="SpeedToken46" parent="CollectibleObjects" index="31" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(608, 96)
+
+[node name="SpeedToken47" parent="CollectibleObjects" index="32" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(608, 32)
+
+[node name="SpeedToken48" parent="CollectibleObjects" index="33" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(672, 480)
+
+[node name="SpeedToken49" parent="CollectibleObjects" index="34" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(672, 416)
+
+[node name="SpeedToken50" parent="CollectibleObjects" index="35" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(672, 352)
+
+[node name="SpeedToken52" parent="CollectibleObjects" index="36" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(672, 224)
+
+[node name="SpeedToken53" parent="CollectibleObjects" index="37" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(672, 160)
+
+[node name="SpeedToken55" parent="CollectibleObjects" index="38" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(672, 32)
+
+[node name="SpeedToken56" parent="CollectibleObjects" index="39" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(736, 480)
+
+[node name="SpeedToken57" parent="CollectibleObjects" index="40" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(736, 416)
+
+[node name="SpeedToken58" parent="CollectibleObjects" index="41" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(736, 352)
+
+[node name="SpeedToken59" parent="CollectibleObjects" index="42" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(736, 288)
+
+[node name="SpeedToken60" parent="CollectibleObjects" index="43" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(736, 224)
+
+[node name="SpeedToken61" parent="CollectibleObjects" index="44" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(736, 160)
+
+[node name="SpeedToken62" parent="CollectibleObjects" index="45" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(736, 96)
+
+[node name="SpeedToken63" parent="CollectibleObjects" index="46" instance=ExtResource("4_2bxq1")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(736, 32)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(672, 96)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(352, 416)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(344, 72)
+
+[node name="HardModeGhost2" parent="MainObjects/UncannyCats" index="1" instance=ExtResource("4_efrbe")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(608, 448)
+
+[node name="HardModeGhost3" parent="MainObjects/UncannyCats" index="2" instance=ExtResource("4_efrbe")]
+modulate = Color(0.52549, 0.803922, 1, 1)
+position = Vector2(664, -16)

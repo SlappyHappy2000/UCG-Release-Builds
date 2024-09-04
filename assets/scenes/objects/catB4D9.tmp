@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://s14d0afbdvfv"]
+
+[ext_resource type="Script" path="res://assets/scenes/objects/cat_golf.gd" id="1_fbg02"]
+[ext_resource type="Texture2D" uid="uid://bruv3gauwcjhc" path="res://assets/graphics/canny.png" id="1_tq54j"]
+[ext_resource type="Script" path="res://assets/scenes/objects/CGIdle.gd" id="3_ywjcx"]
+[ext_resource type="Script" path="res://assets/scenes/objects/CGMoving.gd" id="4_mmx7h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgrht"]
+radius = 16.0
+
+[node name="CatGolf" type="CharacterBody2D"]
+script = ExtResource("1_fbg02")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0625, 0.0625)
+texture = ExtResource("1_tq54j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cgrht")
+
+[node name="HitDirection" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 4.0
+default_color = Color(0, 1, 0, 1)
+
+[node name="States" type="Node" parent="."]
+
+[node name="CGIdle" type="Node" parent="States"]
+script = ExtResource("3_ywjcx")
+
+[node name="CGMoving" type="Node" parent="States"]
+script = ExtResource("4_mmx7h")

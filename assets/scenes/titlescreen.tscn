@@ -1,0 +1,376 @@
+[gd_scene load_steps=14 format=3 uid="uid://bhvjknqvrkiet"]
+
+[ext_resource type="Script" path="res://assets/scenes/titlescreen.gd" id="1_0bp4m"]
+[ext_resource type="Texture2D" uid="uid://b50iwg3qhcif6" path="res://assets/graphics/gametitle.png" id="1_nxbu7"]
+[ext_resource type="Resource" uid="uid://dymg0d8brpak1" path="res://assets/default_options.tres" id="2_f14ju"]
+[ext_resource type="Texture2D" uid="uid://bruv3gauwcjhc" path="res://assets/graphics/canny.png" id="3_25tkk"]
+[ext_resource type="Texture2D" uid="uid://cmg5b6yw2xxpb" path="res://assets/graphics/uncanny.png" id="4_rdf75"]
+[ext_resource type="AudioStream" uid="uid://dah44k1snuibu" path="res://assets/sounds/sfxHardMode.ogg" id="5_cjmyc"]
+[ext_resource type="Texture2D" uid="uid://djpif6xtfpc2e" path="res://assets/graphics/nicescenery.png" id="5_swtrt"]
+[ext_resource type="Texture2D" uid="uid://5mrhdboghl5u" path="res://assets/graphics/panicmode.png" id="5_xmgit"]
+[ext_resource type="Theme" uid="uid://bqtcoant2jjdo" path="res://assets/Button1.tres" id="6_8ys83"]
+[ext_resource type="Texture2D" uid="uid://uyuy51t4vmmt" path="res://assets/graphics/levelselect.png" id="6_54nw5"]
+[ext_resource type="AudioStream" uid="uid://b040ga2djwn7k" path="res://assets/sounds/sfxPanicSiren.ogg" id="7_74q18"]
+[ext_resource type="AudioStream" uid="uid://dp1sjd8y1fqnf" path="res://assets/sounds/sfxXylophoneCancel.ogg" id="8_e4436"]
+[ext_resource type="AudioStream" uid="uid://dx4w1ik5vvwhq" path="res://assets/sounds/sfxSlideWhistle.ogg" id="9_oedoi"]
+
+[node name="TitleScreen" type="Control"]
+process_mode = 1
+layout_mode = 3
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.255997
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0bp4m")
+options = ExtResource("2_f14ju")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_limit_end = Vector2(768, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(256, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(320, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_25tkk")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(320, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_25tkk")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(448, 192)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_25tkk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(448, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_25tkk")
+
+[node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(320, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_25tkk")
+
+[node name="Sprite2D6" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(320, 448)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_25tkk")
+
+[node name="Sprite2D7" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(448, 448)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_25tkk")
+
+[node name="Sprite2D8" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(448, 320)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_25tkk")
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 0
+offset_right = 352.0
+offset_bottom = 26.0
+text = "Development Prototype"
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(256, 128)
+scale = Vector2(1.01441, 1.01734)
+texture = ExtResource("1_nxbu7")
+
+[node name="CannyCats" type="Node2D" parent="."]
+
+[node name="Cat1" type="Sprite2D" parent="CannyCats"]
+position = Vector2(56, 128)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("3_25tkk")
+
+[node name="Cat2" type="Sprite2D" parent="CannyCats"]
+position = Vector2(456, 128)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("3_25tkk")
+
+[node name="UncannyCats" type="Node2D" parent="."]
+
+[node name="Cat1" type="Sprite2D" parent="UncannyCats"]
+position = Vector2(56, 128)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("4_rdf75")
+
+[node name="Cat2" type="Sprite2D" parent="UncannyCats"]
+position = Vector2(456, 128)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("4_rdf75")
+
+[node name="SplashLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 216.0
+offset_right = 432.0
+offset_bottom = 242.0
+text = "SPLASH TEXT PLACEHOLDER"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 256.0
+offset_right = 427.0
+offset_bottom = 467.0
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_8ys83")
+text = "START NEW GAME"
+
+[node name="LevelButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_8ys83")
+text = "START FROM LEVEL"
+
+[node name="ExtrasButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_8ys83")
+text = "EXTRAS (not coded in yet)"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_8ys83")
+text = "OPTIONS"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_8ys83")
+text = "QUIT"
+
+[node name="LevelSelect" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelSelect"]
+position = Vector2(256, 256)
+scale = Vector2(0.752941, 0.752941)
+texture = ExtResource("5_swtrt")
+
+[node name="Sprite2D2" type="Sprite2D" parent="LevelSelect"]
+position = Vector2(256, 56)
+scale = Vector2(0.752941, 0.752941)
+texture = ExtResource("6_54nw5")
+
+[node name="World" type="HBoxContainer" parent="LevelSelect"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 160.0
+offset_right = 384.0
+offset_bottom = 192.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="0" type="Button" parent="LevelSelect/World"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+text = "0"
+
+[node name="1" type="Button" parent="LevelSelect/World"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "1"
+
+[node name="2" type="Button" parent="LevelSelect/World"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "2"
+
+[node name="3" type="Button" parent="LevelSelect/World"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "3"
+
+[node name="4" type="Button" parent="LevelSelect/World"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "4"
+
+[node name="Level" type="HBoxContainer" parent="LevelSelect"]
+layout_mode = 0
+offset_top = 248.0
+offset_right = 512.0
+offset_bottom = 280.0
+alignment = 1
+
+[node name="1" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "1"
+
+[node name="2" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "2"
+
+[node name="3" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "3"
+
+[node name="4" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "4"
+
+[node name="5" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "5"
+
+[node name="6" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "6"
+
+[node name="7" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "7"
+
+[node name="8" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "8"
+
+[node name="9" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "9"
+
+[node name="10" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "10"
+
+[node name="11" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "11"
+
+[node name="12" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "12"
+
+[node name="13" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "13"
+
+[node name="14" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "14"
+
+[node name="15" type="Button" parent="LevelSelect/Level"]
+custom_minimum_size = Vector2(24, 32)
+layout_mode = 2
+text = "15"
+
+[node name="Confirm" type="Button" parent="LevelSelect"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 416.0
+offset_right = 320.0
+offset_bottom = 480.0
+text = "LET'S GO !"
+
+[node name="WorldLabel" type="Label" parent="LevelSelect"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 320.0
+offset_bottom = 160.0
+text = "WORLD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="LevelSelect"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 216.0
+offset_right = 320.0
+offset_bottom = 248.0
+text = "LEVEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChoiceDisplay" type="Label" parent="LevelSelect"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 320.0
+offset_right = 384.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 32
+text = "0-1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanicMode" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(256, 336)
+scale = Vector2(0.805031, 0.788288)
+texture = ExtResource("5_xmgit")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="sfxSelected" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_cjmyc")
+
+[node name="sfxOption" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("9_oedoi")
+
+[node name="sfxPanicSiren" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("7_74q18")
+
+[node name="sfxNo" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_e4436")
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LevelButton" to="." method="_on_level_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="LevelSelect/World/0" to="." method="world_button_select"]
+[connection signal="pressed" from="LevelSelect/World/1" to="." method="world_button_select"]
+[connection signal="pressed" from="LevelSelect/World/2" to="." method="world_button_select"]
+[connection signal="pressed" from="LevelSelect/World/3" to="." method="world_button_select"]
+[connection signal="pressed" from="LevelSelect/World/4" to="." method="world_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/1" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/2" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/3" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/4" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/5" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/6" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/7" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/8" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/9" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/10" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/11" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/12" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/13" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/14" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Level/15" to="." method="level_button_select"]
+[connection signal="pressed" from="LevelSelect/Confirm" to="." method="_on_confirm_pressed"]

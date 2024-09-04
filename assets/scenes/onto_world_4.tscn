@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=3 uid="uid://qk6maxe2mcvu"]
+
+[ext_resource type="Script" path="res://assets/scenes/onto_world_1.gd" id="1_v5hsx"]
+[ext_resource type="Texture2D" uid="uid://b41nat5u0sxeb" path="res://assets/graphics/ontotexture.png" id="2_5yi1t"]
+[ext_resource type="Resource" uid="uid://dymg0d8brpak1" path="res://assets/default_options.tres" id="2_toet3"]
+[ext_resource type="FontFile" uid="uid://ko0mpo6barvq" path="res://assets/fonts/times new roman.ttf" id="3_8vtkx"]
+[ext_resource type="Texture2D" uid="uid://bgsv1ou0rgc21" path="res://assets/graphics/completed.png" id="4_l38h0"]
+[ext_resource type="Texture2D" uid="uid://cipxad3av171r" path="res://assets/graphics/completedpicture.png" id="5_kcn4t"]
+[ext_resource type="Texture2D" uid="uid://dc7nc0txbj7eb" path="res://assets/graphics/worldsign.png" id="6_xkss3"]
+[ext_resource type="FontFile" uid="uid://buubw0k610wbo" path="res://assets/fonts/HWYGEXPD.TTF" id="7_dt1es"]
+[ext_resource type="Texture2D" uid="uid://cxcnrlgqta182" path="res://assets/graphics/circlegradient.png" id="8_too0b"]
+[ext_resource type="AudioStream" uid="uid://d1iu4g17oc3f3" path="res://assets/music/World3VictoryTheme.ogg" id="10_mya8o"]
+[ext_resource type="AudioStream" uid="uid://bhs6aiits3oj3" path="res://assets/music/OntoWorld4Theme.ogg" id="11_do6s3"]
+
+[node name="OntoWorld4" type="Node2D"]
+script = ExtResource("1_v5hsx")
+options = ExtResource("2_toet3")
+progress_destination = "stage4-1"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="bg" type="Sprite2D" parent="Stuff"]
+modulate = Color(0.501961, 0.54902, 1, 1)
+position = Vector2(512, 512)
+texture = ExtResource("2_5yi1t")
+
+[node name="worldcompleted" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 40.0
+offset_right = 704.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8vtkx")
+theme_override_font_sizes/font_size = 25
+text = "Chuckle Park"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="completed" type="Sprite2D" parent="Stuff"]
+position = Vector2(512, 128)
+scale = Vector2(0.677249, 0.592593)
+texture = ExtResource("4_l38h0")
+
+[node name="completed2" type="Sprite2D" parent="Stuff"]
+position = Vector2(512, 320)
+texture = ExtResource("5_kcn4t")
+hframes = 4
+frame = 3
+
+[node name="congratulations" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 408.0
+offset_right = 704.0
+offset_bottom = 472.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_8vtkx")
+theme_override_font_sizes/font_size = 25
+text = "Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="sign" type="Sprite2D" parent="Stuff"]
+modulate = Color(0.4, 0.427451, 1, 1)
+position = Vector2(512, 816)
+scale = Vector2(1.42222, 1.29949)
+texture = ExtResource("6_xkss3")
+
+[node name="nextexit" type="Label" parent="Stuff"]
+offset_left = 384.0
+offset_top = 688.0
+offset_right = 640.0
+offset_bottom = 744.0
+theme_override_colors/font_color = Color(0.701961, 0.690196, 1, 1)
+theme_override_fonts/font = ExtResource("7_dt1es")
+theme_override_font_sizes/font_size = 20
+text = "Next Exit: World 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="worldname" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 728.0
+offset_right = 704.0
+offset_bottom = 760.0
+theme_override_colors/font_color = Color(0.701961, 0.690196, 1, 1)
+theme_override_fonts/font = ExtResource("7_dt1es")
+theme_override_font_sizes/font_size = 25
+text = "THE FINAL FRONTIER"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="worlddescription" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 760.0
+offset_right = 704.0
+offset_bottom = 792.0
+theme_override_colors/font_color = Color(0.701961, 0.690196, 1, 1)
+theme_override_fonts/font = ExtResource("7_dt1es")
+theme_override_font_sizes/font_size = 15
+text = "- Entry beyond this point strictly forbidden -"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="clickcontinue" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 792.0
+offset_right = 704.0
+offset_bottom = 824.0
+theme_override_colors/font_color = Color(0.701961, 0.690196, 1, 1)
+theme_override_fonts/font = ExtResource("7_dt1es")
+theme_override_font_sizes/font_size = 15
+text = "Click anywhere to continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="gradient" type="Sprite2D" parent="Stuff"]
+position = Vector2(512, 768)
+texture = ExtResource("8_too0b")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="sfxCompleteJingle" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("10_mya8o")
+
+[node name="sfxOntoTheme" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("11_do6s3")
+
+[connection signal="finished" from="Sounds/sfxCompleteJingle" to="." method="_on_sfx_complete_jingle_finished"]

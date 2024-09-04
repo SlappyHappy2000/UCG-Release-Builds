@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjopkpi3dnytn"]
+
+[ext_resource type="Script" path="res://assets/scenes/objects/goal_hole_moving.gd" id="1_q25lu"]
+[ext_resource type="Texture2D" uid="uid://7c3dfkkhkrii" path="res://assets/graphics/goalhole.png" id="2_iwhyq"]
+[ext_resource type="Texture2D" uid="uid://g2b6wl83xsey" path="res://assets/graphics/goalflag.png" id="3_ovtyc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h63k2"]
+atlas = ExtResource("3_ovtyc")
+region = Rect2(0, 0, 384, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mft0g"]
+atlas = ExtResource("3_ovtyc")
+region = Rect2(384, 0, 384, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncyp3"]
+atlas = ExtResource("3_ovtyc")
+region = Rect2(768, 0, 384, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7w8c"]
+atlas = ExtResource("3_ovtyc")
+region = Rect2(1152, 0, 384, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0w07q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h63k2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mft0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncyp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7w8c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhfdn"]
+radius = 16.0
+
+[node name="GoalHoleMoving" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_q25lu")
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="N" type="RayCast2D" parent="Raycasts"]
+exclude_parent = false
+collision_mask = 3
+
+[node name="NW" type="RayCast2D" parent="Raycasts"]
+exclude_parent = false
+collision_mask = 3
+
+[node name="W" type="RayCast2D" parent="Raycasts"]
+exclude_parent = false
+collision_mask = 3
+
+[node name="SW" type="RayCast2D" parent="Raycasts"]
+exclude_parent = false
+collision_mask = 3
+
+[node name="S" type="RayCast2D" parent="Raycasts"]
+exclude_parent = false
+collision_mask = 3
+
+[node name="SE" type="RayCast2D" parent="Raycasts"]
+exclude_parent = false
+collision_mask = 3
+
+[node name="E" type="RayCast2D" parent="Raycasts"]
+exclude_parent = false
+collision_mask = 3
+
+[node name="NE" type="RayCast2D" parent="Raycasts"]
+exclude_parent = false
+collision_mask = 3
+
+[node name="Hole" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_iwhyq")
+
+[node name="Flag" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(32, -48)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_0w07q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vhfdn")
+
+[node name="GoalHitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalHitbox"]
+shape = SubResource("CircleShape2D_vhfdn")
+
+[connection signal="body_entered" from="GoalHitbox" to="." method="_on_goal_hitbox_body_entered"]

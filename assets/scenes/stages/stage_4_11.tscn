@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://wh1j3fyfnval"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_45cvy"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_4_11.gd" id="2_76lms"]
+[ext_resource type="Shader" path="res://assets/scenes/stages/level_template.gdshader" id="2_d8gnf"]
+[ext_resource type="Texture2D" uid="uid://c1gqw7rsdxaw1" path="res://assets/graphics/epicdoor.png" id="3_7wv16"]
+[ext_resource type="Texture2D" uid="uid://bbqjv8txtvo0c" path="res://assets/graphics/lock.png" id="4_bs857"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3wji"]
+resource_local_to_scene = true
+shader = ExtResource("2_d8gnf")
+shader_parameter/C1 = Color(0.882353, 0, 1, 1)
+shader_parameter/C2 = Color(0.231373, 0, 0, 1)
+shader_parameter/C3 = Color(0.607843, 0, 0.494118, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cjsdt"]
+resource_local_to_scene = true
+shader = ExtResource("2_d8gnf")
+shader_parameter/C1 = Color(0.0666667, 1, 0, 1)
+shader_parameter/C2 = Color(0, 0.278431, 0, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dd3f8"]
+resource_local_to_scene = true
+shader = ExtResource("2_d8gnf")
+shader_parameter/C1 = Color(1, 0.501961, 0.67451, 1)
+shader_parameter/C2 = Color(0.4, 0, 0.12549, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage4-11" instance=ExtResource("1_45cvy")]
+script = ExtResource("2_76lms")
+level_name = "The Wall"
+scene_ID = "stage4-11"
+music_choice = "bgmNothing"
+stage_color = Color(0.709804, 0.709804, 0.709804, 1)
+progress_destination = "stage5-1"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+position = Vector2(508, 216)
+scale = Vector2(0.507813, 0.5)
+texture = ExtResource("3_7wv16")
+hframes = 4
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="1"]
+position = Vector2(472, 128)
+scale = Vector2(0.588235, 0.542373)
+texture = ExtResource("4_bs857")
+centered = false
+
+[node name="Tiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_a3wji")
+
+[node name="SwitchTiles1" parent="." index="4"]
+material = SubResource("ShaderMaterial_cjsdt")
+
+[node name="SwitchTiles2" parent="." index="5"]
+material = SubResource("ShaderMaterial_dd3f8")
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+position = Vector2(1312, 160)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+position = Vector2(512, 448)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+position = Vector2(-32, 160)

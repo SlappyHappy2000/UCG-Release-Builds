@@ -1,0 +1,196 @@
+[gd_scene load_steps=19 format=3 uid="uid://dm7pbe0n2rfty"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_dp2un"]
+[ext_resource type="Shader" path="res://assets/scenes/stages/level_template.gdshader" id="2_1q3k5"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_2_12.gd" id="2_d52cm"]
+[ext_resource type="Texture2D" uid="uid://c07u65wuxpcen" path="res://assets/graphics/world2bg.png" id="3_mm5iw"]
+[ext_resource type="Texture2D" uid="uid://cmg5b6yw2xxpb" path="res://assets/graphics/uncanny.png" id="4_1hp4i"]
+[ext_resource type="Texture2D" uid="uid://nwfw6eid1toc" path="res://assets/graphics/mirrorhouse.png" id="4_n5av6"]
+[ext_resource type="Texture2D" uid="uid://p25m8fx2s30j" path="res://assets/graphics/whitesquare.png" id="5_8xwe1"]
+[ext_resource type="FontFile" uid="uid://ko0mpo6barvq" path="res://assets/fonts/times new roman.ttf" id="5_nk6sy"]
+[ext_resource type="Texture2D" uid="uid://48c44jkqt75w" path="res://assets/graphics/UCN.png" id="5_vtmp4"]
+[ext_resource type="Texture2D" uid="uid://c8cakm7o8kl7h" path="res://assets/graphics/newsicon1.png" id="6_cjfut"]
+[ext_resource type="Texture2D" uid="uid://ca2utwr3151lj" path="res://assets/graphics/newsgradient.png" id="6_kvcy3"]
+[ext_resource type="FontFile" uid="uid://b4m41kepb4uy0" path="res://assets/fonts/COMIC.TTF" id="7_no40i"]
+[ext_resource type="PackedScene" uid="uid://b1sxpag8rn06n" path="res://assets/scenes/objects/glowstick_light_rotater.tscn" id="12_qef46"]
+[ext_resource type="PackedScene" uid="uid://bveffte47800q" path="res://assets/scenes/objects/baddie_car_spawner.tscn" id="13_7116y"]
+
+[sub_resource type="Shader" id="Shader_eb2yg"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kj431"]
+resource_local_to_scene = true
+shader = SubResource("Shader_eb2yg")
+shader_parameter/C1 = Color(1, 0, 0.682353, 1)
+shader_parameter/C2 = Color(0.11, 0, 0.0751667, 1)
+shader_parameter/C3 = Color(0.59, 0, 0.403167, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2h52y"]
+resource_local_to_scene = true
+shader = ExtResource("2_1q3k5")
+shader_parameter/C1 = Color(0.0666667, 1, 0, 1)
+shader_parameter/C2 = Color(0, 0.278431, 0, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4m6yn"]
+resource_local_to_scene = true
+shader = ExtResource("2_1q3k5")
+shader_parameter/C1 = Color(1, 0.501961, 0.67451, 1)
+shader_parameter/C2 = Color(0.4, 0, 0.12549, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage2-12" instance=ExtResource("1_dp2un")]
+script = ExtResource("2_d52cm")
+level_name = "2-12: Why Did The Cat Cross The Road?"
+scene_ID = "stage2-12"
+music_choice = "bgmLvl2"
+progress_destination = "stage2-13"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+z_index = -1
+position = Vector2(512, 256)
+texture = ExtResource("3_mm5iw")
+
+[node name="News" type="Node2D" parent="." index="1"]
+
+[node name="Sprite2D" type="Sprite2D" parent="News" index="0"]
+z_index = 2
+position = Vector2(512, 464)
+scale = Vector2(0.64, 0.16)
+texture = ExtResource("4_n5av6")
+
+[node name="Sprite2D4" type="Sprite2D" parent="News" index="1"]
+modulate = Color(1, 0.109804, 1, 1)
+z_index = 2
+position = Vector2(636, 438)
+scale = Vector2(0.634921, 0.60274)
+texture = ExtResource("5_vtmp4")
+
+[node name="Sprite2D6" type="Sprite2D" parent="News" index="2"]
+modulate = Color(1, 0.109804, 1, 1)
+z_index = 2
+position = Vector2(320.698, 452)
+scale = Vector2(0.736065, 0.72)
+texture = ExtResource("6_cjfut")
+
+[node name="Sprite2D5" type="Sprite2D" parent="News" index="3"]
+z_index = 2
+position = Vector2(512, 496)
+scale = Vector2(16, 1)
+texture = ExtResource("6_kvcy3")
+
+[node name="Label" type="Label" parent="News" index="4"]
+z_index = 2
+offset_left = 576.0
+offset_top = 448.0
+offset_right = 696.0
+offset_bottom = 480.0
+theme_override_fonts/font = ExtResource("5_nk6sy")
+theme_override_font_sizes/font_size = 12
+text = "Uncanny Cat News"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NewsText" type="Label" parent="News" index="5"]
+z_index = 2
+offset_left = 800.0
+offset_top = 480.0
+offset_right = 896.0
+offset_bottom = 512.0
+theme_override_fonts/font = ExtResource("7_no40i")
+theme_override_font_sizes/font_size = 12
+text = "Placeholder"
+vertical_alignment = 1
+
+[node name="Sprite2D3" type="Sprite2D" parent="News" index="6"]
+modulate = Color(0, 0, 1, 1)
+z_index = 2
+position = Vector2(724, 452)
+scale = Vector2(30, 30)
+texture = ExtResource("5_8xwe1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="News" index="7"]
+z_index = 2
+position = Vector2(724, 452)
+scale = Vector2(0.109375, 0.109375)
+texture = ExtResource("4_1hp4i")
+
+[node name="GlowstickLightRotater" parent="." index="2" instance=ExtResource("12_qef46")]
+position = Vector2(512, 256)
+LightType = 5
+
+[node name="Tiles1" parent="." index="3"]
+material = SubResource("ShaderMaterial_kj431")
+layer_0/tile_data = PackedInt32Array(2097168, 0, 0, 2097169, 0, 0, 2097170, 0, 0, 2097171, 0, 0, 2097172, 0, 0, 2097173, 0, 0, 2097174, 0, 0, 2097175, 0, 0, 2097176, 0, 0, 2097177, 0, 0, 2097178, 0, 0, 2097179, 0, 0, 2097180, 0, 0, 2097181, 0, 0, 2097182, 0, 0, 2097183, 0, 0, 2097184, 0, 0, 2097185, 0, 0, 2097186, 0, 0, 2097187, 0, 0, 2097188, 0, 0, 2097189, 0, 0, 2097190, 0, 0, 2097191, 0, 0, 2097192, 0, 0, 2097193, 0, 0, 2097194, 0, 0, 2097195, 0, 0, 2097196, 0, 0, 2097197, 0, 0, 2097198, 0, 0, 2097199, 0, 0, 2031631, 0, 0, 1966095, 0, 0, 1900559, 0, 0, 1835023, 0, 0, 1769487, 0, 0, 1703951, 0, 0, 1638415, 0, 0, 1572879, 0, 0, 1507343, 0, 0, 1441807, 0, 0, 1376271, 0, 0, 1310735, 0, 0, 15, 0, 0, 65551, 0, 0, 131087, 0, 0, 196623, 0, 0, 262159, 0, 0, 327695, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 589839, 0, 0, 655375, 0, 0, 720911, 0, 0, 786447, 0, 0, 851983, 0, 0, 917519, 0, 0, 983055, 0, 0, 1048591, 0, 0, 1114127, 0, 0, 1179663, 0, 0, 1245199, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65507, 0, 0, -65506, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, 48, 0, 0, 65584, 0, 0, 131120, 0, 0, 196656, 0, 0, 262192, 0, 0, 327728, 0, 0, 393264, 0, 0, 458800, 0, 0, 524336, 0, 0, 589872, 0, 0, 655408, 0, 0, 720944, 0, 0, 786480, 0, 0, 852016, 0, 0, 917552, 0, 0, 983088, 0, 0, 1048624, 0, 0, 1114160, 0, 0, 1179696, 0, 0, 1245232, 0, 0, 1310768, 0, 0, 1376304, 0, 0, 1441840, 0, 0, 1507376, 0, 0, 1572912, 0, 0, 1638448, 0, 0, 1703984, 0, 0, 1769520, 0, 0, 1835056, 0, 0, 1900592, 0, 0, 1966128, 0, 0, 2031664, 0, 0, -65521, 0, 0, 2097167, 0, 0, 2097200, 0, 0, -65488, 0, 0, 1572880, 0, 0, 1572881, 0, 0, 1572882, 0, 0, 1572883, 0, 0, 1572884, 0, 0, 1572885, 0, 0, 1572886, 0, 0, 1572887, 0, 0, 1572888, 0, 0, 1572889, 0, 0, 1572890, 0, 0, 1572891, 0, 0, 1572892, 0, 0, 1572893, 0, 0, 1572894, 0, 0, 1572895, 0, 0, 1572896, 0, 0, 1572897, 0, 0, 1572898, 0, 0, 1572899, 0, 0, 1572900, 0, 0, 1572901, 0, 0, 1572902, 0, 0, 1572903, 0, 0, 1572904, 0, 0, 1572905, 0, 0, 1572906, 0, 0, 1572907, 0, 0, 1572908, 0, 0, 1572909, 0, 0, 1572910, 0, 0, 1572911, 0, 0, 1638423, 0, 0, 1638422, 0, 0, 1638421, 0, 0, 1638420, 0, 0, 1638419, 0, 0, 1638418, 0, 0, 1638417, 0, 0, 1638424, 0, 0, 1638425, 0, 0, 1638426, 0, 0, 1638427, 0, 0, 1638428, 0, 0, 1638429, 0, 0, 1638430, 0, 0, 1638431, 0, 0, 1638432, 0, 0, 1638433, 0, 0, 1638434, 0, 0, 1638435, 0, 0, 1638436, 0, 0, 1638437, 0, 0, 1638438, 0, 0, 1638439, 0, 0, 1638440, 0, 0, 1638441, 0, 0, 1638442, 0, 0, 1638443, 0, 0, 1638444, 0, 0, 1638445, 0, 0, 1638446, 0, 0, 1638447, 0, 0, 1638416, 0, 0, 1245231, 0, 0, 1245230, 0, 0, 1245229, 0, 0, 1245228, 0, 0, 1245227, 0, 0, 1245226, 0, 0, 1245225, 0, 0, 1245224, 0, 0, 1179688, 0, 0, 1179689, 0, 0, 1179690, 0, 0, 1179691, 0, 0, 1179692, 0, 0, 1179693, 0, 0, 1179694, 0, 0, 1179695, 0, 0, 917547, 0, 0, 983083, 0, 0, 1048619, 0, 0, 1114155, 0, 0, 1245223, 0, 0, 1179687, 0, 0, 1179686, 0, 0, 1245222, 0, 0, 1245221, 0, 0, 1245220, 0, 0, 1245219, 0, 0, 1179684, 0, 0, 1179685, 0, 0, 1179683, 0, 0, 1179682, 0, 0, 1245218, 0, 0, 1245217, 0, 0, 1179681, 0, 0, 1179674, 0, 0, 1245210, 0, 0, 1245209, 0, 0, 1245208, 0, 0, 1245207, 0, 0, 1245206, 0, 0, 1245205, 0, 0, 1245204, 0, 0, 1245203, 0, 0, 1245202, 0, 0, 1245201, 0, 0, 1245200, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 852010, 0, 0, 852011, 0, 0, 786475, 0, 0, 786474, 0, 0, 786473, 0, 0, 852009, 0, 0, 852008, 0, 0, 852007, 0, 0, 852006, 0, 0, 852005, 0, 0, 852004, 0, 0, 852003, 0, 0, 852002, 0, 0, 852001, 0, 0, 852000, 0, 0, 851999, 0, 0, 851998, 0, 0, 851997, 0, 0, 851996, 0, 0, 851995, 0, 0, 851994, 0, 0, 786458, 0, 0, 786459, 0, 0, 786460, 0, 0, 786461, 0, 0, 786462, 0, 0, 786463, 0, 0, 786464, 0, 0, 786465, 0, 0, 786466, 0, 0, 786467, 0, 0, 786468, 0, 0, 786469, 0, 0, 786470, 0, 0, 786471, 0, 0, 786472, 0, 0, 786457, 0, 0, 851993, 0, 0, 786448, 0, 0, 851984, 0, 0, 786449, 0, 0, 851985, 0, 0, 851986, 0, 0, 786450, 0, 0, 786451, 0, 0, 851987, 0, 0, 786452, 0, 0, 851988, 0, 0, 589867, 0, 0, 655403, 0, 0, 720939, 0, 0, 524331, 0, 0, 458768, 0, 0, 458769, 0, 0, 393233, 0, 0, 393232, 0, 0, 393238, 0, 0, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458777, 0, 0, 458778, 0, 0, 458779, 0, 0, 458780, 0, 0, 458781, 0, 0, 458782, 0, 0, 458783, 0, 0, 458784, 0, 0, 458785, 0, 0, 458786, 0, 0, 458787, 0, 0, 458788, 0, 0, 458789, 0, 0, 458790, 0, 0, 458791, 0, 0, 458792, 0, 0, 458793, 0, 0, 458794, 0, 0, 458795, 0, 0, 393259, 0, 0, 393258, 0, 0, 393257, 0, 0, 393256, 0, 0, 393255, 0, 0, 393254, 0, 0, 393253, 0, 0, 393252, 0, 0, 393251, 0, 0, 393250, 0, 0, 393249, 0, 0, 393248, 0, 0, 393247, 0, 0, 393246, 0, 0, 393245, 0, 0, 393244, 0, 0, 393243, 0, 0, 393242, 0, 0, 393241, 0, 0, 393240, 0, 0, 393239, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 65552, 0, 0, 65553, 0, 0, 65554, 0, 0, 65555, 0, 0, 65556, 0, 0, 65557, 0, 0, 65558, 0, 0, 65559, 0, 0, 65560, 0, 0, 65561, 0, 0, 65562, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 0, 0, 65579, 0, 0, 65580, 0, 0, 65581, 0, 0, 65582, 0, 0, 65583, 0, 0, 47, 0, 0, 46, 0, 0, 45, 0, 0, 44, 0, 0, 65578, 0, 0, 65577, 0, 0, 65576, 0, 0, 65575, 0, 0, 65574, 0, 0, 65573, 0, 0, 65572, 0, 0, 65571, 0, 0, 65570, 0, 0, 65569, 0, 0, 65568, 0, 0, 65567, 0, 0, 65566, 0, 0, 65565, 0, 0, 65564, 0, 0, 65563, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0)
+
+[node name="SwitchTiles1" parent="." index="5"]
+material = SubResource("ShaderMaterial_2h52y")
+
+[node name="SwitchTiles2" parent="." index="6"]
+material = SubResource("ShaderMaterial_4m6yn")
+
+[node name="BaddieCarSpawner" parent="CollectibleObjects" index="0" instance=ExtResource("13_7116y")]
+position = Vector2(192, 352)
+spawn_rate = 90
+car_speed = 130
+car_direction = Vector2(1, 0)
+car_color = Color(1, 0.721569, 0.780392, 1)
+
+[node name="BaddieCarSpawner2" parent="CollectibleObjects" index="1" instance=ExtResource("13_7116y")]
+position = Vector2(192, 256)
+spawn_rate = 90
+car_speed = 150
+car_direction = Vector2(1, 0)
+car_color = Color(1, 0.721569, 0.780392, 1)
+
+[node name="BaddieCarSpawner3" parent="CollectibleObjects" index="2" instance=ExtResource("13_7116y")]
+position = Vector2(192, 160)
+spawn_rate = 90
+car_speed = 170
+car_direction = Vector2(1, 0)
+car_color = Color(1, 0.721569, 0.780392, 1)
+
+[node name="BaddieCarSpawner4" parent="CollectibleObjects" index="3" instance=ExtResource("13_7116y")]
+position = Vector2(192, 64)
+spawn_rate = 90
+car_speed = 190
+car_direction = Vector2(1, 0)
+car_color = Color(1, 0.721569, 0.780392, 1)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+modulate = Color(1, 0.721569, 0.780392, 1)
+position = Vector2(736, 272)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+modulate = Color(1, 0.721569, 0.780392, 1)
+position = Vector2(736, 352)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+modulate = Color(1, 0.721569, 0.780392, 1)
+position = Vector2(1184, 352)

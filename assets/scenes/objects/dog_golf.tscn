@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://nnravf4u3qyf"]
+
+[ext_resource type="Texture2D" uid="uid://d1bwpgmfr1x5c" path="res://assets/graphics/doggolf.png" id="1_f4mpf"]
+[ext_resource type="Script" path="res://assets/scenes/objects/dog_golf.gd" id="1_wsgw4"]
+[ext_resource type="Resource" uid="uid://dymg0d8brpak1" path="res://assets/default_options.tres" id="2_krja2"]
+[ext_resource type="AudioStream" uid="uid://b5gyns5ehktir" path="res://assets/sounds/sfxWallBump.ogg" id="3_nurqf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ngpp2"]
+radius = 15.8
+
+[node name="DogGolf" type="CharacterBody2D"]
+collision_layer = 17
+collision_mask = 9
+script = ExtResource("1_wsgw4")
+options = ExtResource("2_krja2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.064, 0.064)
+texture = ExtResource("1_f4mpf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ngpp2")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="sfxWallBump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_nurqf")

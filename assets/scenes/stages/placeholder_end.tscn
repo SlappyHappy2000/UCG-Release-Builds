@@ -1,0 +1,123 @@
+[gd_scene load_steps=15 format=3 uid="uid://c8oovnfrm5v77"]
+
+[ext_resource type="Script" path="res://assets/scenes/stages/placeholder_end.gd" id="1_ivo8r"]
+[ext_resource type="FontFile" uid="uid://dfaxht05o8gpo" path="res://assets/fonts/impact.ttf" id="1_wjc1k"]
+[ext_resource type="Texture2D" uid="uid://b8rh5rflr4r5l" path="res://assets/graphics/goonamigaball.png" id="3_dbmx7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf0hp"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(0, 0, 226, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2wfm"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(226, 0, 226, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lul5"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(452, 0, 226, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3osrc"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(678, 0, 226, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks4t1"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(904, 0, 226, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c64xq"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(1130, 0, 226, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onae6"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(1356, 0, 226, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d1or"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(1582, 0, 226, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq67a"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(1808, 0, 226, 196)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb5ui"]
+atlas = ExtResource("3_dbmx7")
+region = Rect2(2034, 0, 226, 196)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ca3cd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf0hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2wfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lul5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3osrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ks4t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c64xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onae6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5d1or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq67a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb5ui")
+}],
+"loop": true,
+"name": &"default",
+"speed": 40.0
+}]
+
+[node name="Placeholder End" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_ivo8r")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 288.0
+offset_top = 32.0
+offset_right = 736.0
+offset_bottom = 480.0
+theme_override_fonts/font = ExtResource("1_wjc1k")
+theme_override_font_sizes/font_size = 30
+text = "no more
+
+go home"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Balls" type="Node2D" parent="."]
+position = Vector2(288, 32)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Balls"]
+position = Vector2(-2.14577e-05, 448)
+scale = Vector2(0.141593, 0.163265)
+sprite_frames = SubResource("SpriteFrames_ca3cd")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Balls"]
+position = Vector2(448, -9.53674e-07)
+scale = Vector2(0.141593, 0.163265)
+sprite_frames = SubResource("SpriteFrames_ca3cd")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Balls"]
+position = Vector2(448, 448)
+scale = Vector2(0.141593, 0.163265)
+sprite_frames = SubResource("SpriteFrames_ca3cd")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Balls"]
+position = Vector2(3.8147e-06, -9.53674e-07)
+scale = Vector2(0.141593, 0.163265)
+sprite_frames = SubResource("SpriteFrames_ca3cd")

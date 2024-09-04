@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Options" load_steps=2 format=3 uid="uid://dymg0d8brpak1"]
+
+[ext_resource type="Script" path="res://assets/options.gd" id="1_pm8gt"]
+
+[resource]
+script = ExtResource("1_pm8gt")
+settings_cat_name = ""
+settings_fullscreen = false
+settings_sound_volume = 20
+settings_music_volume = 20
+modifier_hardmode = false
+modifier_roleswap = false
+modifier_burst = false
+modifier_telekinetic = false
+modifier_glass = false
+modifier_hypercam = false

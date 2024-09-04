@@ -1,0 +1,607 @@
+[gd_scene load_steps=10 format=3 uid="uid://bm1kpjquniab6"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_qyx1p"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_ilpev"]
+[ext_resource type="PackedScene" uid="uid://ddwuwfghk7gey" path="res://assets/scenes/objects/coin.tscn" id="3_ovhvm"]
+[ext_resource type="Texture2D" uid="uid://c1thxkflcw7a6" path="res://assets/graphics/restarea.png" id="3_wwt70"]
+
+[sub_resource type="Shader" id="Shader_eb2yg"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75mli"]
+resource_local_to_scene = true
+shader = SubResource("Shader_eb2yg")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(0.721569, 0.721569, 0.721569, 1)
+shader_parameter/C3 = Color(0.419608, 0.419608, 0.419608, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_3oshw"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86nmn"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0, 0.729412, 0.65098, 1)
+shader_parameter/C2 = Color(0, 0.129412, 0.0901961, 1)
+shader_parameter/C3 = Color(0, 0.407843, 0.392157, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofapg"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0.572549, 0.729412, 0, 1)
+shader_parameter/C2 = Color(0.0666667, 0.129412, 0, 1)
+shader_parameter/C3 = Color(0.27451, 0.411765, 0, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage1-15" instance=ExtResource("1_qyx1p")]
+script = ExtResource("2_ilpev")
+level_name = "1-15: Rest Area"
+scene_ID = "stage1-15"
+music_choice = "bgmLvl1"
+stage_color = Color(0, 0.709804, 0.4, 1)
+progress_destination = "onto2"
+peak_value = 40000
+
+[node name="Tiles1" parent="." index="0"]
+material = SubResource("ShaderMaterial_75mli")
+
+[node name="SwitchTiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_86nmn")
+
+[node name="SwitchTiles2" parent="." index="3"]
+material = SubResource("ShaderMaterial_ofapg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+position = Vector2(296, 488)
+scale = Vector2(0.286667, 0.298742)
+texture = ExtResource("3_wwt70")
+
+[node name="Coin" parent="CollectibleObjects" index="0" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 96)
+
+[node name="Coin2" parent="CollectibleObjects" index="1" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 96)
+
+[node name="Coin3" parent="CollectibleObjects" index="2" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 96)
+
+[node name="Coin4" parent="CollectibleObjects" index="3" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 96)
+
+[node name="Coin5" parent="CollectibleObjects" index="4" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 96)
+
+[node name="Coin6" parent="CollectibleObjects" index="5" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 96)
+
+[node name="Coin7" parent="CollectibleObjects" index="6" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 96)
+
+[node name="Coin8" parent="CollectibleObjects" index="7" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 96)
+
+[node name="Coin9" parent="CollectibleObjects" index="8" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 96)
+
+[node name="Coin10" parent="CollectibleObjects" index="9" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 96)
+
+[node name="Coin11" parent="CollectibleObjects" index="10" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 96)
+
+[node name="Coin12" parent="CollectibleObjects" index="11" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 96)
+
+[node name="Coin13" parent="CollectibleObjects" index="12" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 96)
+
+[node name="Coin14" parent="CollectibleObjects" index="13" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 96)
+
+[node name="Coin15" parent="CollectibleObjects" index="14" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 96)
+
+[node name="Coin16" parent="CollectibleObjects" index="15" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 128)
+
+[node name="Coin17" parent="CollectibleObjects" index="16" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 128)
+
+[node name="Coin18" parent="CollectibleObjects" index="17" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 128)
+
+[node name="Coin19" parent="CollectibleObjects" index="18" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 128)
+
+[node name="Coin20" parent="CollectibleObjects" index="19" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 128)
+
+[node name="Coin21" parent="CollectibleObjects" index="20" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 128)
+
+[node name="Coin22" parent="CollectibleObjects" index="21" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 128)
+
+[node name="Coin23" parent="CollectibleObjects" index="22" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 128)
+
+[node name="Coin24" parent="CollectibleObjects" index="23" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 128)
+
+[node name="Coin25" parent="CollectibleObjects" index="24" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 128)
+
+[node name="Coin26" parent="CollectibleObjects" index="25" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 128)
+
+[node name="Coin27" parent="CollectibleObjects" index="26" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 128)
+
+[node name="Coin28" parent="CollectibleObjects" index="27" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 128)
+
+[node name="Coin29" parent="CollectibleObjects" index="28" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 128)
+
+[node name="Coin30" parent="CollectibleObjects" index="29" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 128)
+
+[node name="Coin31" parent="CollectibleObjects" index="30" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 160)
+
+[node name="Coin32" parent="CollectibleObjects" index="31" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 160)
+
+[node name="Coin33" parent="CollectibleObjects" index="32" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 160)
+
+[node name="Coin34" parent="CollectibleObjects" index="33" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 160)
+
+[node name="Coin35" parent="CollectibleObjects" index="34" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 160)
+
+[node name="Coin36" parent="CollectibleObjects" index="35" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 160)
+
+[node name="Coin37" parent="CollectibleObjects" index="36" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 160)
+
+[node name="Coin38" parent="CollectibleObjects" index="37" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 160)
+
+[node name="Coin39" parent="CollectibleObjects" index="38" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 160)
+
+[node name="Coin40" parent="CollectibleObjects" index="39" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 160)
+
+[node name="Coin41" parent="CollectibleObjects" index="40" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 160)
+
+[node name="Coin42" parent="CollectibleObjects" index="41" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 160)
+
+[node name="Coin43" parent="CollectibleObjects" index="42" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 160)
+
+[node name="Coin44" parent="CollectibleObjects" index="43" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 160)
+
+[node name="Coin45" parent="CollectibleObjects" index="44" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 160)
+
+[node name="Coin46" parent="CollectibleObjects" index="45" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 192)
+
+[node name="Coin47" parent="CollectibleObjects" index="46" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 192)
+
+[node name="Coin48" parent="CollectibleObjects" index="47" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 192)
+
+[node name="Coin49" parent="CollectibleObjects" index="48" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 192)
+
+[node name="Coin50" parent="CollectibleObjects" index="49" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 192)
+
+[node name="Coin51" parent="CollectibleObjects" index="50" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 192)
+
+[node name="Coin52" parent="CollectibleObjects" index="51" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 192)
+
+[node name="Coin53" parent="CollectibleObjects" index="52" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 192)
+
+[node name="Coin54" parent="CollectibleObjects" index="53" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 192)
+
+[node name="Coin55" parent="CollectibleObjects" index="54" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 192)
+
+[node name="Coin56" parent="CollectibleObjects" index="55" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 192)
+
+[node name="Coin57" parent="CollectibleObjects" index="56" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 192)
+
+[node name="Coin58" parent="CollectibleObjects" index="57" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 192)
+
+[node name="Coin59" parent="CollectibleObjects" index="58" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 192)
+
+[node name="Coin60" parent="CollectibleObjects" index="59" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 192)
+
+[node name="Coin61" parent="CollectibleObjects" index="60" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 224)
+
+[node name="Coin62" parent="CollectibleObjects" index="61" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 224)
+
+[node name="Coin63" parent="CollectibleObjects" index="62" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 224)
+
+[node name="Coin64" parent="CollectibleObjects" index="63" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 224)
+
+[node name="Coin65" parent="CollectibleObjects" index="64" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 224)
+
+[node name="Coin66" parent="CollectibleObjects" index="65" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 224)
+
+[node name="Coin67" parent="CollectibleObjects" index="66" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 224)
+
+[node name="Coin68" parent="CollectibleObjects" index="67" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 224)
+
+[node name="Coin69" parent="CollectibleObjects" index="68" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 224)
+
+[node name="Coin70" parent="CollectibleObjects" index="69" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 224)
+
+[node name="Coin71" parent="CollectibleObjects" index="70" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 224)
+
+[node name="Coin72" parent="CollectibleObjects" index="71" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 224)
+
+[node name="Coin73" parent="CollectibleObjects" index="72" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 224)
+
+[node name="Coin74" parent="CollectibleObjects" index="73" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 224)
+
+[node name="Coin75" parent="CollectibleObjects" index="74" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 224)
+
+[node name="Coin76" parent="CollectibleObjects" index="75" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 256)
+
+[node name="Coin77" parent="CollectibleObjects" index="76" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 256)
+
+[node name="Coin78" parent="CollectibleObjects" index="77" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 256)
+
+[node name="Coin79" parent="CollectibleObjects" index="78" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 256)
+
+[node name="Coin80" parent="CollectibleObjects" index="79" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 256)
+
+[node name="Coin81" parent="CollectibleObjects" index="80" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 256)
+
+[node name="Coin82" parent="CollectibleObjects" index="81" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 256)
+
+[node name="Coin83" parent="CollectibleObjects" index="82" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 256)
+
+[node name="Coin84" parent="CollectibleObjects" index="83" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 256)
+
+[node name="Coin85" parent="CollectibleObjects" index="84" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 256)
+
+[node name="Coin86" parent="CollectibleObjects" index="85" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 256)
+
+[node name="Coin87" parent="CollectibleObjects" index="86" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 256)
+
+[node name="Coin88" parent="CollectibleObjects" index="87" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 256)
+
+[node name="Coin89" parent="CollectibleObjects" index="88" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 256)
+
+[node name="Coin90" parent="CollectibleObjects" index="89" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 256)
+
+[node name="Coin91" parent="CollectibleObjects" index="90" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 288)
+
+[node name="Coin92" parent="CollectibleObjects" index="91" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 288)
+
+[node name="Coin93" parent="CollectibleObjects" index="92" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 288)
+
+[node name="Coin94" parent="CollectibleObjects" index="93" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 288)
+
+[node name="Coin95" parent="CollectibleObjects" index="94" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 288)
+
+[node name="Coin96" parent="CollectibleObjects" index="95" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 288)
+
+[node name="Coin97" parent="CollectibleObjects" index="96" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 288)
+
+[node name="Coin98" parent="CollectibleObjects" index="97" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 288)
+
+[node name="Coin99" parent="CollectibleObjects" index="98" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 288)
+
+[node name="Coin100" parent="CollectibleObjects" index="99" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 288)
+
+[node name="Coin101" parent="CollectibleObjects" index="100" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 288)
+
+[node name="Coin102" parent="CollectibleObjects" index="101" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 288)
+
+[node name="Coin103" parent="CollectibleObjects" index="102" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 288)
+
+[node name="Coin104" parent="CollectibleObjects" index="103" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 288)
+
+[node name="Coin105" parent="CollectibleObjects" index="104" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 288)
+
+[node name="Coin106" parent="CollectibleObjects" index="105" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 320)
+
+[node name="Coin107" parent="CollectibleObjects" index="106" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 320)
+
+[node name="Coin108" parent="CollectibleObjects" index="107" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 320)
+
+[node name="Coin109" parent="CollectibleObjects" index="108" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 320)
+
+[node name="Coin110" parent="CollectibleObjects" index="109" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 320)
+
+[node name="Coin111" parent="CollectibleObjects" index="110" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 320)
+
+[node name="Coin112" parent="CollectibleObjects" index="111" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 320)
+
+[node name="Coin113" parent="CollectibleObjects" index="112" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 320)
+
+[node name="Coin114" parent="CollectibleObjects" index="113" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 320)
+
+[node name="Coin115" parent="CollectibleObjects" index="114" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 320)
+
+[node name="Coin116" parent="CollectibleObjects" index="115" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 320)
+
+[node name="Coin117" parent="CollectibleObjects" index="116" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 320)
+
+[node name="Coin118" parent="CollectibleObjects" index="117" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 320)
+
+[node name="Coin119" parent="CollectibleObjects" index="118" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 320)
+
+[node name="Coin120" parent="CollectibleObjects" index="119" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 320)
+
+[node name="Coin121" parent="CollectibleObjects" index="120" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 352)
+
+[node name="Coin122" parent="CollectibleObjects" index="121" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 352)
+
+[node name="Coin123" parent="CollectibleObjects" index="122" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 352)
+
+[node name="Coin124" parent="CollectibleObjects" index="123" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 352)
+
+[node name="Coin125" parent="CollectibleObjects" index="124" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 352)
+
+[node name="Coin126" parent="CollectibleObjects" index="125" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 352)
+
+[node name="Coin127" parent="CollectibleObjects" index="126" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 352)
+
+[node name="Coin128" parent="CollectibleObjects" index="127" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 352)
+
+[node name="Coin129" parent="CollectibleObjects" index="128" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 352)
+
+[node name="Coin130" parent="CollectibleObjects" index="129" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 352)
+
+[node name="Coin131" parent="CollectibleObjects" index="130" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 352)
+
+[node name="Coin132" parent="CollectibleObjects" index="131" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 352)
+
+[node name="Coin133" parent="CollectibleObjects" index="132" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 352)
+
+[node name="Coin134" parent="CollectibleObjects" index="133" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 352)
+
+[node name="Coin135" parent="CollectibleObjects" index="134" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 352)
+
+[node name="Coin136" parent="CollectibleObjects" index="135" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 384)
+
+[node name="Coin137" parent="CollectibleObjects" index="136" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 384)
+
+[node name="Coin138" parent="CollectibleObjects" index="137" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 384)
+
+[node name="Coin139" parent="CollectibleObjects" index="138" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 384)
+
+[node name="Coin140" parent="CollectibleObjects" index="139" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 384)
+
+[node name="Coin141" parent="CollectibleObjects" index="140" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 384)
+
+[node name="Coin142" parent="CollectibleObjects" index="141" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 384)
+
+[node name="Coin143" parent="CollectibleObjects" index="142" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 384)
+
+[node name="Coin144" parent="CollectibleObjects" index="143" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 384)
+
+[node name="Coin145" parent="CollectibleObjects" index="144" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 384)
+
+[node name="Coin146" parent="CollectibleObjects" index="145" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 384)
+
+[node name="Coin147" parent="CollectibleObjects" index="146" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 384)
+
+[node name="Coin148" parent="CollectibleObjects" index="147" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 384)
+
+[node name="Coin149" parent="CollectibleObjects" index="148" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 384)
+
+[node name="Coin150" parent="CollectibleObjects" index="149" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 384)
+
+[node name="Coin151" parent="CollectibleObjects" index="150" instance=ExtResource("3_ovhvm")]
+position = Vector2(288, 416)
+
+[node name="Coin152" parent="CollectibleObjects" index="151" instance=ExtResource("3_ovhvm")]
+position = Vector2(320, 416)
+
+[node name="Coin153" parent="CollectibleObjects" index="152" instance=ExtResource("3_ovhvm")]
+position = Vector2(352, 416)
+
+[node name="Coin154" parent="CollectibleObjects" index="153" instance=ExtResource("3_ovhvm")]
+position = Vector2(384, 416)
+
+[node name="Coin155" parent="CollectibleObjects" index="154" instance=ExtResource("3_ovhvm")]
+position = Vector2(416, 416)
+
+[node name="Coin156" parent="CollectibleObjects" index="155" instance=ExtResource("3_ovhvm")]
+position = Vector2(448, 416)
+
+[node name="Coin157" parent="CollectibleObjects" index="156" instance=ExtResource("3_ovhvm")]
+position = Vector2(480, 416)
+
+[node name="Coin158" parent="CollectibleObjects" index="157" instance=ExtResource("3_ovhvm")]
+position = Vector2(512, 416)
+
+[node name="Coin159" parent="CollectibleObjects" index="158" instance=ExtResource("3_ovhvm")]
+position = Vector2(544, 416)
+
+[node name="Coin160" parent="CollectibleObjects" index="159" instance=ExtResource("3_ovhvm")]
+position = Vector2(576, 416)
+
+[node name="Coin161" parent="CollectibleObjects" index="160" instance=ExtResource("3_ovhvm")]
+position = Vector2(608, 416)
+
+[node name="Coin162" parent="CollectibleObjects" index="161" instance=ExtResource("3_ovhvm")]
+position = Vector2(640, 416)
+
+[node name="Coin163" parent="CollectibleObjects" index="162" instance=ExtResource("3_ovhvm")]
+position = Vector2(672, 416)
+
+[node name="Coin164" parent="CollectibleObjects" index="163" instance=ExtResource("3_ovhvm")]
+position = Vector2(704, 416)
+
+[node name="Coin165" parent="CollectibleObjects" index="164" instance=ExtResource("3_ovhvm")]
+position = Vector2(736, 416)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+position = Vector2(736, 32)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+position = Vector2(384, 480)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+position = Vector2(736, 480)

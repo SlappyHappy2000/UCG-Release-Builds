@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://brqfksam7vjno"]
+
+[ext_resource type="Script" path="res://assets/scenes/objects/playable_ghost.gd" id="1_6st7t"]
+[ext_resource type="Texture2D" uid="uid://cmg5b6yw2xxpb" path="res://assets/graphics/uncanny.png" id="1_8n80e"]
+[ext_resource type="Resource" uid="uid://dymg0d8brpak1" path="res://assets/default_options.tres" id="2_i2hum"]
+[ext_resource type="Texture2D" uid="uid://bcwwgoum7c26h" path="res://assets/graphics/p_cursor.png" id="2_wbgvh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nn8ou"]
+radius = 16.28
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jr7gs"]
+radius = 12.17
+
+[node name="PlayableGhost" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_6st7t")
+options = ExtResource("2_i2hum")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.064, 0.064)
+texture = ExtResource("1_8n80e")
+
+[node name="playermarker" type="Sprite2D" parent="."]
+position = Vector2(0, -28)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("2_wbgvh")
+hframes = 4
+vframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nn8ou")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_jr7gs")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

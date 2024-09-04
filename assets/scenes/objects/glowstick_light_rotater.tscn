@@ -1,0 +1,297 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1sxpag8rn06n"]
+
+[ext_resource type="Script" path="res://assets/scenes/objects/glowstick_light_rotater.gd" id="1_wj1ou"]
+[ext_resource type="Texture2D" uid="uid://c07u65wuxpcen" path="res://assets/graphics/world2bg.png" id="2_a12mg"]
+
+[sub_resource type="Gradient" id="Gradient_gykr8"]
+offsets = PackedFloat32Array(0, 0.692641)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c0386"]
+gradient = SubResource("Gradient_gykr8")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.501529, 0.504587)
+
+[sub_resource type="Gradient" id="Gradient_2uywd"]
+offsets = PackedFloat32Array(0, 0.692641)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bnald"]
+gradient = SubResource("Gradient_2uywd")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.501529, 0.504587)
+
+[sub_resource type="Gradient" id="Gradient_dk03h"]
+offsets = PackedFloat32Array(0, 0.692641)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ujm0t"]
+gradient = SubResource("Gradient_dk03h")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.501529, 0.504587)
+
+[node name="GlowstickLightRotater" type="Node2D"]
+script = ExtResource("1_wj1ou")
+
+[node name="s" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_a12mg")
+
+[node name="LightGroup1" type="Node2D" parent="."]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="LightGroup1"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-128, 0)
+color = Color(0.0705882, 0, 1, 1)
+energy = 3.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_c0386")
+
+[node name="PointLight2D2" type="PointLight2D" parent="LightGroup1"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(128, 0)
+color = Color(0.0705882, 0, 1, 1)
+energy = 3.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_c0386")
+
+[node name="LightGroup2" type="Node2D" parent="."]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(128, -224)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="PointLight2D2" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(128, 0)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="PointLight2D4" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-128, -128)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="PointLight2D5" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-128, 128)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="PointLight2D3" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(128, 224)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="PointLight2D6" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-384, -224)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="PointLight2D7" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-384, 0)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="PointLight2D8" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-640, -128)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="PointLight2D9" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-640, 128)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="PointLight2D10" type="PointLight2D" parent="LightGroup2"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-384, 224)
+color = Color(0, 0.74902, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_bnald")
+
+[node name="LightGroup3" type="Node2D" parent="."]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="LightGroup3"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, -192)
+color = Color(0.784314, 0, 0.505882, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="PointLight2D2" type="PointLight2D" parent="LightGroup3"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-192, 0)
+color = Color(0.784314, 0, 0.505882, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="PointLight2D3" type="PointLight2D" parent="LightGroup3"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 192)
+color = Color(0.784314, 0, 0.505882, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="PointLight2D4" type="PointLight2D" parent="LightGroup3"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(192, 0)
+color = Color(0.784314, 0, 0.505882, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="PointLight2D5" type="PointLight2D" parent="LightGroup3"]
+light_mask = 2
+visibility_layer = 2
+color = Color(0.784314, 0, 0.505882, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="LightGroup4" type="Node2D" parent="."]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="LightGroup4"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, -120)
+color = Color(1, 0, 0, 1)
+energy = 3.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="PointLight2D3" type="PointLight2D" parent="LightGroup4"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 120)
+color = Color(0, 0, 1, 1)
+energy = 3.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="LightGroup5" type="Node2D" parent="."]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="LightGroup5"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, -192)
+color = Color(0.65098, 0, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="PointLight2D2" type="PointLight2D" parent="LightGroup5"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-192, 0)
+color = Color(0.65098, 0, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="PointLight2D3" type="PointLight2D" parent="LightGroup5"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 192)
+color = Color(0.65098, 0, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="PointLight2D4" type="PointLight2D" parent="LightGroup5"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(192, 0)
+color = Color(0.65098, 0, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")
+
+[node name="PointLight2D5" type="PointLight2D" parent="LightGroup5"]
+light_mask = 2
+visibility_layer = 2
+color = Color(0.65098, 0, 1, 1)
+energy = 2.0
+range_z_min = -1
+range_z_max = 1
+texture = SubResource("GradientTexture2D_ujm0t")

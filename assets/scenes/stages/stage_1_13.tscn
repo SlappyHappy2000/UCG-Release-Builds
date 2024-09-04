@@ -1,0 +1,723 @@
+[gd_scene load_steps=17 format=3 uid="uid://blnyfw8sb3pdc"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_83aiy"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_b4phu"]
+[ext_resource type="PackedScene" uid="uid://l8ecukyy2ntu" path="res://assets/scenes/objects/destructible_block.tscn" id="2_jpj50"]
+[ext_resource type="Texture2D" uid="uid://cpwp7qhr8swoh" path="res://assets/graphics/flowerbushdeco.png" id="3_rsopn"]
+[ext_resource type="PackedScene" uid="uid://cqrmu70pd1jaa" path="res://assets/scenes/objects/baddie_orb.tscn" id="5_mulpi"]
+
+[sub_resource type="Shader" id="Shader_eb2yg"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75mli"]
+resource_local_to_scene = true
+shader = SubResource("Shader_eb2yg")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(0.721569, 0.721569, 0.721569, 1)
+shader_parameter/C3 = Color(0.419608, 0.419608, 0.419608, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_3oshw"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8vi0b"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0, 0.729412, 0.65098, 1)
+shader_parameter/C2 = Color(0, 0.129412, 0.0901961, 1)
+shader_parameter/C3 = Color(0, 0.407843, 0.392157, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6fbes"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0.572549, 0.729412, 0, 1)
+shader_parameter/C2 = Color(0.0666667, 0.129412, 0, 1)
+shader_parameter/C3 = Color(0.27451, 0.411765, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_x3uo4"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform vec4 C4 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+	} else if (color == vec4(0, 0, 255, 255)) {
+        COLOR = C4;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qo3op"]
+resource_local_to_scene = true
+shader = SubResource("Shader_x3uo4")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(0.831373, 0.831373, 0.831373, 1)
+shader_parameter/C3 = null
+shader_parameter/C4 = Color(0, 0.490196, 1, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_63eir"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform vec4 C4 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+	} else if (color == vec4(0, 0, 255, 255)) {
+        COLOR = C4;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5puh"]
+resource_local_to_scene = true
+shader = SubResource("Shader_63eir")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(0.831373, 0.831373, 0.831373, 1)
+shader_parameter/C3 = null
+shader_parameter/C4 = Color(0.729412, 0.607843, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_jtyr3"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform vec4 C4 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+	} else if (color == vec4(0, 0, 255, 255)) {
+        COLOR = C4;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vod16"]
+resource_local_to_scene = true
+shader = SubResource("Shader_jtyr3")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(0.831373, 0.831373, 0.831373, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/C4 = Color(1, 0.301961, 0.301961, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage1-13" instance=ExtResource("1_83aiy")]
+script = ExtResource("2_b4phu")
+level_name = "1-13: How Many Licks..."
+scene_ID = "stage1-13"
+music_choice = "bgmLvl1"
+stage_color = Color(0, 0.709804, 0.4, 1)
+progress_destination = "stage1-14"
+peak_value = 10000
+
+[node name="Tiles1" parent="." index="0"]
+material = SubResource("ShaderMaterial_75mli")
+
+[node name="SwitchTiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_8vi0b")
+
+[node name="SwitchTiles2" parent="." index="3"]
+material = SubResource("ShaderMaterial_6fbes")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+z_index = 1
+position = Vector2(306.667, 515.979)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." index="5"]
+z_index = 1
+position = Vector2(618.667, 515.979)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." index="6"]
+z_index = 1
+position = Vector2(722.667, 515.979)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="7"]
+z_index = 1
+position = Vector2(410.667, 515.979)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." index="8"]
+z_index = 1
+position = Vector2(514.667, 515.979)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." index="9"]
+z_index = 1
+position = Vector2(306.667, -20.0208)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="Sprite2D7" type="Sprite2D" parent="." index="10"]
+z_index = 1
+position = Vector2(618.667, -20.0208)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="Sprite2D8" type="Sprite2D" parent="." index="11"]
+z_index = 1
+position = Vector2(722.667, -20.0208)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="Sprite2D9" type="Sprite2D" parent="." index="12"]
+z_index = 1
+position = Vector2(410.667, -20.0208)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="Sprite2D10" type="Sprite2D" parent="." index="13"]
+z_index = 1
+position = Vector2(514.667, -20.0208)
+scale = Vector2(0.0833333, 0.0923254)
+texture = ExtResource("3_rsopn")
+
+[node name="DestructibleBlock" parent="CollectibleObjects" index="0" instance=ExtResource("2_jpj50")]
+position = Vector2(464, 208)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock3" parent="CollectibleObjects" index="1" instance=ExtResource("2_jpj50")]
+position = Vector2(464, 240)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock3" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock5" parent="CollectibleObjects" index="2" instance=ExtResource("2_jpj50")]
+position = Vector2(464, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock5" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock6" parent="CollectibleObjects" index="3" instance=ExtResource("2_jpj50")]
+position = Vector2(464, 304)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock6" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock7" parent="CollectibleObjects" index="4" instance=ExtResource("2_jpj50")]
+position = Vector2(496, 304)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock7" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock8" parent="CollectibleObjects" index="5" instance=ExtResource("2_jpj50")]
+position = Vector2(528, 304)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock8" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock9" parent="CollectibleObjects" index="6" instance=ExtResource("2_jpj50")]
+position = Vector2(560, 304)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock9" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock10" parent="CollectibleObjects" index="7" instance=ExtResource("2_jpj50")]
+position = Vector2(560, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock10" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock11" parent="CollectibleObjects" index="8" instance=ExtResource("2_jpj50")]
+position = Vector2(560, 240)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock11" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock12" parent="CollectibleObjects" index="9" instance=ExtResource("2_jpj50")]
+position = Vector2(560, 208)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock12" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock13" parent="CollectibleObjects" index="10" instance=ExtResource("2_jpj50")]
+position = Vector2(528, 208)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock13" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock14" parent="CollectibleObjects" index="11" instance=ExtResource("2_jpj50")]
+position = Vector2(496, 208)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock14" index="0"]
+material = SubResource("ShaderMaterial_qo3op")
+
+[node name="DestructibleBlock2" parent="CollectibleObjects" index="12" instance=ExtResource("2_jpj50")]
+position = Vector2(432, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock2" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock15" parent="CollectibleObjects" index="13" instance=ExtResource("2_jpj50")]
+position = Vector2(432, 208)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock15" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock16" parent="CollectibleObjects" index="14" instance=ExtResource("2_jpj50")]
+position = Vector2(432, 240)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock16" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock17" parent="CollectibleObjects" index="15" instance=ExtResource("2_jpj50")]
+position = Vector2(432, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock17" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock18" parent="CollectibleObjects" index="16" instance=ExtResource("2_jpj50")]
+position = Vector2(432, 304)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock18" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock19" parent="CollectibleObjects" index="17" instance=ExtResource("2_jpj50")]
+position = Vector2(432, 336)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock19" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock20" parent="CollectibleObjects" index="18" instance=ExtResource("2_jpj50")]
+position = Vector2(464, 336)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock20" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock21" parent="CollectibleObjects" index="19" instance=ExtResource("2_jpj50")]
+position = Vector2(496, 336)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock21" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock22" parent="CollectibleObjects" index="20" instance=ExtResource("2_jpj50")]
+position = Vector2(528, 336)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock22" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock23" parent="CollectibleObjects" index="21" instance=ExtResource("2_jpj50")]
+position = Vector2(560, 336)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock23" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock24" parent="CollectibleObjects" index="22" instance=ExtResource("2_jpj50")]
+position = Vector2(592, 336)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock24" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock25" parent="CollectibleObjects" index="23" instance=ExtResource("2_jpj50")]
+position = Vector2(592, 304)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock25" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock26" parent="CollectibleObjects" index="24" instance=ExtResource("2_jpj50")]
+position = Vector2(592, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock26" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock27" parent="CollectibleObjects" index="25" instance=ExtResource("2_jpj50")]
+position = Vector2(592, 240)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock27" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock28" parent="CollectibleObjects" index="26" instance=ExtResource("2_jpj50")]
+position = Vector2(592, 208)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock28" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock29" parent="CollectibleObjects" index="27" instance=ExtResource("2_jpj50")]
+position = Vector2(592, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock29" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock30" parent="CollectibleObjects" index="28" instance=ExtResource("2_jpj50")]
+position = Vector2(560, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock30" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock31" parent="CollectibleObjects" index="29" instance=ExtResource("2_jpj50")]
+position = Vector2(528, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock31" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock32" parent="CollectibleObjects" index="30" instance=ExtResource("2_jpj50")]
+position = Vector2(496, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock32" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock33" parent="CollectibleObjects" index="31" instance=ExtResource("2_jpj50")]
+position = Vector2(464, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock33" index="0"]
+material = SubResource("ShaderMaterial_d5puh")
+
+[node name="DestructibleBlock4" parent="CollectibleObjects" index="32" instance=ExtResource("2_jpj50")]
+position = Vector2(400, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock4" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock34" parent="CollectibleObjects" index="33" instance=ExtResource("2_jpj50")]
+position = Vector2(400, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock34" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock35" parent="CollectibleObjects" index="34" instance=ExtResource("2_jpj50")]
+position = Vector2(400, 208)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock35" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock36" parent="CollectibleObjects" index="35" instance=ExtResource("2_jpj50")]
+position = Vector2(400, 240)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock36" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock37" parent="CollectibleObjects" index="36" instance=ExtResource("2_jpj50")]
+position = Vector2(400, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock37" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock38" parent="CollectibleObjects" index="37" instance=ExtResource("2_jpj50")]
+position = Vector2(400, 304)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock38" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock39" parent="CollectibleObjects" index="38" instance=ExtResource("2_jpj50")]
+position = Vector2(400, 336)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock39" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock40" parent="CollectibleObjects" index="39" instance=ExtResource("2_jpj50")]
+position = Vector2(400, 368)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock40" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock41" parent="CollectibleObjects" index="40" instance=ExtResource("2_jpj50")]
+position = Vector2(432, 368)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock41" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock42" parent="CollectibleObjects" index="41" instance=ExtResource("2_jpj50")]
+position = Vector2(464, 368)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock42" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock43" parent="CollectibleObjects" index="42" instance=ExtResource("2_jpj50")]
+position = Vector2(496, 368)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock43" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock44" parent="CollectibleObjects" index="43" instance=ExtResource("2_jpj50")]
+position = Vector2(528, 368)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock44" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock45" parent="CollectibleObjects" index="44" instance=ExtResource("2_jpj50")]
+position = Vector2(560, 368)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock45" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock46" parent="CollectibleObjects" index="45" instance=ExtResource("2_jpj50")]
+position = Vector2(592, 368)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock46" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock47" parent="CollectibleObjects" index="46" instance=ExtResource("2_jpj50")]
+position = Vector2(624, 368)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock47" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock48" parent="CollectibleObjects" index="47" instance=ExtResource("2_jpj50")]
+position = Vector2(624, 336)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock48" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock49" parent="CollectibleObjects" index="48" instance=ExtResource("2_jpj50")]
+position = Vector2(624, 304)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock49" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock50" parent="CollectibleObjects" index="49" instance=ExtResource("2_jpj50")]
+position = Vector2(624, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock50" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock51" parent="CollectibleObjects" index="50" instance=ExtResource("2_jpj50")]
+position = Vector2(624, 240)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock51" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock52" parent="CollectibleObjects" index="51" instance=ExtResource("2_jpj50")]
+position = Vector2(624, 208)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock52" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock53" parent="CollectibleObjects" index="52" instance=ExtResource("2_jpj50")]
+position = Vector2(624, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock53" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock54" parent="CollectibleObjects" index="53" instance=ExtResource("2_jpj50")]
+position = Vector2(624, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock54" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock55" parent="CollectibleObjects" index="54" instance=ExtResource("2_jpj50")]
+position = Vector2(592, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock55" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock56" parent="CollectibleObjects" index="55" instance=ExtResource("2_jpj50")]
+position = Vector2(560, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock56" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock57" parent="CollectibleObjects" index="56" instance=ExtResource("2_jpj50")]
+position = Vector2(528, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock57" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock58" parent="CollectibleObjects" index="57" instance=ExtResource("2_jpj50")]
+position = Vector2(496, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock58" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock59" parent="CollectibleObjects" index="58" instance=ExtResource("2_jpj50")]
+position = Vector2(464, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock59" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="DestructibleBlock60" parent="CollectibleObjects" index="59" instance=ExtResource("2_jpj50")]
+position = Vector2(432, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock60" index="0"]
+material = SubResource("ShaderMaterial_vod16")
+
+[node name="BaddieOrb4" parent="CollectibleObjects" index="60" instance=ExtResource("5_mulpi")]
+position = Vector2(512, 448)
+speed = 100
+direction = Vector2(-0.851, 0.851)
+
+[node name="BaddieOrb3" parent="CollectibleObjects" index="61" instance=ExtResource("5_mulpi")]
+position = Vector2(704, 256)
+speed = 100
+direction = Vector2(0.851, 0.851)
+
+[node name="BaddieOrb2" parent="CollectibleObjects" index="62" instance=ExtResource("5_mulpi")]
+position = Vector2(320, 256)
+speed = 100
+direction = Vector2(-0.851, -0.851)
+
+[node name="BaddieOrb" parent="CollectibleObjects" index="63" instance=ExtResource("5_mulpi")]
+position = Vector2(512, 64)
+speed = 100
+direction = Vector2(0.851, -0.851)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+position = Vector2(512, 256)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+position = Vector2(704, 448)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+position = Vector2(320, 320)
+
+[editable path="CollectibleObjects/DestructibleBlock"]
+[editable path="CollectibleObjects/DestructibleBlock3"]
+[editable path="CollectibleObjects/DestructibleBlock5"]
+[editable path="CollectibleObjects/DestructibleBlock6"]
+[editable path="CollectibleObjects/DestructibleBlock7"]
+[editable path="CollectibleObjects/DestructibleBlock8"]
+[editable path="CollectibleObjects/DestructibleBlock9"]
+[editable path="CollectibleObjects/DestructibleBlock10"]
+[editable path="CollectibleObjects/DestructibleBlock11"]
+[editable path="CollectibleObjects/DestructibleBlock12"]
+[editable path="CollectibleObjects/DestructibleBlock13"]
+[editable path="CollectibleObjects/DestructibleBlock14"]
+[editable path="CollectibleObjects/DestructibleBlock2"]
+[editable path="CollectibleObjects/DestructibleBlock15"]
+[editable path="CollectibleObjects/DestructibleBlock16"]
+[editable path="CollectibleObjects/DestructibleBlock17"]
+[editable path="CollectibleObjects/DestructibleBlock18"]
+[editable path="CollectibleObjects/DestructibleBlock19"]
+[editable path="CollectibleObjects/DestructibleBlock20"]
+[editable path="CollectibleObjects/DestructibleBlock21"]
+[editable path="CollectibleObjects/DestructibleBlock22"]
+[editable path="CollectibleObjects/DestructibleBlock23"]
+[editable path="CollectibleObjects/DestructibleBlock24"]
+[editable path="CollectibleObjects/DestructibleBlock25"]
+[editable path="CollectibleObjects/DestructibleBlock26"]
+[editable path="CollectibleObjects/DestructibleBlock27"]
+[editable path="CollectibleObjects/DestructibleBlock28"]
+[editable path="CollectibleObjects/DestructibleBlock29"]
+[editable path="CollectibleObjects/DestructibleBlock30"]
+[editable path="CollectibleObjects/DestructibleBlock31"]
+[editable path="CollectibleObjects/DestructibleBlock32"]
+[editable path="CollectibleObjects/DestructibleBlock33"]
+[editable path="CollectibleObjects/DestructibleBlock4"]
+[editable path="CollectibleObjects/DestructibleBlock34"]
+[editable path="CollectibleObjects/DestructibleBlock35"]
+[editable path="CollectibleObjects/DestructibleBlock36"]
+[editable path="CollectibleObjects/DestructibleBlock37"]
+[editable path="CollectibleObjects/DestructibleBlock38"]
+[editable path="CollectibleObjects/DestructibleBlock39"]
+[editable path="CollectibleObjects/DestructibleBlock40"]
+[editable path="CollectibleObjects/DestructibleBlock41"]
+[editable path="CollectibleObjects/DestructibleBlock42"]
+[editable path="CollectibleObjects/DestructibleBlock43"]
+[editable path="CollectibleObjects/DestructibleBlock44"]
+[editable path="CollectibleObjects/DestructibleBlock45"]
+[editable path="CollectibleObjects/DestructibleBlock46"]
+[editable path="CollectibleObjects/DestructibleBlock47"]
+[editable path="CollectibleObjects/DestructibleBlock48"]
+[editable path="CollectibleObjects/DestructibleBlock49"]
+[editable path="CollectibleObjects/DestructibleBlock50"]
+[editable path="CollectibleObjects/DestructibleBlock51"]
+[editable path="CollectibleObjects/DestructibleBlock52"]
+[editable path="CollectibleObjects/DestructibleBlock53"]
+[editable path="CollectibleObjects/DestructibleBlock54"]
+[editable path="CollectibleObjects/DestructibleBlock55"]
+[editable path="CollectibleObjects/DestructibleBlock56"]
+[editable path="CollectibleObjects/DestructibleBlock57"]
+[editable path="CollectibleObjects/DestructibleBlock58"]
+[editable path="CollectibleObjects/DestructibleBlock59"]
+[editable path="CollectibleObjects/DestructibleBlock60"]

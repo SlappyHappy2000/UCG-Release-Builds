@@ -1,0 +1,426 @@
+[gd_scene load_steps=18 format=3 uid="uid://bstpmd5vta020"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_nqhwm"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_ht7j0"]
+[ext_resource type="Texture2D" uid="uid://c07u65wuxpcen" path="res://assets/graphics/world2bg.png" id="3_o3qlm"]
+[ext_resource type="PackedScene" uid="uid://b1sxpag8rn06n" path="res://assets/scenes/objects/glowstick_light_rotater.tscn" id="4_s3ocr"]
+[ext_resource type="PackedScene" uid="uid://l8ecukyy2ntu" path="res://assets/scenes/objects/destructible_block.tscn" id="5_seavv"]
+[ext_resource type="PackedScene" uid="uid://1vtwbmse6mu6" path="res://assets/scenes/objects/speed_token.tscn" id="6_vkhcs"]
+[ext_resource type="PackedScene" uid="uid://bucp45bqrt3gx" path="res://assets/scenes/objects/stop_token.tscn" id="7_ahyrc"]
+[ext_resource type="PackedScene" uid="uid://cqrmu70pd1jaa" path="res://assets/scenes/objects/baddie_orb.tscn" id="8_nn150"]
+
+[sub_resource type="Shader" id="Shader_eb2yg"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2x0xk"]
+resource_local_to_scene = true
+shader = SubResource("Shader_eb2yg")
+shader_parameter/C1 = Color(0.5, 0, 1, 1)
+shader_parameter/C2 = Color(0.055, 0, 0.11, 1)
+shader_parameter/C3 = Color(0.295, 0, 0.59, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_3oshw"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kmo66"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0, 0.729412, 0.65098, 1)
+shader_parameter/C2 = Color(0, 0.129412, 0.0901961, 1)
+shader_parameter/C3 = Color(0, 0.407843, 0.392157, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4wra"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0.572549, 0.729412, 0, 1)
+shader_parameter/C2 = Color(0.0666667, 0.129412, 0, 1)
+shader_parameter/C3 = Color(0.27451, 0.411765, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_i6wd3"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform vec4 C4 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+	} else if (color == vec4(0, 0, 255, 255)) {
+        COLOR = C4;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hl1re"]
+resource_local_to_scene = true
+shader = SubResource("Shader_i6wd3")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(0.411765, 0.709804, 0.74902, 1)
+shader_parameter/C3 = null
+shader_parameter/C4 = Color(0.1786, 0.436003, 0.47, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_7a4un"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform vec4 C4 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+	} else if (color == vec4(0, 0, 255, 255)) {
+        COLOR = C4;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5c2wa"]
+resource_local_to_scene = true
+shader = SubResource("Shader_7a4un")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(0.74902, 0.411765, 0.490196, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/C4 = Color(0.47, 0.1786, 0.246593, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage2-7" instance=ExtResource("1_nqhwm")]
+script = ExtResource("2_ht7j0")
+level_name = "2-7: Dance! Dance! Everybody Dance!"
+scene_ID = "stage2-7"
+music_choice = "bgmLvl2"
+progress_destination = "stage2-8"
+peak_value = 8000
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+z_index = -1
+position = Vector2(512, 256)
+texture = ExtResource("3_o3qlm")
+
+[node name="GlowstickLightRotater" parent="." index="1" instance=ExtResource("4_s3ocr")]
+position = Vector2(512, 256)
+LightType = 3
+
+[node name="Tiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_2x0xk")
+layer_0/tile_data = PackedInt32Array(2097168, 0, 0, 2097169, 0, 0, 2097170, 0, 0, 2097171, 0, 0, 2097172, 0, 0, 2097173, 0, 0, 2097174, 0, 0, 2097175, 0, 0, 2097176, 0, 0, 2097177, 0, 0, 2097178, 0, 0, 2097179, 0, 0, 2097180, 0, 0, 2097181, 0, 0, 2097182, 0, 0, 2097183, 0, 0, 2097184, 0, 0, 2097185, 0, 0, 2097186, 0, 0, 2097187, 0, 0, 2097188, 0, 0, 2097189, 0, 0, 2097190, 0, 0, 2097191, 0, 0, 2097192, 0, 0, 2097193, 0, 0, 2097194, 0, 0, 2097195, 0, 0, 2097196, 0, 0, 2097197, 0, 0, 2097198, 0, 0, 2097199, 0, 0, 2031631, 0, 0, 1966095, 0, 0, 1900559, 0, 0, 1835023, 0, 0, 1769487, 0, 0, 1703951, 0, 0, 1638415, 0, 0, 1572879, 0, 0, 1507343, 0, 0, 1441807, 0, 0, 1376271, 0, 0, 1310735, 0, 0, 15, 0, 0, 65551, 0, 0, 131087, 0, 0, 196623, 0, 0, 262159, 0, 0, 327695, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 589839, 0, 0, 655375, 0, 0, 720911, 0, 0, 786447, 0, 0, 851983, 0, 0, 917519, 0, 0, 983055, 0, 0, 1048591, 0, 0, 1114127, 0, 0, 1179663, 0, 0, 1245199, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65507, 0, 0, -65506, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, 48, 0, 0, 65584, 0, 0, 131120, 0, 0, 196656, 0, 0, 262192, 0, 0, 327728, 0, 0, 393264, 0, 0, 458800, 0, 0, 524336, 0, 0, 589872, 0, 0, 655408, 0, 0, 720944, 0, 0, 786480, 0, 0, 852016, 0, 0, 917552, 0, 0, 983088, 0, 0, 1048624, 0, 0, 1114160, 0, 0, 1179696, 0, 0, 1245232, 0, 0, 1310768, 0, 0, 1376304, 0, 0, 1441840, 0, 0, 1507376, 0, 0, 1572912, 0, 0, 1638448, 0, 0, 1703984, 0, 0, 1769520, 0, 0, 1835056, 0, 0, 1900592, 0, 0, 1966128, 0, 0, 2031664, 0, 0, -65521, 0, 0, 2097167, 0, 0, 2097200, 0, 0, -65488, 0, 0, 655391, 0, 0, 720927, 0, 0, 786463, 0, 0, 851999, 0, 0, 917535, 0, 0, 917536, 0, 0, 917537, 0, 0, 852001, 0, 0, 786465, 0, 0, 720929, 0, 0, 655393, 0, 0, 655392, 0, 0, 720928, 0, 0, 786464, 0, 0, 852000, 0, 0, 983071, 0, 0, 983072, 0, 0, 983073, 0, 0, 1048609, 0, 0, 1048608, 0, 0, 1048607, 0, 0, 1114143, 0, 0, 1114144, 0, 0, 1114145, 0, 0, 1114146, 0, 0, 1114147, 0, 0, 1114148, 0, 0, 1114149, 0, 0, 1114150, 0, 0, 1048614, 0, 0, 1048613, 0, 0, 1048612, 0, 0, 1048611, 0, 0, 1048610, 0, 0, 1048621, 0, 0, 1114157, 0, 0, 1114158, 0, 0, 1114159, 0, 0, 1048623, 0, 0, 1048622, 0, 0, 655390, 0, 0, 720926, 0, 0, 786462, 0, 0, 851998, 0, 0, 917534, 0, 0, 983070, 0, 0, 1048606, 0, 0, 1114142, 0, 0, 720915, 0, 0, 720914, 0, 0, 720913, 0, 0, 720912, 0, 0, 720921, 0, 0, 720922, 0, 0, 720923, 0, 0, 720924, 0, 0, 720925, 0, 0, 30, 0, 0, 65566, 0, 0, 65567, 0, 0, 65568, 0, 0, 32, 0, 0, 33, 0, 0, 31, 0, 0, 65569, 0, 0, 196641, 0, 0, 196640, 0, 0, 196639, 0, 0, 196638, 0, 0, 131102, 0, 0, 131103, 0, 0, 131104, 0, 0, 131105, 0, 0, 655389, 0, 0, 655388, 0, 0, 655387, 0, 0, 655386, 0, 0, 655385, 0, 0, 655379, 0, 0, 655378, 0, 0, 655377, 0, 0, 655376, 0, 0, 589840, 0, 0, 524304, 0, 0, 458768, 0, 0, 393232, 0, 0, 327696, 0, 0, 262160, 0, 0, 196624, 0, 0, 131088, 0, 0, 65552, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 0, 0, 44, 0, 0, 45, 0, 0, 46, 0, 0, 47, 0, 0, 65583, 0, 0, 131119, 0, 0, 196655, 0, 0, 262191, 0, 0, 327727, 0, 0, 393263, 0, 0, 458799, 0, 0, 524335, 0, 0, 589871, 0, 0, 655407, 0, 0, 720943, 0, 0, 786479, 0, 0, 852015, 0, 0, 917551, 0, 0, 983087, 0, 0, 1245231, 0, 0, 1310767, 0, 0, 1376303, 0, 0, 1441839, 0, 0, 1507375, 0, 0, 1572911, 0, 0, 1638447, 0, 0, 1703983, 0, 0, 1769519, 0, 0, 1835055, 0, 0, 1900591, 0, 0, 1966127, 0, 0, 2031663, 0, 0, 1179695, 0, 0, 2031662, 0, 0, 2031661, 0, 0, 2031660, 0, 0, 2031659, 0, 0, 2031658, 0, 0, 2031657, 0, 0, 2031656, 0, 0, 2031655, 0, 0, 2031654, 0, 0, 2031653, 0, 0, 2031652, 0, 0, 2031651, 0, 0, 2031650, 0, 0, 2031649, 0, 0, 2031648, 0, 0, 2031647, 0, 0, 2031646, 0, 0, 2031645, 0, 0, 2031644, 0, 0, 2031643, 0, 0, 2031642, 0, 0, 2031641, 0, 0, 2031640, 0, 0, 2031639, 0, 0, 2031638, 0, 0, 2031637, 0, 0, 2031636, 0, 0, 2031635, 0, 0, 2031634, 0, 0, 2031633, 0, 0, 2031632, 0, 0, 1966096, 0, 0, 1900560, 0, 0, 1835024, 0, 0, 1769488, 0, 0, 1703952, 0, 0, 1638416, 0, 0, 1572880, 0, 0, 1507344, 0, 0, 1441808, 0, 0, 1376272, 0, 0, 1310736, 0, 0, 1245200, 0, 0, 1179664, 0, 0, 1114128, 0, 0, 1048592, 0, 0, 983056, 0, 0, 917520, 0, 0, 851984, 0, 0, 786448, 0, 0, 655384, 0, 0, 720920, 0, 0)
+
+[node name="SwitchTiles1" parent="." index="4"]
+material = SubResource("ShaderMaterial_kmo66")
+
+[node name="SwitchTiles2" parent="." index="5"]
+material = SubResource("ShaderMaterial_s4wra")
+
+[node name="DestructibleBlock" parent="CollectibleObjects" index="0" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(512, 80)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock" index="0"]
+material = SubResource("ShaderMaterial_hl1re")
+
+[node name="DestructibleBlock2" parent="CollectibleObjects" index="1" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(512, 112)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock2" index="0"]
+material = SubResource("ShaderMaterial_hl1re")
+
+[node name="DestructibleBlock3" parent="CollectibleObjects" index="2" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(512, 144)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock3" index="0"]
+material = SubResource("ShaderMaterial_hl1re")
+
+[node name="DestructibleBlock4" parent="CollectibleObjects" index="3" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(640, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock4" index="0"]
+material = SubResource("ShaderMaterial_hl1re")
+
+[node name="DestructibleBlock5" parent="CollectibleObjects" index="4" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(672, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock5" index="0"]
+material = SubResource("ShaderMaterial_hl1re")
+
+[node name="DestructibleBlock6" parent="CollectibleObjects" index="5" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(704, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock6" index="0"]
+material = SubResource("ShaderMaterial_hl1re")
+
+[node name="DestructibleBlock7" parent="CollectibleObjects" index="6" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(336, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock7" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock8" parent="CollectibleObjects" index="7" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(368, 176)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock8" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock9" parent="CollectibleObjects" index="8" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(400, 208)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock9" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock10" parent="CollectibleObjects" index="9" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(400, 240)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock10" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock11" parent="CollectibleObjects" index="10" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(400, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock11" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock12" parent="CollectibleObjects" index="11" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(432, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock12" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock13" parent="CollectibleObjects" index="12" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(464, 272)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock13" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock15" parent="CollectibleObjects" index="13" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(384, 352)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock15" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock17" parent="CollectibleObjects" index="14" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(512, 432)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock17" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock19" parent="CollectibleObjects" index="15" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(640, 352)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock19" index="0"]
+material = SubResource("ShaderMaterial_5c2wa")
+
+[node name="DestructibleBlock14" parent="CollectibleObjects" index="16" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(512, 352)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock14" index="0"]
+material = SubResource("ShaderMaterial_hl1re")
+
+[node name="DestructibleBlock16" parent="CollectibleObjects" index="17" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(384, 432)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock16" index="0"]
+material = SubResource("ShaderMaterial_hl1re")
+
+[node name="DestructibleBlock18" parent="CollectibleObjects" index="18" instance=ExtResource("5_seavv")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(640, 432)
+
+[node name="Sprite2D" parent="CollectibleObjects/DestructibleBlock18" index="0"]
+material = SubResource("ShaderMaterial_hl1re")
+
+[node name="SpeedToken" parent="CollectibleObjects" index="19" instance=ExtResource("6_vkhcs")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(704, 40)
+
+[node name="SpeedToken2" parent="CollectibleObjects" index="20" instance=ExtResource("6_vkhcs")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(576, 96)
+
+[node name="SpeedToken3" parent="CollectibleObjects" index="21" instance=ExtResource("6_vkhcs")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(688, 224)
+
+[node name="SpeedToken4" parent="CollectibleObjects" index="22" instance=ExtResource("6_vkhcs")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(352, 64)
+
+[node name="SpeedToken5" parent="CollectibleObjects" index="23" instance=ExtResource("6_vkhcs")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(448, 40)
+
+[node name="StopToken2" parent="CollectibleObjects" index="24" instance=ExtResource("7_ahyrc")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(320, 384)
+
+[node name="StopToken3" parent="CollectibleObjects" index="25" instance=ExtResource("7_ahyrc")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(448, 384)
+
+[node name="StopToken4" parent="CollectibleObjects" index="26" instance=ExtResource("7_ahyrc")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(576, 384)
+
+[node name="StopToken5" parent="CollectibleObjects" index="27" instance=ExtResource("7_ahyrc")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(704, 384)
+
+[node name="StopToken6" parent="CollectibleObjects" index="28" instance=ExtResource("7_ahyrc")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(320, 320)
+
+[node name="StopToken7" parent="CollectibleObjects" index="29" instance=ExtResource("7_ahyrc")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(320, 256)
+
+[node name="BaddieOrb" parent="CollectibleObjects" index="30" instance=ExtResource("8_nn150")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(416, 96)
+speed = 100
+direction = Vector2(0.851, 0.851)
+
+[node name="BaddieOrb2" parent="CollectibleObjects" index="31" instance=ExtResource("8_nn150")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(576, 432)
+speed = 100
+direction = Vector2(0.851, 0.851)
+
+[node name="BaddieOrb3" parent="CollectibleObjects" index="32" instance=ExtResource("8_nn150")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(576, 352)
+speed = 100
+direction = Vector2(0.851, -0.851)
+
+[node name="BaddieOrb4" parent="CollectibleObjects" index="33" instance=ExtResource("8_nn150")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(448, 352)
+speed = 100
+direction = Vector2(-0.851, -0.851)
+
+[node name="BaddieOrb5" parent="CollectibleObjects" index="34" instance=ExtResource("8_nn150")]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(448, 432)
+speed = 100
+direction = Vector2(-0.851, 0.851)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(456, 216)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(640, 128)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+modulate = Color(0.690196, 0.619608, 1, 1)
+position = Vector2(160, 96)
+
+[editable path="CollectibleObjects/DestructibleBlock"]
+[editable path="CollectibleObjects/DestructibleBlock2"]
+[editable path="CollectibleObjects/DestructibleBlock3"]
+[editable path="CollectibleObjects/DestructibleBlock4"]
+[editable path="CollectibleObjects/DestructibleBlock5"]
+[editable path="CollectibleObjects/DestructibleBlock6"]
+[editable path="CollectibleObjects/DestructibleBlock7"]
+[editable path="CollectibleObjects/DestructibleBlock8"]
+[editable path="CollectibleObjects/DestructibleBlock9"]
+[editable path="CollectibleObjects/DestructibleBlock10"]
+[editable path="CollectibleObjects/DestructibleBlock11"]
+[editable path="CollectibleObjects/DestructibleBlock12"]
+[editable path="CollectibleObjects/DestructibleBlock13"]
+[editable path="CollectibleObjects/DestructibleBlock15"]
+[editable path="CollectibleObjects/DestructibleBlock17"]
+[editable path="CollectibleObjects/DestructibleBlock19"]
+[editable path="CollectibleObjects/DestructibleBlock14"]
+[editable path="CollectibleObjects/DestructibleBlock16"]
+[editable path="CollectibleObjects/DestructibleBlock18"]

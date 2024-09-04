@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://fd6kjyjrgcrw"]
+
+[ext_resource type="Script" path="res://assets/scenes/objects/chuckle_nuke.gd" id="1_o078e"]
+[ext_resource type="Texture2D" uid="uid://bkbuwt0yujrvk" path="res://assets/graphics/butt.png" id="2_h4tur"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mlpno"]
+radius = 10.0499
+
+[node name="ChuckleNuke" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_o078e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.05176e-05, 0)
+scale = Vector2(0.0695652, 0.0668058)
+texture = ExtResource("2_h4tur")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mlpno")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

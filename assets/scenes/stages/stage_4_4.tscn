@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://cks7mft2hgllc"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_3kw1v"]
+[ext_resource type="Shader" path="res://assets/scenes/stages/level_template.gdshader" id="2_28ic3"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_cimo3"]
+[ext_resource type="Texture2D" uid="uid://c1mfyqd0cfj43" path="res://assets/graphics/blacksquare.png" id="3_ere2f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_or1mm"]
+resource_local_to_scene = true
+shader = ExtResource("2_28ic3")
+shader_parameter/C1 = Color(0.882353, 0, 1, 1)
+shader_parameter/C2 = Color(0.231373, 0, 0, 1)
+shader_parameter/C3 = Color(0.607843, 0, 0.494118, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0d34"]
+resource_local_to_scene = true
+shader = ExtResource("2_28ic3")
+shader_parameter/C1 = Color(0.0666667, 1, 0, 1)
+shader_parameter/C2 = Color(0, 0.278431, 0, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yexyk"]
+resource_local_to_scene = true
+shader = ExtResource("2_28ic3")
+shader_parameter/C1 = Color(1, 0.501961, 0.67451, 1)
+shader_parameter/C2 = Color(0.4, 0, 0.12549, 1)
+shader_parameter/C3 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage4-4" instance=ExtResource("1_3kw1v")]
+script = ExtResource("2_cimo3")
+level_name = "4-4: PLACEHOLDER"
+scene_ID = "stage4-4"
+music_choice = "bgmLvl4"
+progress_destination = "stage4-5"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.301961)
+z_index = 2
+position = Vector2(511.75, 255.75)
+scale = Vector2(256.25, 256.25)
+texture = ExtResource("3_ere2f")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="1"]
+z_index = 2
+position = Vector2(576, -32)
+amount = 500
+lifetime = 1.5
+emission_shape = 3
+emission_rect_extents = Vector2(384, 1)
+gravity = Vector2(-200, 980)
+linear_accel_max = 100.0
+scale_amount_max = 2.0
+color = Color(0.556863, 0.615686, 0.901961, 1)
+
+[node name="Tiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_or1mm")
+scale = Vector2(0.5, 0.5)
+layer_0/tile_data = PackedInt32Array(2097183, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, -65488, 0, 0, 31, 0, 0, 65567, 0, 0, 131103, 0, 0, 196639, 0, 0, 262175, 0, 0, 327711, 0, 0, 393247, 0, 0, 458783, 0, 0, 524319, 0, 0, 589855, 0, 0, 655391, 0, 0, 720927, 0, 0, 786463, 0, 0, 851999, 0, 0, 917535, 0, 0, 983071, 0, 0, 1048607, 0, 0, 1114143, 0, 0, 1179679, 0, 0, 1245215, 0, 0, 1310751, 0, 0, 1376287, 0, 0, 1441823, 0, 0, 1507359, 0, 0, 1572895, 0, 0, 1638431, 0, 0, 1703967, 0, 0, 1769503, 0, 0, 1835039, 0, 0, 1900575, 0, 0, 1966111, 0, 0, 2031647, 0, 0, 2162719, 0, 0, 2228255, 0, 0, 2293791, 0, 0, 2359327, 0, 0, 2424863, 0, 0, 2490399, 0, 0, 2555935, 0, 0, 2621471, 0, 0, 2687007, 0, 0, 2752543, 0, 0, 2818079, 0, 0, 2883615, 0, 0, 2949151, 0, 0, 3014687, 0, 0, 3080223, 0, 0, 3145759, 0, 0, 3211295, 0, 0, 3276831, 0, 0, 3342367, 0, 0, 3407903, 0, 0, 3473439, 0, 0, 3538975, 0, 0, 3604511, 0, 0, 3670047, 0, 0, 3735583, 0, 0, 3801119, 0, 0, 3866655, 0, 0, 3932191, 0, 0, 3997727, 0, 0, 4063263, 0, 0, 4128799, 0, 0, 4194335, 0, 0, 4194336, 0, 0, 4194337, 0, 0, 4194338, 0, 0, 4194339, 0, 0, 4194340, 0, 0, 4194341, 0, 0, 4194342, 0, 0, 4194343, 0, 0, 4194344, 0, 0, 4194345, 0, 0, 4194346, 0, 0, 4194347, 0, 0, 4194348, 0, 0, 4194349, 0, 0, 4194350, 0, 0, 4194351, 0, 0, 4194352, 0, 0, -65487, 0, 0, 4194353, 0, 0, -65486, 0, 0, 4194354, 0, 0, -65485, 0, 0, 4194355, 0, 0, -65484, 0, 0, 4194356, 0, 0, -65483, 0, 0, 4194357, 0, 0, -65482, 0, 0, 4194358, 0, 0, -65481, 0, 0, 4194359, 0, 0, -65480, 0, 0, 4194360, 0, 0, -65479, 0, 0, 4194361, 0, 0, -65478, 0, 0, 4194362, 0, 0, -65477, 0, 0, 4194363, 0, 0, -65476, 0, 0, 4194364, 0, 0, -65475, 0, 0, 4194365, 0, 0, -65474, 0, 0, 4194366, 0, 0, -65473, 0, 0, 4194367, 0, 0, -65472, 0, 0, 4194368, 0, 0, -65471, 0, 0, 4194369, 0, 0, -65470, 0, 0, 4194370, 0, 0, -65469, 0, 0, 4194371, 0, 0, -65468, 0, 0, 4194372, 0, 0, -65467, 0, 0, 4194373, 0, 0, -65466, 0, 0, 4194374, 0, 0, -65465, 0, 0, 4194375, 0, 0, -65464, 0, 0, 4194376, 0, 0, -65463, 0, 0, 4194377, 0, 0, -65462, 0, 0, 4194378, 0, 0, -65461, 0, 0, 4194379, 0, 0, -65460, 0, 0, 4194380, 0, 0, -65459, 0, 0, 4194381, 0, 0, -65458, 0, 0, 4194382, 0, 0, -65457, 0, 0, 4194383, 0, 0, -65456, 0, 0, 4194384, 0, 0, -65455, 0, 0, 4194385, 0, 0, -65454, 0, 0, 4194386, 0, 0, -65453, 0, 0, 4194387, 0, 0, -65452, 0, 0, 4194388, 0, 0, -65451, 0, 0, 4194389, 0, 0, -65450, 0, 0, 4194390, 0, 0, -65449, 0, 0, 4194391, 0, 0, -65448, 0, 0, 4194392, 0, 0, -65447, 0, 0, 4194393, 0, 0, -65446, 0, 0, 4194394, 0, 0, -65445, 0, 0, 4194395, 0, 0, -65444, 0, 0, 4194396, 0, 0, -65443, 0, 0, 4194397, 0, 0, -65442, 0, 0, 4194398, 0, 0, -65441, 0, 0, 4194399, 0, 0, -65440, 0, 0, 96, 0, 0, 65632, 0, 0, 131168, 0, 0, 196704, 0, 0, 262240, 0, 0, 327776, 0, 0, 393312, 0, 0, 458848, 0, 0, 524384, 0, 0, 589920, 0, 0, 655456, 0, 0, 720992, 0, 0, 786528, 0, 0, 852064, 0, 0, 917600, 0, 0, 983136, 0, 0, 1048672, 0, 0, 1114208, 0, 0, 1179744, 0, 0, 1245280, 0, 0, 1310816, 0, 0, 1376352, 0, 0, 1441888, 0, 0, 1507424, 0, 0, 1572960, 0, 0, 1638496, 0, 0, 1704032, 0, 0, 1769568, 0, 0, 1835104, 0, 0, 1900640, 0, 0, 1966176, 0, 0, 2031712, 0, 0, 2097248, 0, 0, 2162784, 0, 0, 2228320, 0, 0, 2293856, 0, 0, 2359392, 0, 0, 2424928, 0, 0, 2490464, 0, 0, 2556000, 0, 0, 2621536, 0, 0, 2687072, 0, 0, 2752608, 0, 0, 2818144, 0, 0, 2883680, 0, 0, 2949216, 0, 0, 3014752, 0, 0, 3080288, 0, 0, 3145824, 0, 0, 3211360, 0, 0, 3276896, 0, 0, 3342432, 0, 0, 3407968, 0, 0, 3473504, 0, 0, 3539040, 0, 0, 3604576, 0, 0, 3670112, 0, 0, 3735648, 0, 0, 3801184, 0, 0, 3866720, 0, 0, 3932256, 0, 0, 3997792, 0, 0, 4063328, 0, 0, 4128864, 0, 0, 4194400, 0, 0)
+
+[node name="DogTiles" parent="." index="3"]
+scale = Vector2(0.5, 0.5)
+
+[node name="SwitchTiles1" parent="." index="4"]
+material = SubResource("ShaderMaterial_q0d34")
+scale = Vector2(0.5, 0.5)
+
+[node name="SwitchTiles2" parent="." index="5"]
+material = SubResource("ShaderMaterial_yexyk")
+scale = Vector2(0.5, 0.5)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+scale = Vector2(0.5, 0.5)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+scale = Vector2(0.5, 0.5)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+scale = Vector2(0.5, 0.5)

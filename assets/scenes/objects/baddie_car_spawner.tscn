@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bveffte47800q"]
+
+[ext_resource type="Script" path="res://assets/scenes/objects/baddie_car_spawner.gd" id="1_fkmor"]
+
+[node name="BaddieCarSpawner" type="Marker2D"]
+script = ExtResource("1_fkmor")

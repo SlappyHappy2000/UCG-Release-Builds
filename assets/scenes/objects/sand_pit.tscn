@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqr4agg5g2ver"]
+
+[ext_resource type="Script" path="res://assets/scenes/objects/sand_pit.gd" id="1_54v1f"]
+
+[node name="SandPit" type="Area2D"]
+z_index = -1
+collision_layer = 0
+collision_mask = 10
+script = ExtResource("1_54v1f")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.858824, 0.835294, 0.713726, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

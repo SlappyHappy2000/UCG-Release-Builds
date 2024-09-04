@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://l8ecukyy2ntu"]
+
+[ext_resource type="Script" path="res://assets/scenes/objects/destructible_block.gd" id="1_lgoam"]
+[ext_resource type="Texture2D" uid="uid://bvfrdflhebjdu" path="res://assets/graphics/destructibleblock.png" id="1_sufxo"]
+
+[sub_resource type="Shader" id="Shader_4x2mb"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform vec4 C4 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+	} else if (color == vec4(0, 0, 255, 255)) {
+        COLOR = C4;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+	
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ke71c"]
+resource_local_to_scene = true
+shader = SubResource("Shader_4x2mb")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(1, 0, 1, 1)
+shader_parameter/C3 = null
+shader_parameter/C4 = Color(0, 0, 0, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvf3i"]
+size = Vector2(32, 32)
+
+[node name="DestructibleBlock" type="CharacterBody2D" groups=["dblock"]]
+script = ExtResource("1_lgoam")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ke71c")
+scale = Vector2(2, 2)
+texture = ExtResource("1_sufxo")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yvf3i")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://5logmyld1hwt"]
+
+[ext_resource type="Texture2D" uid="uid://bhosnxjnn64e5" path="res://assets/graphics/car.png" id="1_j7ilf"]
+[ext_resource type="Script" path="res://assets/scenes/objects/baddie_car.gd" id="1_vcmln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq627"]
+size = Vector2(16, 16)
+
+[node name="BaddieCar" type="CharacterBody2D" groups=["dblock"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_vcmln")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -7.15256e-07)
+scale = Vector2(0.04, 0.06)
+texture = ExtResource("1_j7ilf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hq627")

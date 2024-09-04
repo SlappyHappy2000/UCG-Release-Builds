@@ -1,0 +1,202 @@
+[gd_scene load_steps=7 format=3 uid="uid://educujtjw684"]
+
+[ext_resource type="Script" path="res://assets/scenes/options_screen.gd" id="1_1rhlb"]
+[ext_resource type="Resource" uid="uid://dymg0d8brpak1" path="res://assets/default_options.tres" id="2_cijik"]
+[ext_resource type="Texture2D" uid="uid://03cg6jfvqg4j" path="res://assets/graphics/Options.png" id="2_krgj5"]
+[ext_resource type="FontFile" uid="uid://dfaxht05o8gpo" path="res://assets/fonts/impact.ttf" id="3_4yctq"]
+[ext_resource type="Texture2D" uid="uid://bruv3gauwcjhc" path="res://assets/graphics/canny.png" id="3_uhmk6"]
+[ext_resource type="PackedScene" uid="uid://f7glgwjf6uj1" path="res://assets/scenes/objects/wavy_asthetic.tscn" id="4_11gbn"]
+
+[node name="OptionsScreen" type="Control"]
+layout_mode = 3
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.255997
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rhlb")
+options = ExtResource("2_cijik")
+
+[node name="OptionsBG" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(256, 256)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_uhmk6")
+
+[node name="WavyAsthetic" parent="." instance=ExtResource("4_11gbn")]
+z_index = -1
+position = Vector2(256, 256)
+
+[node name="OptionsTitle" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(256, 32)
+scale = Vector2(0.291904, 0.3125)
+texture = ExtResource("2_krgj5")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 53.0
+offset_bottom = 39.0
+text = "Done"
+
+[node name="OptionDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 440.0
+offset_right = 488.0
+offset_bottom = 488.0
+theme_override_font_sizes/font_size = 10
+text = "Hi there!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AstheticalStuff" type="Node2D" parent="."]
+
+[node name="FakeOptionsTitle" type="Label" parent="AstheticalStuff"]
+offset_left = 128.0
+offset_top = 16.0
+offset_right = 384.0
+offset_bottom = 48.0
+mouse_filter = 0
+theme_override_fonts/font = ExtResource("3_4yctq")
+theme_override_font_sizes/font_size = 20
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Label" parent="AstheticalStuff"]
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 160.0
+offset_bottom = 104.0
+mouse_filter = 0
+theme_override_fonts/font = ExtResource("3_4yctq")
+theme_override_font_sizes/font_size = 20
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Modifiers" type="Label" parent="AstheticalStuff"]
+offset_left = 256.0
+offset_top = 64.0
+offset_right = 384.0
+offset_bottom = 104.0
+mouse_filter = 0
+theme_override_fonts/font = ExtResource("3_4yctq")
+theme_override_font_sizes/font_size = 20
+text = "Modifiers"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundVolumeText" type="Label" parent="AstheticalStuff"]
+offset_left = 32.0
+offset_top = 184.0
+offset_right = 160.0
+offset_bottom = 208.0
+mouse_filter = 0
+theme_override_font_sizes/font_size = 12
+text = "Sound Volume: 100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolumeText" type="Label" parent="AstheticalStuff"]
+offset_left = 32.0
+offset_top = 232.0
+offset_right = 160.0
+offset_bottom = 256.0
+mouse_filter = 0
+theme_override_font_sizes/font_size = 12
+text = "Music Volume: 100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsStuff" type="Node2D" parent="."]
+
+[node name="FullscreenSwitch" type="CheckButton" parent="SettingsStuff"]
+offset_left = 32.0
+offset_top = 128.0
+offset_right = 164.0
+offset_bottom = 159.0
+text = "Fullscreen:"
+
+[node name="SoundSlider" type="HSlider" parent="SettingsStuff"]
+offset_left = 32.0
+offset_top = 168.0
+offset_right = 160.0
+offset_bottom = 184.0
+max_value = 20.0
+value = 20.0
+
+[node name="MusicSlider" type="HSlider" parent="SettingsStuff"]
+offset_left = 32.0
+offset_top = 216.0
+offset_right = 160.0
+offset_bottom = 232.0
+max_value = 20.0
+value = 20.0
+
+[node name="ModifierStuff" type="Node2D" parent="."]
+
+[node name="easymode" type="CheckButton" parent="ModifierStuff"]
+offset_left = 256.0
+offset_top = 112.0
+offset_right = 395.0
+offset_bottom = 143.0
+text = "Stress-Free:"
+
+[node name="hardmode" type="CheckButton" parent="ModifierStuff"]
+offset_left = 256.0
+offset_top = 144.0
+offset_right = 395.0
+offset_bottom = 175.0
+text = "Hard Mode:"
+
+[node name="roleswap" type="CheckButton" parent="ModifierStuff"]
+offset_left = 256.0
+offset_top = 176.0
+offset_right = 395.0
+offset_bottom = 207.0
+text = "Switcheroo:"
+
+[node name="burst" type="CheckButton" parent="ModifierStuff"]
+offset_left = 256.0
+offset_top = 208.0
+offset_right = 351.0
+offset_bottom = 239.0
+text = "Burst:"
+
+[node name="telekinetic" type="CheckButton" parent="ModifierStuff"]
+offset_left = 256.0
+offset_top = 240.0
+offset_right = 394.0
+offset_bottom = 271.0
+text = "Telekinesis:"
+
+[node name="glass" type="CheckButton" parent="ModifierStuff"]
+offset_left = 256.0
+offset_top = 272.0
+offset_right = 401.0
+offset_bottom = 303.0
+text = "Fabergé Cat:"
+
+[node name="hypercam" type="CheckButton" parent="ModifierStuff"]
+offset_left = 256.0
+offset_top = 304.0
+offset_right = 497.0
+offset_bottom = 335.0
+text = "Unregistered Hypercat 2:"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="ModifierStuff/easymode" to="." method="modifier_select" binds= ["modifier_easymode"]]
+[connection signal="toggled" from="ModifierStuff/hardmode" to="." method="modifier_select" binds= ["modifier_hardmode"]]
+[connection signal="toggled" from="ModifierStuff/roleswap" to="." method="modifier_select" binds= ["modifier_roleswap"]]
+[connection signal="toggled" from="ModifierStuff/burst" to="." method="modifier_select" binds= ["modifier_burst"]]
+[connection signal="toggled" from="ModifierStuff/telekinetic" to="." method="modifier_select" binds= ["modifier_telekinetic"]]
+[connection signal="toggled" from="ModifierStuff/glass" to="." method="modifier_select" binds= ["modifier_glass"]]
+[connection signal="toggled" from="ModifierStuff/hypercam" to="." method="modifier_select" binds= ["modifier_hypercam"]]

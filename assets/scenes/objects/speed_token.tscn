@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://1vtwbmse6mu6"]
+
+[ext_resource type="Texture2D" uid="uid://84rvoulkn3kc" path="res://assets/graphics/speedtoken.png" id="1_5modg"]
+[ext_resource type="Script" path="res://assets/scenes/objects/speed_token.gd" id="1_hwxso"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cn8y8"]
+radius = 16.0
+
+[node name="SpeedToken" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_hwxso")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, -4.76837e-07)
+scale = Vector2(0.444444, 0.444444)
+texture = ExtResource("1_5modg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cn8y8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

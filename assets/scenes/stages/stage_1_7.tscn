@@ -1,0 +1,162 @@
+[gd_scene load_steps=12 format=3 uid="uid://beidhc53qhtdg"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_w1gpq"]
+[ext_resource type="PackedScene" uid="uid://cqrmu70pd1jaa" path="res://assets/scenes/objects/baddie_orb.tscn" id="2_hv02o"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_pdy4e"]
+[ext_resource type="Texture2D" uid="uid://cgjy70kwpg3rw" path="res://assets/graphics/GOLFcool.png" id="3_pwnwk"]
+[ext_resource type="Texture2D" uid="uid://ba22d5c0i0i7l" path="res://assets/graphics/CENTRALcool.png" id="4_fhpbd"]
+[ext_resource type="PackedScene" uid="uid://bqr4agg5g2ver" path="res://assets/scenes/objects/sand_pit.tscn" id="5_ad3bp"]
+
+[sub_resource type="Shader" id="Shader_eb2yg"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75mli"]
+resource_local_to_scene = true
+shader = SubResource("Shader_eb2yg")
+shader_parameter/C1 = Color(1, 1, 1, 1)
+shader_parameter/C2 = Color(0.721569, 0.721569, 0.721569, 1)
+shader_parameter/C3 = Color(0.419608, 0.419608, 0.419608, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_3oshw"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m01bp"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0, 0.729412, 0.65098, 1)
+shader_parameter/C2 = Color(0, 0.129412, 0.0901961, 1)
+shader_parameter/C3 = Color(0, 0.407843, 0.392157, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3fks"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0.572549, 0.729412, 0, 1)
+shader_parameter/C2 = Color(0.0666667, 0.129412, 0, 1)
+shader_parameter/C3 = Color(0.27451, 0.411765, 0, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage1-7" instance=ExtResource("1_w1gpq")]
+script = ExtResource("2_pdy4e")
+level_name = "1-7: Bony Cronies"
+scene_ID = "stage1-7"
+music_choice = "bgmLvl1"
+stage_color = Color(0, 0.709804, 0.4, 1)
+progress_destination = "stage1-8"
+
+[node name="Tiles1" parent="." index="0"]
+material = SubResource("ShaderMaterial_75mli")
+layer_0/tile_data = PackedInt32Array(2097168, 0, 0, 2097169, 0, 0, 2097170, 0, 0, 2097171, 0, 0, 2097172, 0, 0, 2097173, 0, 0, 2097174, 0, 0, 2097175, 0, 0, 2097176, 0, 0, 2097177, 0, 0, 2097178, 0, 0, 2097179, 0, 0, 2097180, 0, 0, 2097181, 0, 0, 2097182, 0, 0, 2097183, 0, 0, 2097184, 0, 0, 2097185, 0, 0, 2097186, 0, 0, 2097187, 0, 0, 2097188, 0, 0, 2097189, 0, 0, 2097190, 0, 0, 2097191, 0, 0, 2097192, 0, 0, 2097193, 0, 0, 2097194, 0, 0, 2097195, 0, 0, 2097196, 0, 0, 2097197, 0, 0, 2097198, 0, 0, 2097199, 0, 0, 2031631, 0, 0, 1966095, 0, 0, 1900559, 0, 0, 1835023, 0, 0, 1769487, 0, 0, 1703951, 0, 0, 1638415, 0, 0, 1572879, 0, 0, 1507343, 0, 0, 1441807, 0, 0, 1376271, 0, 0, 1310735, 0, 0, 15, 0, 0, 65551, 0, 0, 131087, 0, 0, 196623, 0, 0, 262159, 0, 0, 327695, 0, 0, 393231, 0, 0, 458767, 0, 0, 524303, 0, 0, 589839, 0, 0, 655375, 0, 0, 720911, 0, 0, 786447, 0, 0, 851983, 0, 0, 917519, 0, 0, 983055, 0, 0, 1048591, 0, 0, 1114127, 0, 0, 1179663, 0, 0, 1245199, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65513, 0, 0, -65512, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65507, 0, 0, -65506, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, 48, 0, 0, 65584, 0, 0, 131120, 0, 0, 196656, 0, 0, 262192, 0, 0, 327728, 0, 0, 393264, 0, 0, 458800, 0, 0, 524336, 0, 0, 589872, 0, 0, 655408, 0, 0, 720944, 0, 0, 786480, 0, 0, 852016, 0, 0, 917552, 0, 0, 983088, 0, 0, 1048624, 0, 0, 1114160, 0, 0, 1179696, 0, 0, 1245232, 0, 0, 1310768, 0, 0, 1376304, 0, 0, 1441840, 0, 0, 1507376, 0, 0, 1572912, 0, 0, 1638448, 0, 0, 1703984, 0, 0, 1769520, 0, 0, 1835056, 0, 0, 1900592, 0, 0, 1966128, 0, 0, 2031664, 0, 0, -65521, 0, 0, 2097167, 0, 0, 2097200, 0, 0, -65488, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1179679, 0, 0, 1179680, 0, 0, 1179681, 0, 0, 1179682, 0, 0, 1179683, 0, 0, 1179684, 0, 0, 1179685, 0, 0, 1179686, 0, 0, 1179687, 0, 0, 1179688, 0, 0, 1179689, 0, 0, 1245225, 0, 0, 1245224, 0, 0, 1245223, 0, 0, 1245222, 0, 0, 1245221, 0, 0, 1245220, 0, 0, 1245219, 0, 0, 1245218, 0, 0, 1245217, 0, 0, 1245216, 0, 0, 1245215, 0, 0, 1245214, 0, 0, 1245213, 0, 0, 1245212, 0, 0, 1245211, 0, 0, 1245210, 0, 0, 1245209, 0, 0, 1245208, 0, 0, 1245207, 0, 0, 1245206, 0, 0, 1310758, 0, 0, 1310759, 0, 0, 1310760, 0, 0, 1310761, 0, 0, 1310757, 0, 0, 1310756, 0, 0, 1310755, 0, 0, 1310754, 0, 0, 1310753, 0, 0, 1310752, 0, 0, 1310751, 0, 0, 1310750, 0, 0, 1310749, 0, 0, 1310748, 0, 0, 1310747, 0, 0, 1310746, 0, 0, 1310745, 0, 0, 1310744, 0, 0, 1310743, 0, 0, 1310742, 0, 0, 1376278, 0, 0, 1376279, 0, 0, 1376280, 0, 0, 1376281, 0, 0, 1376282, 0, 0, 1376292, 0, 0, 1376293, 0, 0, 1376294, 0, 0, 1376295, 0, 0, 1376296, 0, 0, 1376297, 0, 0, 1376291, 0, 0, 1376290, 0, 0, 1376289, 0, 0, 1376288, 0, 0, 1376287, 0, 0, 1376286, 0, 0, 1376285, 0, 0, 1376284, 0, 0, 1376283, 0, 0, 28, 0, 0, 65564, 0, 0, 131100, 0, 0, 196636, 0, 0, 262172, 0, 0, 327708, 0, 0, 262179, 0, 0, 196643, 0, 0, 131107, 0, 0, 65571, 0, 0, 35, 0, 0, 327707, 0, 0, 262171, 0, 0, 196635, 0, 0, 131099, 0, 0, 65563, 0, 0, 27, 0, 0, 327716, 0, 0, 262180, 0, 0, 196644, 0, 0, 131108, 0, 0, 65572, 0, 0, 36, 0, 0, 327715, 0, 0, 327706, 0, 0, 262170, 0, 0, 196634, 0, 0, 131098, 0, 0, 65562, 0, 0, 26, 0, 0, 25, 0, 0, 65561, 0, 0, 131097, 0, 0, 196633, 0, 0, 262169, 0, 0, 327705, 0, 0, 327717, 0, 0, 262181, 0, 0, 196645, 0, 0, 131109, 0, 0, 65573, 0, 0, 37, 0, 0, 38, 0, 0, 65574, 0, 0, 131110, 0, 0, 196646, 0, 0, 262182, 0, 0, 327718, 0, 0, 393241, 131072, 0, 393251, 131072, 0, 393242, 0, 0, 393243, 0, 0, 393244, 65536, 0, 393254, 65536, 0, 393253, 0, 0, 393252, 0, 0)
+
+[node name="SwitchTiles1" parent="." index="2"]
+material = SubResource("ShaderMaterial_m01bp")
+
+[node name="SwitchTiles2" parent="." index="3"]
+material = SubResource("ShaderMaterial_v3fks")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+position = Vector2(440, 320)
+scale = Vector2(0.272109, 0.273504)
+texture = ExtResource("3_pwnwk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="5"]
+position = Vector2(552, 320)
+scale = Vector2(0.272109, 0.273504)
+texture = ExtResource("4_fhpbd")
+
+[node name="SandPit" parent="TerrainObjects" index="0" instance=ExtResource("5_ad3bp")]
+
+[node name="Polygon2D" parent="TerrainObjects/SandPit" index="0"]
+polygon = PackedVector2Array(248, 64, 248, -8, 408, -8, 408, 64)
+
+[node name="SandPit2" parent="TerrainObjects" index="1" instance=ExtResource("5_ad3bp")]
+
+[node name="Polygon2D" parent="TerrainObjects/SandPit2" index="0"]
+polygon = PackedVector2Array(616, 64, 616, -8, 776, -8, 776, 64)
+
+[node name="BaddieOrb" parent="CollectibleObjects" index="0" instance=ExtResource("2_hv02o")]
+position = Vector2(608, 192)
+speed = 100
+direction = Vector2(0.851, 0.851)
+
+[node name="BaddieOrb2" parent="CollectibleObjects" index="1" instance=ExtResource("2_hv02o")]
+position = Vector2(544, 192)
+speed = 100
+direction = Vector2(0.988, -0.305)
+
+[node name="BaddieOrb3" parent="CollectibleObjects" index="2" instance=ExtResource("2_hv02o")]
+position = Vector2(480, 192)
+speed = 100
+direction = Vector2(-0.988, -0.305)
+
+[node name="BaddieOrb4" parent="CollectibleObjects" index="3" instance=ExtResource("2_hv02o")]
+position = Vector2(416, 192)
+speed = 100
+direction = Vector2(-0.851, 0.851)
+
+[node name="BaddieOrb5" parent="CollectibleObjects" index="4" instance=ExtResource("2_hv02o")]
+position = Vector2(352, 192)
+speed = 100
+direction = Vector2(-0.305, -0.988)
+
+[node name="BaddieOrb6" parent="CollectibleObjects" index="5" instance=ExtResource("2_hv02o")]
+position = Vector2(672, 192)
+speed = 100
+direction = Vector2(0.305, -0.988)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+position = Vector2(512, 64)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+position = Vector2(512, 448)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+position = Vector2(512, 24)
+
+[editable path="TerrainObjects/SandPit"]
+[editable path="TerrainObjects/SandPit2"]

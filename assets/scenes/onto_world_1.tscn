@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=3 uid="uid://dkxa0jbgh2d08"]
+
+[ext_resource type="Texture2D" uid="uid://b41nat5u0sxeb" path="res://assets/graphics/ontotexture.png" id="1_2bgqf"]
+[ext_resource type="Script" path="res://assets/scenes/onto_world_1.gd" id="1_oa2ne"]
+[ext_resource type="Texture2D" uid="uid://bgsv1ou0rgc21" path="res://assets/graphics/completed.png" id="2_7q0dq"]
+[ext_resource type="FontFile" uid="uid://ko0mpo6barvq" path="res://assets/fonts/times new roman.ttf" id="2_57s3c"]
+[ext_resource type="Resource" uid="uid://dymg0d8brpak1" path="res://assets/default_options.tres" id="2_x4m87"]
+[ext_resource type="Texture2D" uid="uid://cipxad3av171r" path="res://assets/graphics/completedpicture.png" id="4_w8875"]
+[ext_resource type="AudioStream" uid="uid://irv1dy5ennua" path="res://assets/music/OntoWorld1Theme.ogg" id="5_x5to4"]
+[ext_resource type="Texture2D" uid="uid://dc7nc0txbj7eb" path="res://assets/graphics/worldsign.png" id="6_d3f07"]
+[ext_resource type="Texture2D" uid="uid://cxcnrlgqta182" path="res://assets/graphics/circlegradient.png" id="6_wy3mt"]
+[ext_resource type="FontFile" uid="uid://buubw0k610wbo" path="res://assets/fonts/HWYGEXPD.TTF" id="7_gludt"]
+[ext_resource type="AudioStream" uid="uid://c54vtrkpug7qn" path="res://assets/music/World0VictoryTheme.ogg" id="9_qpnuf"]
+
+[node name="OntoWorld1" type="Node2D"]
+script = ExtResource("1_oa2ne")
+options = ExtResource("2_x4m87")
+progress_destination = "stage1-1"
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="bg" type="Sprite2D" parent="Stuff"]
+position = Vector2(512, 512)
+texture = ExtResource("1_2bgqf")
+
+[node name="worldcompleted" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 40.0
+offset_right = 704.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_57s3c")
+theme_override_font_sizes/font_size = 25
+text = "Learning Course"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="completed" type="Sprite2D" parent="Stuff"]
+position = Vector2(512, 128)
+scale = Vector2(0.677249, 0.592593)
+texture = ExtResource("2_7q0dq")
+
+[node name="completed2" type="Sprite2D" parent="Stuff"]
+position = Vector2(512, 320)
+texture = ExtResource("4_w8875")
+hframes = 4
+
+[node name="congratulations" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 408.0
+offset_right = 704.0
+offset_bottom = 472.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_57s3c")
+theme_override_font_sizes/font_size = 25
+text = "Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="sign" type="Sprite2D" parent="Stuff"]
+position = Vector2(512, 816)
+scale = Vector2(1.42222, 1.29949)
+texture = ExtResource("6_d3f07")
+
+[node name="nextexit" type="Label" parent="Stuff"]
+offset_left = 384.0
+offset_top = 688.0
+offset_right = 640.0
+offset_bottom = 744.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_gludt")
+theme_override_font_sizes/font_size = 20
+text = "Next Exit: World 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="worldname" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 728.0
+offset_right = 704.0
+offset_bottom = 760.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_gludt")
+theme_override_font_sizes/font_size = 25
+text = "GOLF CENTRAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="worlddescription" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 760.0
+offset_right = 704.0
+offset_bottom = 792.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_gludt")
+theme_override_font_sizes/font_size = 15
+text = "- All golfers of all ages welcome -"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="clickcontinue" type="Label" parent="Stuff"]
+offset_left = 320.0
+offset_top = 792.0
+offset_right = 704.0
+offset_bottom = 824.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_gludt")
+theme_override_font_sizes/font_size = 15
+text = "Click anywhere to continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="gradient" type="Sprite2D" parent="Stuff"]
+position = Vector2(512, 768)
+texture = ExtResource("6_wy3mt")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="sfxCompleteJingle" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("9_qpnuf")
+
+[node name="sfxOntoTheme" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_x5to4")
+
+[connection signal="finished" from="Sounds/sfxCompleteJingle" to="." method="_on_sfx_complete_jingle_finished"]

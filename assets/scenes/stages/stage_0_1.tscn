@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://dydi5kkph85kx"]
+
+[ext_resource type="PackedScene" uid="uid://cqmvcq8hwe083" path="res://assets/scenes/stages/level_template.tscn" id="1_4gsht"]
+[ext_resource type="Script" path="res://assets/scenes/stages/stage_0_1.gd" id="2_c1ac0"]
+[ext_resource type="Texture2D" uid="uid://dr6qbq0b3p8da" path="res://assets/graphics/stage0-1graffiti.png" id="3_s5yy5"]
+
+[sub_resource type="Shader" id="Shader_eb2yg"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ej5qy"]
+resource_local_to_scene = true
+shader = SubResource("Shader_eb2yg")
+shader_parameter/C1 = Color(0.882353, 0, 1, 1)
+shader_parameter/C2 = Color(0.231373, 0, 0, 1)
+shader_parameter/C3 = Color(0.607843, 0, 0.494118, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_3oshw"]
+code = "shader_type canvas_item;
+
+uniform vec4 C1 : source_color;
+uniform vec4 C2 : source_color;
+uniform vec4 C3 : source_color;
+uniform float alpha = 1.0;
+
+void fragment(){
+    vec4 t = texture(TEXTURE, UV);
+    vec4 color = floor(t.rgba * 255.0);
+    if (color == vec4(255, 255, 255, 255)) {
+        COLOR = C1;
+	} else if (color == vec4(255, 0, 0, 255)) {
+        COLOR = C2;
+	} else if (color == vec4(0, 0, 0, 255)) {
+        COLOR = C3;
+    } else {
+        COLOR = t;
+    }
+	if (COLOR.a != 0.0) {
+		COLOR.a = alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8551p"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0, 0.729412, 0.65098, 1)
+shader_parameter/C2 = Color(0, 0.129412, 0.0901961, 1)
+shader_parameter/C3 = Color(0, 0.407843, 0.392157, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fa1yp"]
+resource_local_to_scene = true
+shader = SubResource("Shader_3oshw")
+shader_parameter/C1 = Color(0.572549, 0.729412, 0, 1)
+shader_parameter/C2 = Color(0.0666667, 0.129412, 0, 1)
+shader_parameter/C3 = Color(0.27451, 0.411765, 0, 1)
+shader_parameter/alpha = 1.0
+
+[node name="Stage0-1" instance=ExtResource("1_4gsht")]
+script = ExtResource("2_c1ac0")
+level_name = "0-1: Welcome to Uncanny Cat Golf!"
+scene_ID = "stage0-1"
+music_choice = "bgmLvl0"
+stage_color = Color(0.517647, 0.682353, 0.85098, 1)
+progress_destination = "stage0-2"
+peak_value = 12000
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+position = Vector2(512, 256)
+texture = ExtResource("3_s5yy5")
+hframes = 7
+
+[node name="Tiles1" parent="." index="1"]
+material = SubResource("ShaderMaterial_ej5qy")
+
+[node name="SwitchTiles1" parent="." index="3"]
+material = SubResource("ShaderMaterial_8551p")
+
+[node name="SwitchTiles2" parent="." index="4"]
+material = SubResource("ShaderMaterial_fa1yp")
+
+[node name="CollectibleObjects" parent="." index="6"]
+position = Vector2(528, 192)
+
+[node name="GoalHole" parent="MainObjects" index="0"]
+position = Vector2(592, 480)
+
+[node name="CatGolf" parent="MainObjects" index="1"]
+position = Vector2(296, 40)
+
+[node name="HardModeGhost" parent="MainObjects/UncannyCats" index="0"]
+position = Vector2(736, 32)

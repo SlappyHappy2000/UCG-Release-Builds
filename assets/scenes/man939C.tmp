@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://chb2kemhnma04"]
+
+[ext_resource type="Script" path="res://assets/scenes/manager.gd" id="1_7kq8l"]
+[ext_resource type="Texture2D" uid="uid://b50iwg3qhcif6" path="res://assets/graphics/gametitle.png" id="2_8fjgv"]
+[ext_resource type="AudioStream" uid="uid://b5gjmkxsaynm7" path="res://assets/music/Stage0Theme.ogg" id="3_8utbi"]
+[ext_resource type="AudioStream" uid="uid://bfmcv06xbxp23" path="res://assets/music/Stage1Theme.ogg" id="3_63kx2"]
+[ext_resource type="Texture2D" uid="uid://dsa1vo356pv1j" path="res://assets/graphics/hudbg.png" id="3_wwfhq"]
+[ext_resource type="FontFile" uid="uid://ko0mpo6barvq" path="res://assets/fonts/times new roman.ttf" id="4_4t1bs"]
+[ext_resource type="AudioStream" uid="uid://clvc35w115mwi" path="res://assets/music/Stage2Theme.ogg" id="4_vvlv8"]
+[ext_resource type="Script" path="res://Node.gd" id="8_ogalr"]
+
+[node name="Manager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7kq8l")
+
+[node name="Music" type="Node" parent="."]
+
+[node name="nothing" type="AudioStreamPlayer" parent="Music"]
+
+[node name="bgmLvl0" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("3_8utbi")
+
+[node name="bgmLvl1" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("3_63kx2")
+
+[node name="bgmLvl2" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("4_vvlv8")
+
+[node name="HUD" type="Control" parent="."]
+z_index = 5
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="HudBG" type="Sprite2D" parent="HUD"]
+position = Vector2(128, 256)
+texture = ExtResource("3_wwfhq")
+
+[node name="GameTitle" type="Sprite2D" parent="HUD"]
+position = Vector2(124, 68)
+scale = Vector2(0.714697, 0.786127)
+texture = ExtResource("2_8fjgv")
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 280.0
+offset_right = 216.0
+offset_bottom = 312.0
+theme_override_fonts/font = ExtResource("4_4t1bs")
+theme_override_font_sizes/font_size = 20
+text = "Score: 00000"
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 240.0
+offset_right = 136.0
+offset_bottom = 272.0
+theme_override_fonts/font = ExtResource("4_4t1bs")
+theme_override_font_sizes/font_size = 20
+text = "Time: 00:00"
+vertical_alignment = 1
+
+[node name="ResetLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 264.0
+offset_right = 272.0
+offset_bottom = 296.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_4t1bs")
+theme_override_font_sizes/font_size = 12
+text = "Resets: 0"
+vertical_alignment = 1
+
+[node name="SkipsLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 288.0
+offset_right = 272.0
+offset_bottom = 320.0
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_4t1bs")
+theme_override_font_sizes/font_size = 12
+text = "Skips: 0"
+vertical_alignment = 1
+
+[node name="Node" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("8_ogalr")
